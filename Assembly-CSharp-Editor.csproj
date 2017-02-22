@@ -55,6 +55,9 @@
      <None Include="Assets\AssetStore\GE Common Assets\Readme.txt" />
      <None Include="Assets\AssetStore\GUI Animator\GUI Animator FREE\!How to.txt" />
      <None Include="Assets\Shaders\CullOn.shader" />
+ <Reference Include="Assembly-UnityScript">
+ <HintPath>C:/Users/syota/Desktop/GitHub/UNOir/Library/ScriptAssemblies/Assembly-UnityScript.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEditor.Advertisements">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/Editor/UnityEditor.Advertisements.dll</HintPath>
  </Reference>
@@ -79,6 +82,27 @@
  <Reference Include="UnityEditor.TreeEditor">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TreeEditor/Editor/UnityEditor.TreeEditor.dll</HintPath>
  </Reference>
+ <Reference Include="DOTween">
+ <HintPath>C:/Users/syota/Desktop/GitHub/UNOir/Assets/AssetStore/Demigiant/DOTween/DOTween.dll</HintPath>
+ </Reference>
+ <Reference Include="DOTween43">
+ <HintPath>C:/Users/syota/Desktop/GitHub/UNOir/Assets/AssetStore/Demigiant/DOTween/DOTween43.dll</HintPath>
+ </Reference>
+ <Reference Include="DOTween46">
+ <HintPath>C:/Users/syota/Desktop/GitHub/UNOir/Assets/AssetStore/Demigiant/DOTween/DOTween46.dll</HintPath>
+ </Reference>
+ <Reference Include="DOTween50">
+ <HintPath>C:/Users/syota/Desktop/GitHub/UNOir/Assets/AssetStore/Demigiant/DOTween/DOTween50.dll</HintPath>
+ </Reference>
+ <Reference Include="DOTweenEditor">
+ <HintPath>C:/Users/syota/Desktop/GitHub/UNOir/Assets/AssetStore/Demigiant/DOTween/Editor/DOTweenEditor.dll</HintPath>
+ </Reference>
+ <Reference Include="GETween">
+ <HintPath>C:/Users/syota/Desktop/GitHub/UNOir/Assets/AssetStore/GUI Animator/Common/Plugins/GETween.dll</HintPath>
+ </Reference>
+ <Reference Include="GUIAnimatorFREE">
+ <HintPath>C:/Users/syota/Desktop/GitHub/UNOir/Assets/AssetStore/GUI Animator/GUI Animator FREE/Plugins/GUIAnimatorFREE.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEditor.Graphs">
  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
  </Reference>
@@ -88,33 +112,10 @@
  <Reference Include="UnityEditor.WindowsStandalone.Extensions">
  <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
  </Reference>
- <Reference Include="GETween">
- <HintPath>C:/Users/syota/Desktop/GitHub/UNOir/Assets/AssetStore/GUI Animator/Common/Plugins/GETween.dll</HintPath>
- </Reference>
- <Reference Include="DOTweenEditor">
- <HintPath>C:/Users/syota/Desktop/GitHub/UNOir/Assets/AssetStore/Demigiant/DOTween/Editor/DOTweenEditor.dll</HintPath>
- </Reference>
- <Reference Include="DOTween">
- <HintPath>C:/Users/syota/Desktop/GitHub/UNOir/Assets/AssetStore/Demigiant/DOTween/DOTween.dll</HintPath>
- </Reference>
- <Reference Include="DOTween46">
- <HintPath>C:/Users/syota/Desktop/GitHub/UNOir/Assets/AssetStore/Demigiant/DOTween/DOTween46.dll</HintPath>
- </Reference>
- <Reference Include="DOTween43">
- <HintPath>C:/Users/syota/Desktop/GitHub/UNOir/Assets/AssetStore/Demigiant/DOTween/DOTween43.dll</HintPath>
- </Reference>
- <Reference Include="DOTween50">
- <HintPath>C:/Users/syota/Desktop/GitHub/UNOir/Assets/AssetStore/Demigiant/DOTween/DOTween50.dll</HintPath>
- </Reference>
- <Reference Include="GUIAnimatorFREE">
- <HintPath>C:/Users/syota/Desktop/GitHub/UNOir/Assets/AssetStore/GUI Animator/GUI Animator FREE/Plugins/GUIAnimatorFREE.dll</HintPath>
- </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp.csproj">
       <Project>{C8AC7687-DC0D-EE1A-2EDB-F236C5AA30F9}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
-    <ProjectReference Include="Assembly-UnityScript.unityproj">
-      <Project>{0911CD2A-2A99-CBDF-8852-66359CAEE62D}</Project>      <Name>Assembly-UnityScript</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

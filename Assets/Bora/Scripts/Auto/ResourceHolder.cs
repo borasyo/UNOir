@@ -5,25 +5,34 @@ using System.Collections.Generic;
 public class ResourceHolder : MonoBehaviour {
 
 	/// <summary>
-	/// 概要 : 動的に読み込むResourceを開始時に読み込んでおく
+	/// 概要 : 動的に読み込むResourceを開始時に読み込んで保持しておく
 	/// Author : 大洞祥太
 	/// </summary>
-	
-	private static ResourceHolder instance;
+    /// 
+
+    #region Singleton
+
+    private static ResourceHolder instance;
 
 	public static ResourceHolder Instance {
 		get {
-			if (instance == null) {
-				instance = (ResourceHolder)FindObjectOfType(typeof(ResourceHolder));
+            if (instance)
+                return instance;
 
-				if (instance == null) {
-					Debug.LogError(typeof(ResourceHolder) + "is nothing");
-				}
-			}
+            instance = (ResourceHolder)FindObjectOfType(typeof(ResourceHolder));
 
-			return instance;
+            if (instance)
+                return instance;
+
+            GameObject obj = new GameObject();
+            obj.AddComponent<ResourceHolder>();
+            Debug.Log(typeof(ResourceHolder) + "が存在していないのに参照されたので生成");
+
+            return instance;
 		}
 	}
+
+    #endregion
 		
 	// リソースID
 	public enum eResourceId {
@@ -45,7 +54,7 @@ public class ResourceHolder : MonoBehaviour {
 		ID_MAX,
 	};
 
-	List<Sprite[]> resourceAll = new List<Sprite[]> ();
+	List<Sprite[]> loadResources = new List<Sprite[]> ();
 
 	public void Awake() {
 		if (this != Instance) {
@@ -55,27 +64,40 @@ public class ResourceHolder : MonoBehaviour {
 
 		DontDestroyOnLoad (this.gameObject);
 
-		if (resourceAll.Count > 0) {
-			return;
-		}
-
-		resourceAll.Add (Resources.LoadAll<Sprite> ("Textures/CharaSkill/CharaSkillCard"));
-		resourceAll.Add (Resources.LoadAll<Sprite> ("Textures/Effect/CharaSkill/CutIn"));
-		resourceAll.Add (Resources.LoadAll<Sprite> ("Textures/Effect/PlayerAtack/atack_effect"));
-		resourceAll.Add (Resources.LoadAll<Sprite> ("Textures/Effect/SpecialCard/Drow/DrowEffect"));
-		resourceAll.Add (Resources.LoadAll<Sprite> ("Textures/Fever/feverNum"));
-		resourceAll.Add (Resources.LoadAll<Sprite> ("Textures/Card/Card"));
-		resourceAll.Add (Resources.LoadAll<Sprite> ("Textures/Number/number"));
-		resourceAll.Add (Resources.LoadAll<Sprite> ("Textures/Number/hp_number"));
-        resourceAll.Add (Resources.LoadAll<Sprite> ("Textures/PlayerCharactor/Charawaku_all"));
-        resourceAll.Add (Resources.LoadAll<Sprite> ("Textures/Fever/Fever"));
-        resourceAll.Add (Resources.LoadAll<Sprite> ("Textures/Fever/UnoFever"));
-        resourceAll.Add (Resources.LoadAll<Sprite> ("Textures/Effect/SpecialCard/Drow/powerup"));
-        resourceAll.Add (Resources.LoadAll<Sprite> ("Textures/Gauge/player_hp_Gauge"));
-        resourceAll.Add (Resources.LoadAll<Sprite> ("Textures/CharaSkill/CharaSkillCardEffect"));
+        LoadResource("Textures/CharaSkill/CharaSkillCard");
+        LoadResource("Textures/Effect/CharaSkill/CutIn");
+        LoadResource("Textures/Effect/PlayerAtack/atack_effect");
+        LoadResource("Textures/Effect/SpecialCard/Drow/DrowEffect");
+        LoadResource("Textures/Fever/feverNum");
+        LoadResource("Textures/Card/Card");
+        LoadResource("Textures/Number/number");
+        LoadResource("Textures/Number/hp_number");
+        LoadResource("Textures/PlayerCharactor/Charawaku_all");
+        LoadResource("Textures/Fever/Fever");
+        LoadResource("Textures/Fever/UnoFever");
+        LoadResource("Textures/Effect/SpecialCard/Drow/powerup");
+        LoadResource("Textures/Gauge/player_hp_Gauge");
+        LoadResource("Textures/CharaSkill/CharaSkillCardEffect");
 	}
 
+    // 外部からも追加したい場合が考えられるのでpublicにしてある
+    public void LoadResource(string filePath) {
+        Sprite[] resource = Resources.LoadAll<Sprite>(filePath);
+
+        if (resource.Length <= 0) {
+            Debug.LogError(filePath + "の読込に失敗しました！");
+            return;
+        }
+
+        loadResources.Add(resource);
+    }
+
 	public Sprite[] GetResource(eResourceId id) {
-		return resourceAll[(int)id];
+        if (id < 0 || id >= eResourceId.ID_MAX) {
+            Debug.LogError("存在しないリソースを取得しようとしています！");
+            return null;
+        }
+
+        return loadResources[(int)id];
 	}
 }

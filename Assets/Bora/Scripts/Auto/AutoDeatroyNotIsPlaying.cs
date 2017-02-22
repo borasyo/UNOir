@@ -16,8 +16,9 @@ public class AutoDeatroyNotIsPlaying : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (!particle.isPlaying) {
-			Destroy (this.gameObject);
-		}
+		if (particle.isPlaying)
+			return;
+		
+		Destroy (this.gameObject);
 	}
 }

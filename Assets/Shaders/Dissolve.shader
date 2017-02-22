@@ -55,7 +55,9 @@
             {
                 fixed4 col = _Color * tex2D(_MainTex, i.texcoord);
                 fixed a = Luminance(tex2D(_DissolveTex, i.dissolvecoord).xyz);
-                if (_CutOff > a) {
+                
+				// HACK : できればif文は削除したい
+				if (_CutOff > a) {
                     discard;
                 }
 

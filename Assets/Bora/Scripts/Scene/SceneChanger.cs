@@ -9,25 +9,33 @@ public class SceneChanger : MonoBehaviour {
 	/// <summary>
 	/// 概要 : シーン遷移を行う
 	/// Author : 大洞祥太
-	/// </summary>
+    /// </summary>
 
-	private static SceneChanger instance;
+    #region Singleton
+    
+    private static SceneChanger instance;
 
 	public static SceneChanger Instance {
 		get {
-			if (instance == null) {
-				instance = (SceneChanger)FindObjectOfType(typeof(SceneChanger));
+			if (instance) 
+                return instance;
 
-				if (instance == null) {
-					Debug.LogError(typeof(SceneChanger) + "is nothing");
-				}
-			}
+			instance = (SceneChanger)FindObjectOfType(typeof(SceneChanger));
 
-			return instance;
+            if (instance) 
+                return instance;
+
+            GameObject obj = new GameObject();
+            obj.AddComponent<SceneChanger>();
+			Debug.Log(typeof(SceneChanger) + "が存在していないのに参照されたので生成");
+            
+            return instance;
 		}
 	}
 
-	public void Awake() {
+    #endregion
+
+    public void Awake() {
 		if (this != Instance) {
 			Destroy (this.gameObject);
 			return;

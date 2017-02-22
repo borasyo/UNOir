@@ -18,13 +18,17 @@ public class FadeManager : MonoBehaviour
 
     public static FadeManager Instance {
         get {
-            if (instance == null) {
-                instance = (FadeManager)FindObjectOfType(typeof(FadeManager));
+            if (instance)
+                return instance;
 
-                if (instance == null) {
-                    Debug.LogError(typeof(FadeManager) + "is nothing");
-                }
-            }
+            instance = (FadeManager)FindObjectOfType(typeof(FadeManager));
+
+            if (instance)
+                return instance;
+
+            GameObject obj = new GameObject();
+            obj.AddComponent<FadeManager>();
+            Debug.Log(typeof(FadeManager) + "が存在していないのに参照されたので生成");
 
             return instance;
         }
