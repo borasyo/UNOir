@@ -47,6 +47,7 @@ public class CharaSkillEffectData : MonoBehaviour {
 
 	void Update() {
 		
+        // TODO : 汎用関数にできる
 		if (bAdd) {
 			//nowScale += AddScale * (Time.deltaTime / fTime);
 			nowColor += new Color (0,0,0, fAddAlpha * (Time.deltaTime / fTime));
@@ -73,7 +74,7 @@ public class CharaSkillEffectData : MonoBehaviour {
 			effectSprite = ResourceHolder.Instance.GetResource (ResourceHolder.eResourceId.ID_CHARASKILLCARDEFFECT);
 			//effectSprite = Resources.LoadAll<Sprite> ("Textures/CharaSkill/CharaSkillCard");
 		}
-
+ 
 		int nNum = 0;
 		switch (n) {
 		case 0:

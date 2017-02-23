@@ -19,7 +19,7 @@ public class CharaSkillBase : MonoBehaviour {
 	};
 
 	eSkillType skillType = eSkillType.SKILL_MAX;
-	public UnoStruct.eColor skillColor = UnoStruct.eColor.COLOR_MAX;
+	UnoStruct.eColor skillColor = UnoStruct.eColor.COLOR_MAX;
 
 	public eSkillType SkillType {
 		get { return skillType; }
@@ -32,10 +32,10 @@ public class CharaSkillBase : MonoBehaviour {
 	}
 
 	public virtual void SetEnemy() {
-		// 継承先でオーバーライドする
+		
 	}
 
 	public virtual void Run() {
-        // 継承先でオーバーライドする
+
 	}
 }

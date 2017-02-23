@@ -274,7 +274,7 @@ public class UnoData : MonoBehaviour {
 		m_Card = UnoCreateManager.Instance.GetLotteryCardData (transform.position);
 		int nNumber = ((int)m_Card.m_Color * (int)UnoStruct.eNumber.NUMBER_MAX) + (int)m_Card.m_Number;
 		spriteRenderer.sprite = CardResource.Instance.GetCardResource(nNumber);
-		charaSkillEffect.RunCheck (m_Card);
+        charaSkillEffect.RunCheck(m_Card);
 	}
 
 	// Debug用カード変更コマンド
@@ -282,7 +282,7 @@ public class UnoData : MonoBehaviour {
 		m_Card = card;
 		int nNumber = ((int)m_Card.m_Color * (int)UnoStruct.eNumber.NUMBER_MAX) + (int)m_Card.m_Number;
 		spriteRenderer.sprite = CardResource.Instance.GetCardResource(nNumber);
-		charaSkillEffect.RunCheck (m_Card);
+        charaSkillEffect.RunCheck(m_Card);
 	}
 
 	void ChangeCard() {
@@ -311,7 +311,7 @@ public class UnoData : MonoBehaviour {
 
 		int nNumber = ((int)m_Card.m_Color * (int)UnoStruct.eNumber.NUMBER_MAX) + (int)m_Card.m_Number;
 		spriteRenderer.sprite = CardResource.Instance.GetCardResource(nNumber);
-		charaSkillEffect.RunCheck (m_Card);
+        charaSkillEffect.RunCheck(m_Card);
 	}
 
 	void SetCharaSkillEffect() {
@@ -341,7 +341,7 @@ public class UnoData : MonoBehaviour {
 		set { bOn = value; }
 	}
 
-	public bool Click {
+	public bool OnClick {
 		get { return bClick; }
 		set { bClick = value; }
 	}
@@ -364,7 +364,7 @@ public class UnoData : MonoBehaviour {
 		//Debug.Log (transform.name);
 	}
 
-	public int GetOreder() {
+	public int GetOrder() {
 		return spriteRenderer.sortingOrder;
 	}
 
@@ -419,7 +419,7 @@ public class UnoData : MonoBehaviour {
 			return;
 
 		data.ColSet ();
-		spriteRenderer.sortingOrder = data.GetOreder() + 1;
+		spriteRenderer.sortingOrder = data.GetOrder() + 1;
 		//Debug.Log (transform.name + transform.position + "," + col.name + col.transform.position);
 	}
 }

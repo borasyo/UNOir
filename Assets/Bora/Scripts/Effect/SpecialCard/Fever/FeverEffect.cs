@@ -48,7 +48,7 @@ public class FeverEffect : MonoBehaviour {
 					render.color = new Color (1, 1, 1, 0);
 				}
 			}
-			render.sortingOrder = unoData.GetOreder () - 1;
+			render.sortingOrder = unoData.GetOrder () - 1;
 		} else {
 
 			if (0.0f < transform.localScale.x) {

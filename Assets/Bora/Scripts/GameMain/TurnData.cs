@@ -310,7 +310,7 @@ public class TurnData : MonoBehaviour {
 				break;
 			case UnoStruct.eColor.COLOR_GREEN:
 				data.Green.fNumber *= DrowDataList[i].fAmount;
-                Debug.Log("DrowGreen : " + DrowDataList[i].fAmount);
+                //Debug.Log("DrowGreen : " + DrowDataList[i].fAmount);
 				break;
 			case UnoStruct.eColor.COLOR_YELLOW:
 				data.Yellow.fNumber *= DrowDataList[i].fAmount;
