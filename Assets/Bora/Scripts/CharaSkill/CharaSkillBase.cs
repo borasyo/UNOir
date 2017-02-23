@@ -32,10 +32,10 @@ public class CharaSkillBase : MonoBehaviour {
 	}
 
 	public virtual void SetEnemy() {
-		// オーバーライド用
+		// 継承先でオーバーライドする
 	}
 
 	public virtual void Run() {
-		// オーバーライド用
+        // 継承先でオーバーライドする
 	}
 }

@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class AutoParticleDestroyer : MonoBehaviour {
+public class EndParticleDestroyer : MonoBehaviour {
 
 	/// <summary>
-	/// 概要 : パーティクルがduration分進んだら破壊
+	/// 概要 : 終了したパーティクルを破壊
 	/// Author : 大洞祥太
 	/// </summary>
 
