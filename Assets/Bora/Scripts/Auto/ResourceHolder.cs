@@ -54,7 +54,7 @@ public class ResourceHolder : MonoBehaviour {
 		ID_MAX,
 	};
 
-	List<Sprite[]> loadResources = new List<Sprite[]> ();
+	List<Sprite[]> m_LoadResources = new List<Sprite[]> ();
 
 	public void Awake() {
 		if (this != Instance) {
@@ -89,7 +89,7 @@ public class ResourceHolder : MonoBehaviour {
             return;
         }
 
-        loadResources.Add(resource);
+		m_LoadResources.Add(resource);
     }
 
 	public Sprite[] GetResource(eResourceId id) {
@@ -98,6 +98,6 @@ public class ResourceHolder : MonoBehaviour {
             return null;
         }
 
-        return loadResources[(int)id];
+		return m_LoadResources[(int)id];
 	}
 }

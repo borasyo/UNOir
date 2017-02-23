@@ -5,6 +5,8 @@ Project("{8CDEA25F-042D-3D93-1B3E-A8F9561BE3A0}") = "UNOir", "Assembly-CSharp.cs
 EndProject
 Project("{8CDEA25F-042D-3D93-1B3E-A8F9561BE3A0}") = "UNOir", "Assembly-CSharp-Editor.csproj", "{FD04F993-16B9-C3BD-98BC-3C5EF078F8DF}"
 EndProject
+Project("{8CDEA25F-042D-3D93-1B3E-A8F9561BE3A0}") = "UNOir", "Assembly-UnityScript.unityproj", "{0911CD2A-2A99-CBDF-8852-66359CAEE62D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{FD04F993-16B9-C3BD-98BC-3C5EF078F8DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD04F993-16B9-C3BD-98BC-3C5EF078F8DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD04F993-16B9-C3BD-98BC-3C5EF078F8DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0911CD2A-2A99-CBDF-8852-66359CAEE62D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0911CD2A-2A99-CBDF-8852-66359CAEE62D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0911CD2A-2A99-CBDF-8852-66359CAEE62D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0911CD2A-2A99-CBDF-8852-66359CAEE62D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

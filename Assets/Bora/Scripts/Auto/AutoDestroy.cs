@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+// TODO : いつ破壊されるのかクラス名からは分からない
 public class AutoDestroy : MonoBehaviour {
 
 	/// <summary>

@@ -100,7 +100,7 @@ public class SunProtect : EffectBase {
 
 	public override void Set(CharaSkillBase skillData) {
 		skillBase = (SkillRise)skillData;
-        skillBase.Run();
+        skillBase.ExecutionCharaSkill();
 
 		if (bUse) {
             Destroy(this.gameObject);

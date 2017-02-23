@@ -5,14 +5,13 @@ using System.Collections.Generic;
 public class SkillRise : CharaSkillBase {
 
 	/// <summary>
-	/// 概要 : 確率アップスキル
+	/// 概要 : カードの出現確率アップスキル
 	/// Author : 大洞祥太
 	/// </summary>
 
     static public int nNum = 0;
 	
-    [SerializeField]
-    int nMaxNum = 5;
+    [SerializeField] int nMaxNum = 5;
 
     public int GetMaxNum { get { return nMaxNum * nCnt; } private set { nMaxNum = value; } }
 	//public int nAdd = 2; // 倍率
@@ -50,7 +49,8 @@ public class SkillRise : CharaSkillBase {
         }*/
 	}
 
-	public override void Run() {
+    public override void ExecutionCharaSkill()
+    {
 
         nNum += nMaxNum;
 		bRun = true;

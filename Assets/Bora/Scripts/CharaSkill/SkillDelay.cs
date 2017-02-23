@@ -47,7 +47,8 @@ public class SkillDelay : CharaSkillBase {
 		}
 	}
 
-	public override void Run() {
+    public override void ExecutionCharaSkill()
+    {
 		bRun = true;
 		fNowTime = 0.0f;
 		enemyList = GameMainUpperManager.instance.enemyList;

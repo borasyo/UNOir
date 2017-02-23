@@ -4,9 +4,9 @@ using System.Collections;
 public class CharaSkillBase : MonoBehaviour {
 
 	/// <summary>
-	/// 概要 : キャラスキルのベースクラス
-	/// スキルタイプとカラーの選択が可能
-	/// Author : 大洞祥太
+	/// 概要 :
+    /// キャラスキルの内部処理ベースクラス
+	/// Author : 大洞祥太 
 	/// </summary>
 
 	public enum eSkillType {
@@ -18,24 +18,21 @@ public class CharaSkillBase : MonoBehaviour {
 		SKILL_MAX,
 	};
 
-	eSkillType skillType = eSkillType.SKILL_MAX;
-	public UnoStruct.eColor skillColor = UnoStruct.eColor.COLOR_MAX;
+	eSkillType m_SkillType = eSkillType.SKILL_MAX; 
+	[SerializeField] UnoStruct.eColor m_SkillColor = UnoStruct.eColor.COLOR_MAX;
 
 	public eSkillType SkillType {
-		get { return skillType; }
-		set { skillType = value; }
+		get { return m_SkillType; }
+		set { m_SkillType = value; }
 	}
 
 	public UnoStruct.eColor SkillColor {
-		get { return skillColor; }
-		set { skillColor = value; }
+		get { return m_SkillColor; }
+		set { m_SkillColor = value; }
 	}
 
-	public virtual void SetEnemy() {
-		
-	}
-
-	public virtual void Run() {
+    // キャラスキルの内部処理を記述する
+    public virtual void ExecutionCharaSkill() {
 
 	}
 }

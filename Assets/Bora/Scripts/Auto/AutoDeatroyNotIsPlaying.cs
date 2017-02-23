@@ -8,15 +8,15 @@ public class AutoDeatroyNotIsPlaying : MonoBehaviour {
 	/// Author : 大洞祥太
 	/// </summary>
 
-	ParticleSystem particle = null;
+	ParticleSystem m_Particle = null;
 
 	void Start() {
-		particle = GetComponent<ParticleSystem> ();
+		m_Particle = GetComponent<ParticleSystem> ();
 	}
 
 	// Update is called once per frame
 	void Update () {
-		if (particle.isPlaying)
+		if (m_Particle.isPlaying)
 			return;
 		
 		Destroy (this.gameObject);

@@ -15,7 +15,8 @@ public class SkillHell : CharaSkillBase {
 	}
 
 	// 回復処理 
-	public override void Run() {
+    public override void ExecutionCharaSkill()
+    {
 		Player player = GameMainUpperManager.instance.player;
 
 		if (player.isDead)

@@ -7,21 +7,30 @@ public class CharaSkillEffectData : MonoBehaviour {
 	/// 概要 : キャラスキルエフェクトの情報を管理
 	/// Author : 大洞祥太
 	/// </summary>
-	
-	static CharaSkillEffectData instance;
+
+	#region Singleton
+
+	private static CharaSkillEffectData instance;
 
 	public static CharaSkillEffectData Instance {
 		get {
-			if (instance == null) {
-				instance = (CharaSkillEffectData)FindObjectOfType(typeof(CharaSkillEffectData));
+			if (instance) 
+				return instance;
 
-				if (instance == null) {
-					Debug.LogError("CharaSkillEffectData Instance Error");
-				}
-			}
+			instance = (CharaSkillEffectData)FindObjectOfType(typeof(CharaSkillEffectData));
+
+			if (instance) 
+				return instance;
+
+			GameObject obj = new GameObject();
+			obj.AddComponent<CharaSkillEffectData>();
+			Debug.Log(typeof(CharaSkillEffectData) + "が存在していないのに参照されたので生成");
+
 			return instance;
 		}
 	}
+
+	#endregion
 
 	static Sprite[] effectSprite = new Sprite[5]; 
 

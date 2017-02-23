@@ -1,0 +1,286 @@
+-debug
+-target:library
+-nowarn:0169
+-out:Temp/Assembly-CSharp.dll
+-r:"C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll"
+-r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll"
+-r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll"
+-r:Assets/AssetStore/Demigiant/DOTween/DOTween.dll
+-r:Assets/AssetStore/Demigiant/DOTween/DOTween43.dll
+-r:Assets/AssetStore/Demigiant/DOTween/DOTween46.dll
+-r:Assets/AssetStore/Demigiant/DOTween/DOTween50.dll
+-r:"Assets/AssetStore/GUI Animator/Common/Plugins/GETween.dll"
+-r:"Assets/AssetStore/GUI Animator/GUI Animator FREE/Plugins/GUIAnimatorFREE.dll"
+-r:"C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll"
+-define:UNITY_5_3_OR_NEWER
+-define:UNITY_5_3_5
+-define:UNITY_5_3
+-define:UNITY_5
+-define:ENABLE_NEW_BUGREPORTER
+-define:ENABLE_AUDIO
+-define:ENABLE_CACHING
+-define:ENABLE_CLOTH
+-define:ENABLE_DUCK_TYPING
+-define:ENABLE_FRAME_DEBUGGER
+-define:ENABLE_GENERICS
+-define:ENABLE_HOME_SCREEN
+-define:ENABLE_IMAGEEFFECTS
+-define:ENABLE_LIGHT_PROBES_LEGACY
+-define:ENABLE_MICROPHONE
+-define:ENABLE_MULTIPLE_DISPLAYS
+-define:ENABLE_PHYSICS
+-define:ENABLE_PLUGIN_INSPECTOR
+-define:ENABLE_SHADOWS
+-define:ENABLE_SINGLE_INSTANCE_BUILD_SETTING
+-define:ENABLE_SPRITERENDERER_FLIPPING
+-define:ENABLE_SPRITES
+-define:ENABLE_SPRITE_POLYGON
+-define:ENABLE_TERRAIN
+-define:ENABLE_RAKNET
+-define:ENABLE_UNET
+-define:ENABLE_UNITYEVENTS
+-define:ENABLE_VR
+-define:ENABLE_WEBCAM
+-define:ENABLE_WWW
+-define:ENABLE_CLOUD_SERVICES
+-define:ENABLE_CLOUD_SERVICES_ADS
+-define:ENABLE_CLOUD_HUB
+-define:ENABLE_CLOUD_PROJECT_ID
+-define:ENABLE_CLOUD_SERVICES_PURCHASING
+-define:ENABLE_CLOUD_SERVICES_ANALYTICS
+-define:ENABLE_CLOUD_SERVICES_UNET
+-define:ENABLE_CLOUD_SERVICES_BUILD
+-define:ENABLE_CLOUD_LICENSE
+-define:ENABLE_EDITOR_METRICS
+-define:ENABLE_EDITOR_METRICS_CACHING
+-define:INCLUDE_DYNAMIC_GI
+-define:INCLUDE_GI
+-define:INCLUDE_IL2CPP
+-define:INCLUDE_DIRECTX12
+-define:PLATFORM_SUPPORTS_MONO
+-define:RENDER_SOFTWARE_CURSOR
+-define:ENABLE_LOCALIZATION
+-define:ENABLE_ANDROID_ATLAS_ETC1_COMPRESSION
+-define:ENABLE_EDITOR_TESTS_RUNNER
+-define:UNITY_STANDALONE_WIN
+-define:UNITY_STANDALONE
+-define:ENABLE_SUBSTANCE
+-define:ENABLE_TEXTUREID_MAP
+-define:ENABLE_RUNTIME_GI
+-define:ENABLE_MOVIES
+-define:ENABLE_NETWORK
+-define:ENABLE_CRUNCH_TEXTURE_COMPRESSION
+-define:ENABLE_LOG_MIXED_STACKTRACE
+-define:ENABLE_UNITYWEBREQUEST
+-define:ENABLE_EVENT_QUEUE
+-define:ENABLE_CLUSTERINPUT
+-define:ENABLE_WEBSOCKET_HOST
+-define:ENABLE_MONO
+-define:ENABLE_PROFILER
+-define:DEBUG
+-define:TRACE
+-define:UNITY_ASSERTIONS
+-define:UNITY_EDITOR
+-define:UNITY_EDITOR_64
+-define:UNITY_EDITOR_WIN
+Assets/AssetStore/Elementals/Demo/Scripts/GE_Elementals_Demo.cs
+"Assets/AssetStore/GE Common Assets/GE Orbit Camera/Scripts/GE_OrbitCamera.cs"
+"Assets/AssetStore/GE Common Assets/GE Orbit Camera/Scripts/GE_OrbitCameraUI.cs"
+"Assets/AssetStore/GE Common Assets/GE Toggle Full Screen/Scripts/GE_ToggleFullScreenUI.cs"
+"Assets/AssetStore/GE Common Assets/Scripts/GE_UIResponder.cs"
+"Assets/AssetStore/GUI Animator/GUI Animator FREE/Demo (CSharp)/Scripts/GA_FREE_Demo00.cs"
+"Assets/AssetStore/GUI Animator/GUI Animator FREE/Demo (CSharp)/Scripts/GA_FREE_Demo01.cs"
+"Assets/AssetStore/GUI Animator/GUI Animator FREE/Demo (CSharp)/Scripts/GA_FREE_Demo02.cs"
+"Assets/AssetStore/GUI Animator/GUI Animator FREE/Demo (CSharp)/Scripts/GA_FREE_Demo03.cs"
+"Assets/AssetStore/GUI Animator/GUI Animator FREE/Demo (CSharp)/Scripts/GA_FREE_Demo04.cs"
+"Assets/AssetStore/GUI Animator/GUI Animator FREE/Demo (CSharp)/Scripts/GA_FREE_Demo05.cs"
+"Assets/AssetStore/GUI Animator/GUI Animator FREE/Demo (CSharp)/Scripts/GA_FREE_Demo06.cs"
+"Assets/AssetStore/GUI Animator/GUI Animator FREE/Demo (CSharp)/Scripts/GA_FREE_Demo07.cs"
+"Assets/AssetStore/GUI Animator/GUI Animator FREE/Demo (CSharp)/Scripts/GA_FREE_Demo08.cs"
+"Assets/AssetStore/GUI Animator/GUI Animator FREE/Demo (CSharp)/Scripts/GA_FREE_DemoPlaySound.cs"
+"Assets/AssetStore/GUI Animator/GUI Animator FREE/Demo (CSharp)/Scripts/GA_FREE_OpenOtherScene.cs"
+"Assets/AssetStore/GUI Animator/GUI Animator FREE/Demo Basic (CSharp)/Scripts/GUIAnimatorFREEDemo.cs"
+"Assets/AssetStore/Sky FX Pack/Scripts/LightBeamsControlScript.cs"
+"Assets/AssetStore/Sky FX Pack/Scripts/LookAtBehaviour.cs"
+"Assets/AssetStore/Sky FX Pack/Scripts/LookAtCameraBehaviour.cs"
+"Assets/AssetStore/Sky FX Pack/Scripts/RayBehavior.cs"
+"Assets/AssetStore/Sky FX Pack/Scripts/RotateBehaviour.cs"
+"Assets/AssetStore/Sky FX Pack/Scripts/ScrollBehaviour.cs"
+Assets/Bora/Scripts/Auto/AutoDeatroyNotIsPlaying.cs
+Assets/Bora/Scripts/Auto/AutoDestroy.cs
+Assets/Bora/Scripts/Auto/AutoDestroyNonChild.cs
+Assets/Bora/Scripts/Auto/EndParticleDestroyer.cs
+Assets/Bora/Scripts/Auto/ResourceHolder.cs
+Assets/Bora/Scripts/CharaSkill/CharaSkillBase.cs
+Assets/Bora/Scripts/CharaSkill/CharaSkillEffect.cs
+Assets/Bora/Scripts/CharaSkill/CharaSkillEffectData.cs
+Assets/Bora/Scripts/CharaSkill/SkillAtack.cs
+Assets/Bora/Scripts/CharaSkill/SkillDelay.cs
+Assets/Bora/Scripts/CharaSkill/SkillHell.cs
+Assets/Bora/Scripts/CharaSkill/SkillList.cs
+Assets/Bora/Scripts/CharaSkill/SkillRise.cs
+Assets/Bora/Scripts/Debug/DebugCommand.cs
+Assets/Bora/Scripts/Debug/DrowEffect_Debug.cs
+Assets/Bora/Scripts/Debug/EffectCreator_Debug.cs
+Assets/Bora/Scripts/Debug/FeverText_Debug.cs
+Assets/Bora/Scripts/Debug/FpsManager.cs
+Assets/Bora/Scripts/Debug/ReadyGo_Debug.cs
+Assets/Bora/Scripts/Debug/ScreenSetting.cs
+Assets/Bora/Scripts/Debug/Skill_Debug.cs
+Assets/Bora/Scripts/Debug/Turn_Debug.cs
+Assets/Bora/Scripts/Effect/BezierCurve.cs
+Assets/Bora/Scripts/Effect/Card/SetEffect.cs
+Assets/Bora/Scripts/Effect/CharaSkill/CharaSkillManager.cs
+Assets/Bora/Scripts/Effect/CharaSkill/FeverSetEffect.cs
+Assets/Bora/Scripts/Effect/CharaSkill/Soler/SolerBeam.cs
+Assets/Bora/Scripts/Effect/CharaSkill/Soler/SolerBeamChild.cs
+Assets/Bora/Scripts/Effect/CharaSkill/Sun/SunProtect.cs
+Assets/Bora/Scripts/Effect/CharaSkill/Thunder/BlackOut.cs
+Assets/Bora/Scripts/Effect/CharaSkill/Thunder/Thunder.cs
+Assets/Bora/Scripts/Effect/CharaSkill/Thunder/Thunder1.cs
+Assets/Bora/Scripts/Effect/CharaSkill/Thunder/ThunderParticle.cs
+Assets/Bora/Scripts/Effect/CharaSkill/Water/HealingWater.cs
+Assets/Bora/Scripts/Effect/CharaSkill/Wind/WhirlWind.cs
+Assets/Bora/Scripts/Effect/CharaSkill/Wind/WhirlWindManager.cs
+Assets/Bora/Scripts/Effect/EffectBase.cs
+Assets/Bora/Scripts/Effect/EnemyAtack/BossNormalAtack.cs
+Assets/Bora/Scripts/Effect/EnemyAtack/BossNormalAtackManager.cs
+Assets/Bora/Scripts/Effect/EnemyAtack/BossSpecialAtack.cs
+Assets/Bora/Scripts/Effect/EnemyAtack/BossSpecialAtackManager.cs
+Assets/Bora/Scripts/Effect/EnemyAtack/DamageRed.cs
+Assets/Bora/Scripts/Effect/EnemyAtack/EnemyAtack.cs
+Assets/Bora/Scripts/Effect/EnemyAtack/WeakEnemyAtack.cs
+Assets/Bora/Scripts/Effect/EnemyAtack/WeakEnemyAtackManager.cs
+Assets/Bora/Scripts/Effect/EnemyAtack/WeakEnemyStart.cs
+Assets/Bora/Scripts/Effect/EnemyDeath/EnemyDeath.cs
+Assets/Bora/Scripts/Effect/EnemyDeath/SandSpeed.cs
+Assets/Bora/Scripts/Effect/Heel/HeelEffect.cs
+Assets/Bora/Scripts/Effect/LockOn/LockOnEffect.cs
+Assets/Bora/Scripts/Effect/PlayerAtack/NormalEffect.cs
+Assets/Bora/Scripts/Effect/PlayerAtack/StrongEffect.cs
+Assets/Bora/Scripts/Effect/PlayerAtack/StrongEffectManager.cs
+Assets/Bora/Scripts/Effect/SpecialCard/Drow/DrowAlpha.cs
+Assets/Bora/Scripts/Effect/SpecialCard/Drow/DrowEffect.cs
+Assets/Bora/Scripts/Effect/SpecialCard/Drow/DrowEffectManager.cs
+Assets/Bora/Scripts/Effect/SpecialCard/Fever/FeverEffect.cs
+Assets/Bora/Scripts/Effect/SpecialCard/Fever/FeverEffectFrame.cs
+Assets/Bora/Scripts/Effect/SpecialCard/Fever/FeverEffectManager.cs
+Assets/Bora/Scripts/Effect/SpecialCard/PowerUp/PowerUp.cs
+Assets/Bora/Scripts/Effect/SpecialCard/PowerUp/PowerUpAlpha.cs
+Assets/Bora/Scripts/Effect/SpecialCard/PowerUp/PowerUpManager.cs
+Assets/Bora/Scripts/Effect/SpecialCard/Reverse/PurunManju.cs
+Assets/Bora/Scripts/Effect/SpecialCard/Reverse/ReverseEffect.cs
+Assets/Bora/Scripts/Effect/SpecialCard/Reverse/ReverseEffectManager.cs
+Assets/Bora/Scripts/Effect/SpecialCard/Wild/WildEffect.cs
+Assets/Bora/Scripts/Effect/SpecialCard/Wild/WildEffectManager.cs
+Assets/Bora/Scripts/Effect/Touch/TouchEffect.cs
+Assets/Bora/Scripts/Effect/Touch/TouchEffectCreator.cs
+Assets/Bora/Scripts/Enemy/AtackNearness.cs
+Assets/Bora/Scripts/Enemy/EnemyDeathSound.cs
+Assets/Bora/Scripts/Enemy/EnemyMove.cs
+Assets/Bora/Scripts/Enemy/EnemyPos.cs
+Assets/Bora/Scripts/Fever/FeverRogo.cs
+Assets/Bora/Scripts/Fever/UnoRogo.cs
+Assets/Bora/Scripts/GameMain/Card/CardResource.cs
+Assets/Bora/Scripts/GameMain/Card/CardShuffle.cs
+Assets/Bora/Scripts/GameMain/Card/FeverCard.cs
+Assets/Bora/Scripts/GameMain/Card/FieldCard.cs
+Assets/Bora/Scripts/GameMain/Card/NotAnswer.cs
+Assets/Bora/Scripts/GameMain/Card/ResetCard.cs
+Assets/Bora/Scripts/GameMain/Card/TrajectoryCreator.cs
+Assets/Bora/Scripts/GameMain/Card/UnoCreateManager.cs
+Assets/Bora/Scripts/GameMain/Card/UnoData.cs
+Assets/Bora/Scripts/GameMain/Card/UnoProbability.cs
+Assets/Bora/Scripts/GameMain/Card/UnoStruct.cs
+Assets/Bora/Scripts/GameMain/DyingPlayer.cs
+Assets/Bora/Scripts/GameMain/GameController.cs
+Assets/Bora/Scripts/GameMain/HpNumberEffect.cs
+Assets/Bora/Scripts/GameMain/NotTouch.cs
+Assets/Bora/Scripts/GameMain/Pause/GamePause.cs
+Assets/Bora/Scripts/GameMain/Pause/PauseButton.cs
+Assets/Bora/Scripts/GameMain/Pause/Retire.cs
+Assets/Bora/Scripts/GameMain/Pause/ReturnGame.cs
+Assets/Bora/Scripts/GameMain/TouchManager.cs
+Assets/Bora/Scripts/GameMain/TurnData.cs
+Assets/Bora/Scripts/GameStart/ReadyGo/Go.cs
+Assets/Bora/Scripts/GameStart/ReadyGo/Ready.cs
+Assets/Bora/Scripts/GameStart/Starter/Boss/Boss_Appear.cs
+Assets/Bora/Scripts/GameStart/Starter/Boss/Boss_Fade.cs
+Assets/Bora/Scripts/GameStart/Starter/Boss/Boss_TextMove.cs
+Assets/Bora/Scripts/GameStart/Starter/Dissolve/Dissolver.cs
+Assets/Bora/Scripts/GameStart/Starter/Dissolve/EnemyManager.cs
+Assets/Bora/Scripts/GameStart/Starter/Enemy/Enemy_AllFadeOut.cs
+Assets/Bora/Scripts/GameStart/Starter/Enemy/Enemy_BackFadeIn.cs
+Assets/Bora/Scripts/GameStart/Starter/Enemy/Enemy_StageRogo.cs
+Assets/Bora/Scripts/LeaderSkill/LeaderSkillAtack.cs
+Assets/Bora/Scripts/LeaderSkill/LeaderSkillBase.cs
+Assets/Bora/Scripts/LeaderSkill/LeaderSkillExpUp.cs
+Assets/Bora/Scripts/LeaderSkill/LeaderSkillHeel.cs
+Assets/Bora/Scripts/LeaderSkill/LeaderSkillRise.cs
+Assets/Bora/Scripts/Menu/Main/CharaDrower.cs
+Assets/Bora/Scripts/Menu/Main/CharactorDrowerCreator.cs
+Assets/Bora/Scripts/Menu/Main/CircleButton.cs
+Assets/Bora/Scripts/Menu/Main/GoQuest.cs
+Assets/Bora/Scripts/Menu/PartySelect/BackRot.cs
+Assets/Bora/Scripts/Menu/PartySelect/CharaIconFade.cs
+Assets/Bora/Scripts/Menu/PartySelect/CharaIconMove.cs
+Assets/Bora/Scripts/Menu/PartySelect/GoMain.cs
+Assets/Bora/Scripts/Menu/PartySelect/Go_Back.cs
+Assets/Bora/Scripts/Menu/PartySelect/ReturnQuest.cs
+Assets/Bora/Scripts/Menu/PartySelect/StatusFrame.cs
+Assets/Bora/Scripts/Menu/Quest/GoParty.cs
+Assets/Bora/Scripts/Menu/Quest/QuestBack.cs
+Assets/Bora/Scripts/Menu/Quest/ReturnMenu.cs
+Assets/Bora/Scripts/Menu/Title/CloudRot.cs
+Assets/Bora/Scripts/Menu/Title/PressStart.cs
+Assets/Bora/Scripts/Result/CardRot/CardRotation.cs
+Assets/Bora/Scripts/Result/Continue/Continue.cs
+Assets/Bora/Scripts/Result/Continue/ContinueAtackUp.cs
+Assets/Bora/Scripts/Result/Continue/ContinueCardBase.cs
+Assets/Bora/Scripts/Result/Continue/ContinueHeel.cs
+Assets/Bora/Scripts/Result/Continue/ContinueMaxFever.cs
+Assets/Bora/Scripts/Result/Continue/ContinueMessage.cs
+Assets/Bora/Scripts/Result/Continue/ContinueSkillCreator.cs
+Assets/Bora/Scripts/Result/DeathRed.cs
+Assets/Bora/Scripts/Result/GameOver.cs
+Assets/Bora/Scripts/Result/NoAnswer.cs
+Assets/Bora/Scripts/Result/Result.cs
+Assets/Bora/Scripts/Result/ResultBase.cs
+Assets/Bora/Scripts/Result/ResultManager.cs
+Assets/Bora/Scripts/Result/Win/Flower.cs
+Assets/Bora/Scripts/Result/Win/FlowerCreator.cs
+Assets/Bora/Scripts/Result/Win/Sun.cs
+Assets/Bora/Scripts/Scene/FadeManager.cs
+Assets/Bora/Scripts/Scene/SceneChanger.cs
+Assets/Bora/Scripts/Sound/SoundManager.cs
+Assets/Scripts/BattleDataBase.cs
+Assets/Scripts/Debug/BattleSequence_Debug.cs
+Assets/Scripts/Debug/CharactorDataList_Debug.cs
+Assets/Scripts/Debug/CharactorData_Debug.cs
+Assets/Scripts/Debug/CharactorSelect_Debug.cs
+Assets/Scripts/Debug/Charactor_Debug.cs
+Assets/Scripts/Debug/Charactors_Debug.cs
+Assets/Scripts/Debug/Enemy_Debug.cs
+Assets/Scripts/Debug/RemovedCard_Debug.cs
+Assets/Scripts/GameMain/BattleManager.cs
+Assets/Scripts/GameMain/Caution.cs
+Assets/Scripts/GameMain/Charactor.cs
+Assets/Scripts/GameMain/Damage.cs
+Assets/Scripts/GameMain/DamageConfig.cs
+Assets/Scripts/GameMain/DamageNumber.cs
+Assets/Scripts/GameMain/Enemy.cs
+Assets/Scripts/GameMain/FeverGauge.cs
+Assets/Scripts/GameMain/FlashConfig.cs
+Assets/Scripts/GameMain/GameMainUpperManager.cs
+Assets/Scripts/GameMain/HPNumber.cs
+Assets/Scripts/GameMain/HpGauge.cs
+Assets/Scripts/GameMain/Player.cs
+Assets/Scripts/GameMain/PlayerCharactor.cs
+Assets/Scripts/GameMain/PlayerHPGauge.cs
+Assets/Scripts/GameMain/TimeGauge.cs
+Assets/Scripts/System/Encryption.cs
+Assets/Scripts/System/JsonManager.cs
+Assets/Scripts/System/Serialization.cs
+Assets/Scripts/UI/ButtonEx.cs
+-r:"C:\Program Files\Unity\Editor\Data\Mono\lib\mono\unity\System.Runtime.Serialization.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Mono\lib\mono\unity\System.Xml.Linq.dll"

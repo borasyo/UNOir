@@ -3,6 +3,11 @@ using System.Collections;
 
 public class Skill_Debug : MonoBehaviour {
 
+    /// <summary>
+    /// /* 概要 */ 
+    /// スキルの挙動をテストする
+    /// </summary>
+
 	CharaSkillBase atack;
 	CharaSkillBase hell;
 	CharaSkillBase delay;
@@ -11,35 +16,25 @@ public class Skill_Debug : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		atack = GetComponentInChildren<SkillAtack> ();
-		hell = GetComponentInChildren<SkillHell> ();
+		hell  = GetComponentInChildren<SkillHell>  ();
 		delay = GetComponentInChildren<SkillDelay> ();
-		rise = GetComponentInChildren<SkillRise> ();
-
-		// Debug
-/*		UnoStruct.tCard card;
-		card.m_Color = UnoStruct.eColor.COLOR_WILD;
-
-		card.m_Number = UnoStruct.eNumber.NUMBER_WILD;
-		UnoCreateManager.Instance.SetDict (card, 20, true);
-
-		card.m_Number = UnoStruct.eNumber.NUMBER_DROWFOUR;
-		UnoCreateManager.Instance.SetDict (card, 20, true);*/
+		rise  = GetComponentInChildren<SkillRise>  ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
 		if (Input.GetKeyDown (KeyCode.Z)) {
-			atack.Run ();
+            atack.ExecutionCharaSkill();
 		}
 		if (Input.GetKeyDown (KeyCode.X)) {
-			hell.Run ();
+            hell. ExecutionCharaSkill();
 		}
 		if (Input.GetKeyDown (KeyCode.C)) {
-			delay.Run ();
+            delay.ExecutionCharaSkill();
 		}
 		if (Input.GetKeyDown (KeyCode.V)) {
-			rise.Run ();
+            rise. ExecutionCharaSkill();
 		}
 	}
 }

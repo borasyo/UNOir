@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class SceneChanger : MonoBehaviour {
 
 	/// <summary>
-	/// 概要 : シーン遷移を行う
+	/// 概要 : シーン遷移を管理
 	/// Author : 大洞祥太
     /// </summary>
 
@@ -45,38 +45,39 @@ public class SceneChanger : MonoBehaviour {
 	}
 
 	public void ChangeScene(string sceneName, float interval, bool bNext, bool bStopBgm = true) {
-		if (!FadeManager.Instance.GetFadeing()) {
-			FadeManager.Instance.LoadLevel(sceneName, interval, bStopBgm);
+		if (FadeManager.Instance.GetFadeing()) 
+			return;
 
-            if (bNext)
-            {
-                SoundManager.Instance.PlaySE(SoundManager.eSeValue.SE_SCENECHANGE);
-            }
-            else
-            {
-                SoundManager.Instance.PlaySE(SoundManager.eSeValue.SE_OFFWINDOW);
-            }
+		FadeManager.Instance.LoadLevel(sceneName, interval, bStopBgm);
+
+		if (bNext) {
+			SoundManager.Instance.PlaySE (SoundManager.eSeValue.SE_SCENECHANGE);
+		} else {
+			SoundManager.Instance.PlaySE (SoundManager.eSeValue.SE_OFFWINDOW);
 		}
 	}
 
 	public void ChangeTitle() {
-		if (!FadeManager.Instance.GetFadeing()) {
-			FadeManager.Instance.LoadLevel("Title", 1.0f, true);
-			//SoundManager.Instance.PlaySE (SoundManager.eSeValue.SE_TOUCHSTART);
-		}
+		if (FadeManager.Instance.GetFadeing ())
+			return;
+		
+		FadeManager.Instance.LoadLevel("Title", 1.0f, true);
+		//SoundManager.Instance.PlaySE (SoundManager.eSeValue.SE_TOUCHSTART);
 	}
 		
 	public void ChangeMainMenu() {
-		if (!FadeManager.Instance.GetFadeing()) {
-			FadeManager.Instance.LoadLevel("MainMenu", 1.0f, true);
-			//SoundManager.Instance.PlaySE (SoundManager.eSeValue.SE_TOUCHSTART);
-		}
+		if (FadeManager.Instance.GetFadeing ())
+			return;
+		
+		FadeManager.Instance.LoadLevel("MainMenu", 1.0f, true);
+		//SoundManager.Instance.PlaySE (SoundManager.eSeValue.SE_TOUCHSTART);
 	}
 
 	public void ChangeGameMain() {
-		if (!FadeManager.Instance.GetFadeing()) {
-			FadeManager.Instance.LoadLevel("Test", 1.0f, true);
-			//SoundManager.Instance.PlaySE (SoundManager.eSeValue.SE_TOUCHSTART);
-		}
+		if (FadeManager.Instance.GetFadeing ())
+			return;
+		
+		FadeManager.Instance.LoadLevel("Test", 1.0f, true);
+		//SoundManager.Instance.PlaySE (SoundManager.eSeValue.SE_TOUCHSTART);
 	}
 }

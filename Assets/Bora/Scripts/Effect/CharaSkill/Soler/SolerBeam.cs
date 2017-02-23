@@ -46,7 +46,7 @@ public class SolerBeam : EffectBase {
 
 		if (TargetPos.x >= transform.position.x) {
 			bEnd = true;
-			skillBase.Run ();
+            skillBase.ExecutionCharaSkill();
 			Destroy (this.gameObject);
 		}
 
