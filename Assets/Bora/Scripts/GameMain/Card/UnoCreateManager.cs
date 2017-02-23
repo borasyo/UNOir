@@ -210,7 +210,7 @@ public class UnoCreateManager : MonoBehaviour {
 
 	public void TouchOnly(bool bFlg) {
 		for (int i = 0; i < CardList.Count; i++) {
-			if (CardList [i].Click)
+			if (CardList [i].OnClick)
 				continue;
 
 			CardList [i].EventTrigger = bFlg;

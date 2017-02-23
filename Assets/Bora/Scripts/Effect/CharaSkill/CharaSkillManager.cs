@@ -76,9 +76,8 @@ public class CharaSkillManager : EffectBase {
 		if (GamePause.bPause)
 			return;
 
-		if (nMyNumber != nNowCharaSkill) {
+		if (nMyNumber != nNowCharaSkill)
 			return;
-		}
 
 		float fNowSpeed = Time.unscaledDeltaTime;
 		/*if (nMaxCharaSkill >= 3) {

@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Bora/Game/Title.unity
+- path: Assets/Scenes/Bora/Game/Main.unity
   isLoaded: 1
   isActive: 1

@@ -31,7 +31,7 @@ public class FeverCard : MonoBehaviour {
         }
 
         // 持ったら消す
-        render.enabled = !unoData.Click;
+        render.enabled = !unoData.OnClick;
 
 
         if (bAdd)

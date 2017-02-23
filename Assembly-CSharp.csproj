@@ -71,7 +71,7 @@
      <Compile Include="Assets\Bora\Scripts\Auto\AutoDeatroyNotIsPlaying.cs" />
      <Compile Include="Assets\Bora\Scripts\Auto\AutoDestroy.cs" />
      <Compile Include="Assets\Bora\Scripts\Auto\AutoDestroyNonChild.cs" />
-     <Compile Include="Assets\Bora\Scripts\Auto\AutoParticleDestroyer.cs" />
+     <Compile Include="Assets\Bora\Scripts\Auto\EndParticleDestroyer.cs" />
      <Compile Include="Assets\Bora\Scripts\Auto\ResourceHolder.cs" />
      <Compile Include="Assets\Bora\Scripts\CharaSkill\CharaSkillBase.cs" />
      <Compile Include="Assets\Bora\Scripts\CharaSkill\CharaSkillEffect.cs" />
