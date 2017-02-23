@@ -19,7 +19,7 @@ public class CharaSkillBase : MonoBehaviour {
 	};
 
 	eSkillType skillType = eSkillType.SKILL_MAX;
-	UnoStruct.eColor skillColor = UnoStruct.eColor.COLOR_MAX;
+	public UnoStruct.eColor skillColor = UnoStruct.eColor.COLOR_MAX;
 
 	public eSkillType SkillType {
 		get { return skillType; }

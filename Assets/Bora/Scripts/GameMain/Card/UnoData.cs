@@ -274,7 +274,7 @@ public class UnoData : MonoBehaviour {
 		m_Card = UnoCreateManager.Instance.GetLotteryCardData (transform.position);
 		int nNumber = ((int)m_Card.m_Color * (int)UnoStruct.eNumber.NUMBER_MAX) + (int)m_Card.m_Number;
 		spriteRenderer.sprite = CardResource.Instance.GetCardResource(nNumber);
-        charaSkillEffect.RunCheck(m_Card);
+        charaSkillEffect.RunCheck();
 	}
 
 	// Debug用カード変更コマンド
@@ -282,7 +282,7 @@ public class UnoData : MonoBehaviour {
 		m_Card = card;
 		int nNumber = ((int)m_Card.m_Color * (int)UnoStruct.eNumber.NUMBER_MAX) + (int)m_Card.m_Number;
 		spriteRenderer.sprite = CardResource.Instance.GetCardResource(nNumber);
-        charaSkillEffect.RunCheck(m_Card);
+        charaSkillEffect.RunCheck();
 	}
 
 	void ChangeCard() {
@@ -311,7 +311,7 @@ public class UnoData : MonoBehaviour {
 
 		int nNumber = ((int)m_Card.m_Color * (int)UnoStruct.eNumber.NUMBER_MAX) + (int)m_Card.m_Number;
 		spriteRenderer.sprite = CardResource.Instance.GetCardResource(nNumber);
-        charaSkillEffect.RunCheck(m_Card);
+        charaSkillEffect.RunCheck();
 	}
 
 	void SetCharaSkillEffect() {

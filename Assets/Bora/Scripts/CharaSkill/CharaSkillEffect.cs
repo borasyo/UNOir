@@ -13,7 +13,7 @@ public class CharaSkillEffect : MonoBehaviour {
 	/// </summary>
 
 	bool bCharaCard = false;
-	UnoStruct.tCard tempCard;
+//	UnoStruct.tCard tempCard;
 
 	UnoData unoData = null;
 	SpriteRenderer spriteRenderer = null;
@@ -28,7 +28,7 @@ public class CharaSkillEffect : MonoBehaviour {
         if (!bCharaCard)
 			return;
 
-        if (!FieldCard.Instance.Judge(tempCard) || unoData.OnClick || GameController.Instance.bStop)
+        if (!FieldCard.Instance.Judge(unoData.CardData) || unoData.OnClick || GameController.Instance.bStop)
         {
 			spriteRenderer.color = new Color (1, 1, 1, 1.0f - CharaSkillEffectData.Instance.fAddAlpha);
 			transform.localScale = CharaSkillEffectData.Instance.InitScale;
@@ -45,11 +45,9 @@ public class CharaSkillEffect : MonoBehaviour {
 
     // このカードは今キャラカードなのかをパーティ情報からチェック
     // 関数名が分かりにくいので修正する
-    public void RunCheck(UnoStruct.tCard card)
-    {
+    public void RunCheck() {
 
-        UnoStruct.tCard myCardData = card; // unoData.CardData;
-        bCharaCard = CharaCardCheck(myCardData);
+        bCharaCard = CharaCardCheck();
 
         if (bCharaCard) {
             //tempCard = card;
@@ -59,17 +57,19 @@ public class CharaSkillEffect : MonoBehaviour {
 		}
 	}
 
-    bool CharaCardCheck(UnoStruct.tCard card) {
+    bool CharaCardCheck() {
+
+        UnoStruct.tCard myCardData = unoData.CardData;
 		List<PlayerCharactor> player = GameMainUpperManager.instance.charactorAndFriend;
+        
         for (int i = 0; i < player.Count; i++) {
-            if (card.m_Color != player[i].GetTCard().m_Color ||
-                card.m_Number != player[i].GetTCard().m_Number)
-            {
+            if (myCardData.m_Color != player[i].GetTCard().m_Color ||
+                myCardData.m_Number != player[i].GetTCard().m_Number) {
                 continue;
             }
 
             // TODO : 違うタスクなので別に移動したい
-            tempCard = card;
+            //tempCard = card;
             spriteRenderer.sprite = CharaSkillEffectData.Instance.GetSprite(i);
 
             return true;

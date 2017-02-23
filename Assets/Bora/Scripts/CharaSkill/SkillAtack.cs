@@ -26,7 +26,7 @@ public class SkillAtack : CharaSkillBase {
 		for (int i = 0; i < enemyList.Count; i++) {
 			int hp = enemyList[i].hpMax;
 			int damage = (int)(hp*fPercentage);
-            enemyList[i].Damaged(damage, (Charactor.Attribute)SkillColor);
+            enemyList[i].Damaged(damage, (Charactor.Attribute)skillColor);
 			//enemyList [i].FlashAnimation ();
 		}
 	}
