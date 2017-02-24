@@ -47,7 +47,7 @@ public class SunProtect : EffectBase {
             return;
         }
 
-        float fNowAlpha = ((1.0f - fRivisionAlpha) * (float)SkillRise.nNum / (float)skillBase.GetMaxNum) + fRivisionAlpha;
+        float fNowAlpha = ((1.0f - fRivisionAlpha) * (float)SkillRise.GetStock / (float)skillBase.GetMaxNum) + fRivisionAlpha;
         if (render.color.a > fNowAlpha)
         {
             render.color -= new Color(0, 0, 0, 1.0f * (Time.deltaTime / fAtten));
@@ -81,7 +81,7 @@ public class SunProtect : EffectBase {
 			Destroy (this.gameObject);
 		}
 
-        if (SkillRise.nNum <= 0)
+        if (SkillRise.GetStock <= 0)
         {
             //skillBase.nNum = 0;
 			render.color -= new Color (0,0,0, fRivisionAlpha * (Time.deltaTime / fAtten)); 

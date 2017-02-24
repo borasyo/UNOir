@@ -34,7 +34,7 @@ public class ThunderParticle : MonoBehaviour {
 			}
 		}
 
-		if (bRun && !delay.bRun) {
+		if (bRun && !delay.m_IsRun) {
 			bUse = false;
 			Destroy (this.gameObject);
 			SoundManager.Instance.StopBGM (SoundManager.eBgmValue.BGM_THUNDERNOW);

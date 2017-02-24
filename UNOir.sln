@@ -41,5 +41,23 @@ Global
 		$2.inheritsSet = Mono
 		$2.inheritsScope = text/x-csharp
 		$2.scope = text/x-csharp
+		$0.TextStylePolicy = $3
+		$3.FileWidth = 120
+		$3.inheritsSet = VisualStudio
+		$3.inheritsScope = text/plain
+		$3.scope = text/plain
+		$0.TextStylePolicy = $4
+		$4.inheritsSet = null
+		$4.scope = application/xml
+		$0.XmlFormattingPolicy = $5
+		$5.inheritsSet = Mono
+		$5.inheritsScope = application/xml
+		$5.scope = application/xml
+		$0.TextStylePolicy = $6
+		$6.inheritsSet = null
+		$6.scope = text/x-shader
+		$0.TextStylePolicy = $7
+		$7.inheritsSet = null
+		$7.scope = text/x-unitytxt
 	EndGlobalSection
 EndGlobal

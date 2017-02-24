@@ -2,73 +2,46 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class SkillRise : CharaSkillBase {
+public class SkillRise : CharaSkillBase
+{
+    /// <summary>
+    /// 概要 : カードの出現確率アップスキル
+    ///        残り枚数をストックして判定
+    /// Author : 大洞祥太
+    /// </summary>
 
-	/// <summary>
-	/// 概要 : カードの出現確率アップスキル
-	/// Author : 大洞祥太
-	/// </summary>
+    static int m_nStock = 0;
+    static public int GetStock { get { return m_nStock; } private set { m_nStock = value; } }
+    [SerializeField] int m_nSetStock = 5;
 
-    static public int nNum = 0;
-	
-    [SerializeField] int nMaxNum = 5;
+    public int GetMaxNum { get { return m_nSetStock * m_nDuplicateNum; } private set { m_nSetStock = value; } }
 
-    public int GetMaxNum { get { return nMaxNum * nCnt; } private set { nMaxNum = value; } }
-	//public int nAdd = 2; // 倍率
-	static public bool bRun = false;
-	//public int nRunCnt { get; private set; }
-	//List<int> Temp = new List<int>(); // 現在確率をとっておく。
-    static int nCnt = 0;
+    static public bool m_IsRun = false; //  スキルが重複した場合分かるようにするため
+    static int m_nDuplicateNum = 0;     //  スキル重複数
+    static public int m_nCardNum = 0; 
 
-	static public int nCardNum = 0; 
-
-	void Start () {
-
-		nNum = 0;
-		//nRunCnt = 0;
-		SkillType = eSkillType.SKILL_RISE;
-	}
-	
-	void LateUpdate () {
-		/*if (!bRun)
-			return;
-		
-		nNum -= nCardNum;
-
-		// 終了
-		if (nNum <= 0) {
-			bRun = false;
-            nCnt = 0;
-            nNum = 0;
-            //Debug.Log("riseEnd");
-		}*/
-
-        /*if (Input.GetKeyDown(KeyCode.M))
-        {
-            Debug.Log("残り : " + nNum + " Max : " + GetMaxNum);
-        }*/
-	}
-
-    public override void ExecutionCharaSkill()
+    void Start ()
     {
+        m_nStock = 0;
+        SkillType = eSkillType.SKILL_RISE;
+    }
 
-        nNum += nMaxNum;
-		bRun = true;
-        nCnt++;
-        //Debug.Log("riseRun");
-	}
-
-    static public void SetNum(int i)
+    public override void ExecutionCharaSkill ()
     {
-        nNum -= i;
+        m_IsRun = true;
+        m_nStock += m_nSetStock;
+        m_nDuplicateNum++;
+    }
 
-        // 終了
-        if (nNum <= 0)
-        {
-            bRun = false;
-            nCnt = 0;
-            nNum = 0;
-            //Debug.Log("riseEnd");
-        }
+    static public void Reduce (int nAmount)
+    {
+        m_nStock -= nAmount;
+
+        if (m_nStock > 0)
+            return;
+        
+        m_IsRun = false;
+        m_nStock = 0;
+        m_nDuplicateNum = 0;
     }
 }

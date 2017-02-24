@@ -2,68 +2,73 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class SkillDelay : CharaSkillBase {
+public class SkillDelay : CharaSkillBase
+{
+    /// <summary>
+    /// 概要 : 遅延スキル
+    /// Author : 大洞祥太
+    /// </summary>
 
-	/// <summary>
-	/// 概要 : 遅延スキル
-	/// Author : 大洞祥太
-	/// </summary>
+    [Range (0.0f, 1.0f)] [SerializeField] float m_fSpeed;
+    [SerializeField] float m_fTime = 2.0f;
+    float m_fNowTime = 0.0f;
 
-	[Range(0.0f,1.0f)] public float fSpeed;
-	public float fTime = 2.0f;
-	float fNowTime = 0.0f;
-	public bool bRun { get; private set; } 
-	List<Enemy> enemyList = new List<Enemy>();
+    public bool m_IsRun { get; private set; }
 
-	// Use this for initialization
-	void Start () {
-		
-		SkillType = eSkillType.SKILL_DELAY;
-	}
+    List<Enemy> enemyList = new List<Enemy> ();
+
+    // Use this for initialization
+    void Start ()
+    {	
+        SkillType = eSkillType.SKILL_DELAY;
+    }
 	
-	// Update is called once per frame
-	void Update () {
-
-		if (!bRun) 
-			return;
-
-		CheckDeathEnemy ();
-
-		if (!BattleManager.Instance.GetIsInBattle ())
-			return;
-
-		fNowTime += Time.deltaTime;
-		for (int i = 0; i < enemyList.Count; i++) {
-			enemyList[i].SetGaugeSpeed(fSpeed);
-		}
-
-		if (fNowTime >= fTime) {
-            bRun = false; 
-            SoundManager.Instance.StopBGM(SoundManager.eBgmValue.BGM_THUNDERNOW);
-			for (int i = 0; i < enemyList.Count; i++) {
-				enemyList[i].SetGaugeSpeed(1.0f);
-			}
-            fNowTime = 0.0f;
-		}
-	}
-
-    public override void ExecutionCharaSkill()
+    // Update is called once per frame
+    void Update ()
     {
-		bRun = true;
-		fNowTime = 0.0f;
-		enemyList = GameMainUpperManager.instance.enemyList;
-	}
+        if (!m_IsRun)
+            return;
 
-	void CheckDeathEnemy() {
+        CheckDeathEnemy ();
 
-		List<Enemy> temp = GameMainUpperManager.instance.enemyList;
+        if (!BattleManager.Instance.GetIsInBattle ())
+            return;
 
-		if (temp.Count <= 0 || temp [0] != enemyList [0]) {
-			bRun = false;
-			for (int i = 0; i < enemyList.Count; i++) {
-				enemyList[i].SetGaugeSpeed(1.0f);
-			}
-            fNowTime = 0.0f;
-		}
-	}
+        m_fNowTime += Time.deltaTime;
+        foreach (Enemy enemy in enemyList) {
+            enemy.SetGaugeSpeed (m_fSpeed);
+        }
+
+        if (m_fNowTime < m_fTime)
+            return;
+
+        Reset ();
+        SoundManager.Instance.StopBGM (SoundManager.eBgmValue.BGM_THUNDERNOW);
+    }
+
+    public override void ExecutionCharaSkill ()
+    {
+        m_IsRun = true;
+        enemyList = GameMainUpperManager.instance.enemyList;
+    }
+
+    void CheckDeathEnemy ()
+    {
+        List<Enemy> checkList = GameMainUpperManager.instance.enemyList;
+
+        if (checkList.Count > 0 && checkList [0] == enemyList [0])
+            return;
+
+        enemyList = checkList;  // enemy情報が更新されているので再登録
+        Reset ();
+    }
+
+    void Reset() 
+    {
+        m_IsRun = false;
+        foreach (Enemy enemy in enemyList) {
+            enemy.SetGaugeSpeed (1.0f);
+        }
+        m_fNowTime = 0.0f;
+    }
 }

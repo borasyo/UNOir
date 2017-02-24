@@ -128,7 +128,8 @@ public class UnoCreateManager : MonoBehaviour {
 			SoundManager.Instance.PlaySE (SoundManager.eSeValue.SE_CARDSHUFFLE);
 		}
 		nNonSelect = 0;
-        SkillRise.nCardNum = nLottery;
+        /// TODO : 必要なのか不明
+        SkillRise.m_nCardNum = nLottery;
 		nLottery = 0;
 
 		/*#if DEBUG
@@ -174,7 +175,7 @@ public class UnoCreateManager : MonoBehaviour {
 	public UnoStruct.tCard GetLotteryCardData(Vector3 pos) {
 		nLottery++; 	// セットするのでカウント増加
 
-        if(SkillRise.bRun) {
+        if(SkillRise.m_IsRun) {
             UnoStruct.tCard card = Lottery[Random.Range(0, Lottery.Count)];
 
             while (card.m_Color != UnoStruct.eColor.COLOR_RED)
@@ -197,7 +198,7 @@ public class UnoCreateManager : MonoBehaviour {
             }
             // エフェクト生成
             Instantiate(RiseEffect, pos, Quaternion.identity);
-            SkillRise.SetNum(1); // カウント減らす
+            SkillRise.Reduce(1); // カウント減らす
             return card;
         }
 

@@ -1,32 +1,30 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SkillHell : CharaSkillBase {
+public class SkillHell : CharaSkillBase
+{
+    /// <summary>
+    /// 概要 : 回復スキル
+    /// Author : 大洞祥太
+    /// </summary>
 
-	/// <summary>
-	/// 概要 : 回復スキル
-	/// Author : 大洞祥太
-	/// </summary>
+    [Range (0.0f, 1.0f)] [SerializeField] float m_fPercentage;
 
-	[Range(0.0f,1.0f)] public float fPercentage;
-
-	void Start() {
-		SkillType = eSkillType.SKILL_HEEL;
-	}
-
-	// 回復処理 
-    public override void ExecutionCharaSkill()
+    void Start ()
     {
-		Player player = GameMainUpperManager.instance.player;
+        SkillType = eSkillType.SKILL_HEEL;
+    }
 
-		if (player.isDead)
-			return;
+    // 回復処理
+    public override void ExecutionCharaSkill ()
+    {
+        Player player = GameMainUpperManager.instance.player;
 
-		if (player.isDead || player.hpRemain <= 0)
-			return;
+        if (player.isDead || player.hpRemain <= 0)
+            return;
 		
-		int nhp = player.hpMax;
-		player.hpRemain += (int)(nhp * fPercentage);
-		HeelEffect.Run (); 
-	}
+        int nhp = player.hpMax;
+        player.hpRemain += (int)(nhp * m_fPercentage);
+        HeelEffect.Run (); 
+    }
 }
