@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 public class CharaSkillEffect : MonoBehaviour {
 
@@ -29,36 +30,43 @@ public class CharaSkillEffect : MonoBehaviour {
     // このカードは今キャラカードなのかをパーティ情報からチェック
     // 関数名が分かりにくいので修正する
     public void UpdateEnable() {
-		this.enabled = CharaCardCheck ();
-		SetColor (this.enabled);
+        
+        PlayerCharactor playerChara = CharaCardCheck ();
+		
+        this.enabled = playerChara;
+        SetColor (this.enabled);
+        SetSprite (playerChara);
 	}
 
-    bool CharaCardCheck() {
+    PlayerCharactor CharaCardCheck() {
 
 		UnoStruct.tCard myCardData = m_UnoData.CardData;
-		List<PlayerCharactor> player = GameMainUpperManager.instance.charactorAndFriend;
-        
-        for (int i = 0; i < player.Count; i++) {
-            if (myCardData.m_Color  != player[i].GetTCard().m_Color ||
-                myCardData.m_Number != player[i].GetTCard().m_Number) {
-                continue;
-            }
+		List<PlayerCharactor> playerList = GameMainUpperManager.instance.charactorAndFriend;
 
-            // TODO : 違うタスクなので別に移動したい
-			m_SpriteRenderer.sprite = CharaSkillEffectData.Instance.GetSprite(i);
+		// カラーと番号の合う物を抽出(1つあればいいので、先頭のみ)
+        PlayerCharactor playerChara = playerList.Where (player => 
+            myCardData.m_Color  == player.GetTCard ().m_Color &&
+            myCardData.m_Number == player.GetTCard ().m_Number).FirstOrDefault ();
 
-            return true;
-        }
-
-        return false;
+		return playerChara; // 存在すればTrueを返す
     }
 
-	void SetColor(bool IsOn) {
+    void SetColor(bool IsOn) {
 
-		if(IsOn) {
-			m_SpriteRenderer.color = CharaSkillEffectData.Instance.nowColor;
-		} else {
-			m_SpriteRenderer.color = new Color (1, 1, 1, 1.0f - CharaSkillEffectData.Instance.fAddAlpha);
-		}
-	}
+        if(IsOn) {
+            m_SpriteRenderer.color = CharaSkillEffectData.Instance.m_NowColor;
+        } else {
+            m_SpriteRenderer.color = new Color (1, 1, 1, 1.0f - CharaSkillEffectData.Instance.m_fAddAlphaAmount);
+        }
+    }
+        
+    void SetSprite(PlayerCharactor playerChara) {
+
+        if (playerChara == null)
+            return;
+
+        int index = GameMainUpperManager.instance.charactorAndFriend.IndexOf (playerChara);
+
+        m_SpriteRenderer.sprite = CharaSkillEffectData.Instance.GetSprite(index);
+    }
 }

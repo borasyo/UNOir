@@ -17,12 +17,10 @@ public class CharaSkillEffectData : MonoBehaviour {
 			if (instance) 
 				return instance;
 
-			instance = (CharaSkillEffectData)FindObjectOfType(typeof(CharaSkillEffectData));
-
-			if (instance) 
+			if (instance = (CharaSkillEffectData)FindObjectOfType(typeof(CharaSkillEffectData))) 
 				return instance;
 
-			GameObject obj = new GameObject();
+			GameObject obj = new GameObject("CharaSkillEffectData");
 			obj.AddComponent<CharaSkillEffectData>();
 			Debug.Log(typeof(CharaSkillEffectData) + "が存在していないのに参照されたので生成");
 
@@ -32,77 +30,77 @@ public class CharaSkillEffectData : MonoBehaviour {
 
 	#endregion
 
-	static Sprite[] effectSprite = new Sprite[5]; 
+	static Sprite[] m_EffectSprite = new Sprite[5]; 
 
-	bool bAdd = true;
-	public Vector3 InitScale { get; private set; }
-	float fTime = 0.2f;
-	Vector3 AddScale = new Vector3(0.1f, 0.1f, 0.1f);
-	public float fAddAlpha { get; private set; } 
+	bool m_IsAdd = true;
+	public Vector3 m_InitScale { get; private set; }
+	float m_fTime = 0.2f;
+	Vector3 m_AddScale = new Vector3(0.1f, 0.1f, 0.1f);
+	public float m_fAddAlphaAmount { get; private set; } 
 
-	public Color nowColor { get; private set; }
-	public Vector3 nowScale { get; private set; }
+	public Color m_NowColor { get; private set; }
+	public Vector3 m_NowScale { get; private set; }
 
 	void Awake() {
 		if (this != Instance) {
 			Destroy (this.gameObject);
 			return;
 		}
-		fAddAlpha = 1.0f;
-		nowColor = new Color (1, 1, 1, 1.0f); // - fAddAlpha);
-		//InitScale = nowScale = new Vector3 (0.95f,0.95f,0.95f);
-		InitScale = nowScale = new Vector3 (1.0f,1.0f,1.0f);
+
+		m_fAddAlphaAmount = 1.0f;
+		m_NowColor = new Color (1, 1, 1, 1);
+		m_InitScale = m_NowScale = new Vector3 (1.0f,1.0f,1.0f);
+	}
+
+	void Start() {
+		m_EffectSprite = ResourceHolder.Instance.GetResource (ResourceHolder.eResourceId.ID_CHARASKILLCARDEFFECT);
 	}
 
 	void Update() {
 		
         // TODO : 汎用関数にできる
-		if (bAdd) {
-			//nowScale += AddScale * (Time.deltaTime / fTime);
-			nowColor += new Color (0,0,0, fAddAlpha * (Time.deltaTime / fTime));
+        if (m_IsAdd) {
+			m_NowColor += new Color (0,0,0, m_fAddAlphaAmount) * (Time.deltaTime / m_fTime);
 
-			if(nowColor.a >= 1.0f) {
-			//if (nowScale.x >= InitScale.x + AddScale.x) {
-				bAdd = false;
-			}
+			if(m_NowColor.a >= 1.0f)
+				m_IsAdd = false;
 
-		} else {
-			//nowScale -= AddScale * (Time.deltaTime / fTime);
-			nowColor -= new Color (0,0,0, fAddAlpha * (Time.deltaTime / fTime));
+        } else {
+            m_NowColor -= new Color (0,0,0, m_fAddAlphaAmount * (Time.deltaTime / m_fTime));
 
-			if(nowColor.a <= 1.0f - fAddAlpha) {
-			//if (nowScale.x <= InitScale.x) {
-				bAdd = true;
-			}
+            if(m_NowColor.a <= 1.0f - m_fAddAlphaAmount) 
+                m_IsAdd = true;
 		}
 	}
+		
+	public Sprite GetSprite(int raw_CharaType) {
 
-	public Sprite GetSprite(int n) {
-
-		if(!effectSprite[0]) {
-			effectSprite = ResourceHolder.Instance.GetResource (ResourceHolder.eResourceId.ID_CHARASKILLCARDEFFECT);
-			//effectSprite = Resources.LoadAll<Sprite> ("Textures/CharaSkill/CharaSkillCard");
+		if (!m_EffectSprite [0]) {
+			m_EffectSprite = ResourceHolder.Instance.GetResource (ResourceHolder.eResourceId.ID_CHARASKILLCARDEFFECT);
 		}
- 
-		int nNum = 0;
-		switch (n) {
+
+		return m_EffectSprite [EscapeCharaType(raw_CharaType)];
+	}
+
+	// HACK : 自分の対応個所では無い所での数字のズレがあるため、変換して返す
+	int EscapeCharaType(int raw_CharaType) {
+		
+		switch (raw_CharaType) {
 		case 0:
-			nNum = 4;
-			break;
+			return 4;
 		case 1:
-			nNum = 0;
-			break;
+			return 0;
 		case 2:
-			nNum = 1;
-			break;
+			return 1;
 		case 3:
-			nNum = 3;
-			break;
+			return 3;
 		case 4:
-			nNum = 2;
+			return 2;
+		default:
 			break;
 		}
 
-		return effectSprite [nNum];
+		Debug.LogError ("変換できない値を指定しています！");
+		return 0;
 	}
 }

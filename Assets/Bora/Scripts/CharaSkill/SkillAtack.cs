@@ -24,13 +24,12 @@ public class SkillAtack : CharaSkillBase {
 			return;
 
 		List<Enemy> enemyList = GameMainUpperManager.instance.enemyList;
-		for (int i = 0; i < enemyList.Count; i++) 
-        {
-			int hp = enemyList[i].hpMax;
+		foreach (Enemy enemy in enemyList) {
+			int hp = enemy.hpMax;
 			int damage = (int)(hp*fPercentage);
 
-            enemyList[i].Damaged(damage, (Charactor.Attribute)SkillColor);
-			//enemyList [i].FlashAnimation ();
+			// TODO : 型変換が危ないけど、Charactorが自分の担当箇所ではないので、一度保留にする
+			enemy.Damaged(damage, (Charactor.Attribute)SkillColor);
 		}
 	}
 }

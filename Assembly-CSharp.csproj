@@ -105,6 +105,7 @@
      <Compile Include="Assets\Bora\Scripts\Effect\CharaSkill\Wind\WhirlWind.cs" />
      <Compile Include="Assets\Bora\Scripts\Effect\CharaSkill\Wind\WhirlWindManager.cs" />
      <Compile Include="Assets\Bora\Scripts\Effect\EffectBase.cs" />
+     <Compile Include="Assets\Bora\Scripts\Effect\EffectGenericFunction.cs" />
      <Compile Include="Assets\Bora\Scripts\Effect\EnemyAtack\BossNormalAtack.cs" />
      <Compile Include="Assets\Bora\Scripts\Effect\EnemyAtack\BossNormalAtackManager.cs" />
      <Compile Include="Assets\Bora\Scripts\Effect\EnemyAtack\BossSpecialAtack.cs" />

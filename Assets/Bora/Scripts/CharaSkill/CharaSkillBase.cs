@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CharaSkillBase : MonoBehaviour {
+public abstract class CharaSkillBase : MonoBehaviour {
 
 	/// <summary>
 	/// 概要 :
