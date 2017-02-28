@@ -32,7 +32,7 @@ public abstract class CharaSkillBase : MonoBehaviour {
 	}
 
     // キャラスキルの内部処理を記述する
-    public virtual void ExecutionCharaSkill() {
+    public virtual void Run() {
 
 	}
 }

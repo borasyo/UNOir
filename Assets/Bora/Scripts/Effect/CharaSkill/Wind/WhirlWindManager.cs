@@ -29,7 +29,7 @@ public class WhirlWindManager : EffectBase {
 
 		if (nCnt >= Child.Length - 1) {
 			if (Child [nCnt].bEnd) {
-                skillBase.ExecutionCharaSkill();
+                skillBase.Run();
 				Destroy (this.gameObject);
 			}
 			return;

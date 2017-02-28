@@ -57,7 +57,7 @@ public class Thunder : EffectBase {
 
 			if (fShake <= 0.0f) {
 				bFade = true;
-                skillBase.ExecutionCharaSkill();
+                skillBase.Run();
 				particle.Play ();
 				return;
 			}

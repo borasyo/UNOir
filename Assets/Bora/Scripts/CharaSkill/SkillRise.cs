@@ -26,7 +26,7 @@ public class SkillRise : CharaSkillBase
         SkillType = eSkillType.SKILL_RISE;
     }
 
-    public override void ExecutionCharaSkill ()
+    public override void Run ()
     {
         m_IsRun = true;
         m_nStock += m_nSetStock;

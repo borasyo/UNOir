@@ -2,23 +2,28 @@
 using System.Collections;
 
 public class FpsManager : MonoBehaviour {
+    
+    #region Singleton
 
-	//----- Singleton
-	protected static FpsManager instance;
+    private static FpsManager instance;
 
-	public static FpsManager Instance {
-		get {
-			if (instance == null) {
-				instance = (FpsManager)FindObjectOfType(typeof(FpsManager));
+    public static FpsManager Instance {
+        get {
+            if (instance)
+                return instance;
 
-				if (instance == null) {
-					Debug.LogError("FpsManager Instance Error");
-				}
-			}
+            if (instance = (FpsManager)FindObjectOfType (typeof(FpsManager)))
+                return instance;
 
-			return instance;
-		}
-	}
+            GameObject obj = new GameObject ("FpsManager");
+            obj.AddComponent<FpsManager> ();
+            Debug.Log (typeof(FpsManager) + "が存在していないのに参照されたので生成");
+
+            return instance;
+        }
+    }
+
+    #endregion
 
 	[SerializeField]
 	bool bAndroid = true;
@@ -61,21 +66,6 @@ public class FpsManager : MonoBehaviour {
 	void Update () {
 		// フレームの加算
 		frameCount++;
-
-		//if (Time.time >= nextTime) {
-		//	// 1秒経ったらFPSを保存
-		//	Debug.Log("FPS : "+frameCount);
-		//	frameCount = 0;
-		//	nextTime += 1;
-		//}
-
-		/*if (Input.touchCount > 0) {
-			if (Input.GetTouch (0).phase == TouchPhase.Began || Input.GetTouch (0).phase == TouchPhase.Ended) {
-				if (Input.GetTouch (0).fingerId == TouchManager.Instance.nTouchId) {
-					nCnt++;
-				}
-			}
-		}*/
 	}
 
 
@@ -98,14 +88,5 @@ public class FpsManager : MonoBehaviour {
 		}
 		string label = "  FPS:" + PrevFps;
 		GUI.Label (new Rect(0,0,400,400), label, Style);
-
-		/*label = "  Touch " + nCnt; // + PrevFps;
-		GUI.Label(new Rect(0, 0, 400, 400), label, Style);
-
-		label = "  TempList : " + FieldCard.Instance.TempList.Count; // + PrevFps;
-		GUI.Label(new Rect(0, 100, 400, 400), label, Style);
-
-		label = "  TempCnt : " + FieldCard.Instance.TempCnt; // + PrevFps;
-		GUI.Label(new Rect(0, 200, 400, 400), label, Style);*/
 	}
 }

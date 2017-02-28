@@ -25,16 +25,16 @@ public class Skill_Debug : MonoBehaviour {
 	void Update () {
 
 		if (Input.GetKeyDown (KeyCode.Z)) {
-            atack.ExecutionCharaSkill();
+            atack.Run();
 		}
 		if (Input.GetKeyDown (KeyCode.X)) {
-            hell. ExecutionCharaSkill();
+            hell. Run();
 		}
 		if (Input.GetKeyDown (KeyCode.C)) {
-            delay.ExecutionCharaSkill();
+            delay.Run();
 		}
 		if (Input.GetKeyDown (KeyCode.V)) {
-            rise. ExecutionCharaSkill();
+            rise. Run();
 		}
 	}
 }

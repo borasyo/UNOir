@@ -4,8 +4,7 @@ using System.Collections.Generic;
 
 public class DebugCommand : MonoBehaviour {
 
-	[SerializeField]
-	FeverGauge feverGauge = null;
+	[SerializeField] FeverGauge m_FeverGauge = null;
 
 	void LateUpdate () {
 
@@ -23,12 +22,12 @@ public class DebugCommand : MonoBehaviour {
 
 		// Uno手前までゲージ増加
 		if (Input.GetKeyDown (KeyCode.E)) {
-			feverGauge.SetPoint (feverGauge.feverPointMax - 2);
+            m_FeverGauge.SetPoint (m_FeverGauge.feverPointMax - 2);
 		}
 
 		// Unoまでゲージ増加
 		if (Input.GetKeyDown (KeyCode.R)) {
-			feverGauge.SetPoint (feverGauge.feverPointMax);
+            m_FeverGauge.SetPoint (m_FeverGauge.feverPointMax);
 		}
 
 		// 詰んだらシャッフル

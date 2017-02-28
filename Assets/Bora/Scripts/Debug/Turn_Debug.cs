@@ -3,10 +3,7 @@ using System.Collections;
 
 public class Turn_Debug : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
+    // TODO : 使用していない可能性大
 	
 	// Update is called once per frame
 	void LateUpdate () {

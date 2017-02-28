@@ -37,7 +37,7 @@ public class HealingWater : EffectBase {
 
 		if (bEnd) {
 			if (!particle.isPlaying) {
-                skillBase.ExecutionCharaSkill();
+                skillBase.Run();
 				Destroy (this.gameObject);
 				Destroy (particle.gameObject);
 			}

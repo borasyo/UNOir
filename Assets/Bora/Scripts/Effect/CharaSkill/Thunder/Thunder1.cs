@@ -41,7 +41,7 @@ public class Thunder1 : EffectBase {
 			Destroy (myParticle.gameObject);
 			myParticle = null;
 			particle.Play ();
-            skillBase.ExecutionCharaSkill();
+            skillBase.Run();
 			SoundManager.Instance.PlayBGM (SoundManager.eBgmValue.BGM_THUNDERNOW);
 		}
 

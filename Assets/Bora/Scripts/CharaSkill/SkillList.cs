@@ -8,20 +8,27 @@ public class SkillList : MonoBehaviour
     /// Author : 大洞祥太
     /// </summary>
 
-    static SkillList instance;
+    #region Singleton
+
+    private static SkillList instance;
 
     public static SkillList Instance {
         get {
-            if (instance == null) {
-                instance = (SkillList)FindObjectOfType (typeof(SkillList));
+            if (instance) 
+                return instance;
 
-                if (instance == null) {
-                    Debug.LogError ("SkillList Instance Error");
-                }
-            }
+            if (instance = (SkillList)FindObjectOfType(typeof(SkillList)))
+                return instance;
+
+            GameObject obj = new GameObject("SkillList");
+            obj.AddComponent<SkillList>();
+            Debug.Log(typeof(SkillList) + "が存在していないのに参照されたので生成");
+
             return instance;
         }
     }
+
+    #endregion
 
     void Awake ()
     {

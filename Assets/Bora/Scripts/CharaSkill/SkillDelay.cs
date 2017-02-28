@@ -9,9 +9,9 @@ public class SkillDelay : CharaSkillBase
     /// Author : 大洞祥太
     /// </summary>
 
-    [Range (0.0f, 1.0f)] [SerializeField] float m_fSpeed;
-    [SerializeField] float m_fTime = 2.0f;
-    float m_fNowTime = 0.0f;
+    [Range (0.0f, 1.0f)] [SerializeField] float m_fSpeed_OneSec;
+    [SerializeField] float m_fTime_Sec = 2.0f;
+    float m_fNowTime_Sec = 0.0f;
 
     public bool m_IsRun { get; private set; }
 
@@ -34,19 +34,19 @@ public class SkillDelay : CharaSkillBase
         if (!BattleManager.Instance.GetIsInBattle ())
             return;
 
-        m_fNowTime += Time.deltaTime;
+        m_fNowTime_Sec += Time.deltaTime;
         foreach (Enemy enemy in enemyList) {
-            enemy.SetGaugeSpeed (m_fSpeed);
+            enemy.SetGaugeSpeed (m_fSpeed_OneSec);
         }
 
-        if (m_fNowTime < m_fTime)
+        if (m_fNowTime_Sec < m_fTime_Sec)
             return;
 
         Reset ();
         SoundManager.Instance.StopBGM (SoundManager.eBgmValue.BGM_THUNDERNOW);
     }
 
-    public override void ExecutionCharaSkill ()
+    public override void Run ()
     {
         m_IsRun = true;
         enemyList = GameMainUpperManager.instance.enemyList;
@@ -69,6 +69,6 @@ public class SkillDelay : CharaSkillBase
         foreach (Enemy enemy in enemyList) {
             enemy.SetGaugeSpeed (1.0f);
         }
-        m_fNowTime = 0.0f;
+        m_fNowTime_Sec = 0.0f;
     }
 }

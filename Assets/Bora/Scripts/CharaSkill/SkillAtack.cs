@@ -19,7 +19,7 @@ public class SkillAtack : CharaSkillBase
     }
 
     //  キャラスキルの内部処理を実行する
-    public override void ExecutionCharaSkill ()
+    public override void Run ()
     {
         if (GameMainUpperManager.instance.player.isDead)
             return;
