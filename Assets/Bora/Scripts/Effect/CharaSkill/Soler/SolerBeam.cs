@@ -18,7 +18,7 @@ public class SolerBeam : EffectBase
     [SerializeField] float m_fShakeTime_Sec = 0.1f;
     float m_fNowShake = 0.0f;
     float m_fNowShakeAmount = 0.0f;
-    [SerializeField] float m_fShake = 0.6f;
+    [SerializeField] float m_fMaxShake = 0.6f;
 
     [SerializeField] Vector3 m_TargetPos = Vector3.zero;
     float m_fInitScale = 0.0f;
@@ -32,7 +32,7 @@ public class SolerBeam : EffectBase
         m_Distance = m_TargetPos - transform.position;
         m_fInitHeight = transform.position.y;
         m_IsUp = true;
-        m_fNowShakeAmount = m_fNowShake = Random.Range (0.0f, m_fShake);
+        m_fNowShakeAmount = m_fNowShake = Random.Range (0.0f, m_fMaxShake);
         m_fInitScale = transform.localScale.y;
 
         SoundManager.Instance.PlaySE (SoundManager.eSeValue.SE_SOLERBEAM);
@@ -55,18 +55,16 @@ public class SolerBeam : EffectBase
 
             if (m_fInitHeight + m_fNowShake <= transform.position.y) {
                 m_IsUp = false;
-                m_fNowShake = -Random.Range (0.0f, m_fShakeTime_Sec);
+                m_fNowShake = Random.Range (-m_fMaxShake, 0.0f);
                 m_fNowShakeAmount = transform.position.y - (m_fInitHeight + m_fNowShake);
-                Debug.Log ("false");
             }
         } else {
             transform.position -= new Vector3 (0, m_fNowShakeAmount * (Time.deltaTime / m_fShakeTime_Sec), 0);
 
             if (m_fInitHeight + m_fNowShake >= transform.position.y) {
                 m_IsUp = true;
-                m_fNowShake = Random.Range (0.0f, m_fShakeTime_Sec);
+                m_fNowShake = Random.Range (0.0f, m_fMaxShake);
                 m_fNowShakeAmount = (m_fInitHeight + m_fNowShake) - transform.position.y;
-                Debug.Log ("true");
             }
         }
     }

@@ -1,114 +1,91 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SunProtect : EffectBase {
+public class SunProtect : EffectBase
+{
+    /// <summary>
+    /// 概要 : ハレのスキルェフェクトを管理
+    /// Author : 大洞祥太
+    /// </summary>
 
-	/// <summary>
-	/// 概要 : 
-	/// Author : 大洞祥太
-	/// </summary>
+    static bool m_IsUse = false;    //  2つ以上エフェクトを生成させないため
 
-	SkillRise skillBase = null;
-	SpriteRenderer render = null;
-    //float fTempAlpha = 0.0f;
+    SkillRise m_SkillBase = null;
+    SpriteRenderer m_SpriteRender = null;
 
-    bool bStart = true;
-    [SerializeField]
-    float fStartTime = 0.5f;
+    [SerializeField] float m_fStartTime_Sec = 1.0f;
 
-    static bool bUse = false;
+    [SerializeField] float m_fRotTime_Sec = 30.0f;      //  回転スピード
+    [SerializeField] float m_fAtten_Sec = 0.25f;        //  減衰スピード
+    [SerializeField] float m_fRivisionAlpha = 0.25f;    //  
 
-    [SerializeField]
-    float fRotTime = 30.0f;
+    void Start ()
+    {
+        m_SpriteRender = GetComponent<SpriteRenderer> ();
+        ColorInit ();
+        m_SpriteRender.color = new Color (1, 1, 1, 1);
+    }
 
-	[SerializeField]
-	float fAtten = 0.25f;
+    IEnumerator ColorInit() {
 
-	[SerializeField]
-	float fRivisionAlpha = 0.25f;
+        transform.eulerAngles += new Vector3 (0, 0, 360 * (Time.deltaTime / m_fRotTime_Sec));
+        m_SpriteRender.color += new Color (0, 0, 0, 1.0f * (Time.deltaTime / m_fStartTime_Sec));
+        yield return m_SpriteRender.color.a >= 1.0f;
+    }
 
-	void Start () {
-        render = GetComponent<SpriteRenderer>();
-	}
+    void Update ()
+    {
+        Vector3 RotAmount = new Vector3 (0, 0, 360 * (Time.deltaTime / m_fRotTime_Sec));
+        transform.eulerAngles += RotAmount;
 
-	void Update () {
+        float fNowAlpha = ((1.0f - m_fRivisionAlpha) * (float)SkillRise.GetStock / (float)m_SkillBase.GetMaxNum) + m_fRivisionAlpha;
+        if (m_SpriteRender.color.a > fNowAlpha) {
+            m_SpriteRender.color -= new Color (0, 0, 0, 1.0f * (Time.deltaTime / m_fAtten_Sec));
 
-        // 回転
-        transform.eulerAngles += new Vector3(0, 0, 360 * (Time.deltaTime / fRotTime));
-
-        if (bStart)
-        {
-            render.color += new Color(0, 0, 0, 1.0f * (Time.deltaTime / fStartTime));
-            if (render.color.a >= 1.0f)
-            {
-                render.color = new Color(1,1,1,1);
-                bStart = false;
+            if (m_SpriteRender.color.a < fNowAlpha) {
+                m_SpriteRender.color = new Color (1, 1, 1, fNowAlpha);
             }
+        } else if (m_SpriteRender.color.a < fNowAlpha) {
+            m_SpriteRender.color += new Color (0, 0, 0, 1.0f * (Time.deltaTime / m_fAtten_Sec));
+
+            if (m_SpriteRender.color.a > fNowAlpha) {
+                m_SpriteRender.color = new Color (1, 1, 1, fNowAlpha);
+            }
+        }
+
+        DestroyCheck ();
+    }
+
+    // 終了判定
+    void DestroyCheck() {
+
+        if (SkillRise.GetStock <= 0) {
+            m_SpriteRender.color -= new Color (0, 0, 0, m_fRivisionAlpha * (Time.deltaTime / m_fAtten_Sec)); 
+            if (m_SpriteRender.color.a <= 0.0f) {
+                m_IsUse = false;
+                Destroy (this.gameObject);
+            }
+        }
+
+        // 勝ちなら強制終了
+        if (ResultManager.Instance.bWin) {
+            m_IsUse = false;
+            Destroy (this.gameObject);
+        }
+    }
+
+    public override void Set (CharaSkillBase skillData)
+    {
+        m_SkillBase = (SkillRise)skillData;
+        m_SkillBase.Run ();
+
+        // 2つ以上はオブジェクトは生成しない
+        if (m_IsUse) {
+            Destroy (this.gameObject);
             return;
-        }
+        } 
 
-        float fNowAlpha = ((1.0f - fRivisionAlpha) * (float)SkillRise.GetStock / (float)skillBase.GetMaxNum) + fRivisionAlpha;
-        if (render.color.a > fNowAlpha)
-        {
-            render.color -= new Color(0, 0, 0, 1.0f * (Time.deltaTime / fAtten));
-            //render.color -= new Color(0, 0, 0, (fTempAlpha - fNowAlpha) * (Time.deltaTime / fAtten));
-
-             if (render.color.a < fNowAlpha)
-             {
-                 render.color = new Color(1,1,1,fNowAlpha);
-             }
-             //Debug.Log("Down");
-        }
-        else if (render.color.a < fNowAlpha)
-        {
-            render.color += new Color(0, 0, 0, 1.0f * (Time.deltaTime / fAtten));
-            //render.color += new Color(0, 0, 0, (fTempAlpha - fNowAlpha) * (Time.deltaTime / fAtten));
-
-            if (render.color.a > fNowAlpha)
-            {
-                render.color = new Color(1,1,1,fNowAlpha);
-            }
-            //Debug.Log("Up");
-        }
-        /*else
-        {
-            fTempAlpha = render.color.a;
-        }*/
-
-		// 勝ちなら強制終了
-		if (ResultManager.Instance.bWin) {
-			bUse = false;
-			Destroy (this.gameObject);
-		}
-
-        if (SkillRise.GetStock <= 0)
-        {
-            //skillBase.nNum = 0;
-			render.color -= new Color (0,0,0, fRivisionAlpha * (Time.deltaTime / fAtten)); 
-			if (render.color.a <= 0.0f) {
-				bUse = false;
-                Destroy(this.gameObject);
-                //Debug.Log("destroySun");
-			}
-		}
-
-        /*if (Input.GetKeyDown(KeyCode.M))
-        {
-            Debug.Log("レンダー : " + render.color.a + " 現在 : " + fNowAlpha);
-        }*/
-	}
-
-	public override void Set(CharaSkillBase skillData) {
-		skillBase = (SkillRise)skillData;
-        skillBase.Run();
-
-		if (bUse) {
-            Destroy(this.gameObject);
-            //Debug.Log("nonSun");
-		} else {
-			bUse = true;
-            SoundManager.Instance.PlaySE(SoundManager.eSeValue.SE_SUN);
-            //Debug.Log("createSun");
-		}
-	}
+        m_IsUse = true;
+        SoundManager.Instance.PlaySE (SoundManager.eSeValue.SE_SUN);
+    }
 }

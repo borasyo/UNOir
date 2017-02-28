@@ -3,7 +3,6 @@ using System.Collections;
 
 public class SolerBeamChild : MonoBehaviour
 {
-
     /// <summary>
     /// 概要 : 
     /// Author : 大洞祥太
@@ -12,26 +11,30 @@ public class SolerBeamChild : MonoBehaviour
     public float m_fTime_Sec = 1.0f;
     Vector3 m_Distance = Vector3.zero;
 
-    float m_fInitHeight = 0.0f;
-    public bool m_IsUp = true;
-    public float m_fShakeTime = 0.1f;
-    float m_fNowShake = 0.0f;
-    float m_fNowShakeAmount = 0.0f;
-    public float m_fShake = 0.6f;
+    bool m_IsUp = true;
+
+    [SerializeField] float m_fShakeTime_Sec = 0.1f;
+    float m_fNowShake = 0.0f;       //  移動量
+    float m_fNowShakeAmount = 0.0f; //  現在位置から計算した移動量
+    [SerializeField] float m_fMaxShake = 0.6f;
+
     Vector3 m_TargetPos = Vector3.zero;
     Vector3 m_InitScale = Vector3.zero;
+    float m_fInitHeight = 0.0f;
 
     // Use this for initialization
     void Start ()
     {
         m_TargetPos = transform.position;
         m_TargetPos.x *= -1;
+
         m_Distance = m_TargetPos - transform.position;
+
         m_fInitHeight = transform.position.y;
-        m_IsUp = true;
-        m_fNowShakeAmount = m_fNowShake = Random.Range (0.0f, m_fShake);
-        transform.parent = null;
         m_InitScale = transform.localScale;
+
+        m_fNowShakeAmount = m_fNowShake = Random.Range (0.0f, m_fMaxShake);
+        transform.parent = null;
     }
 
     // Update is called once per frame
@@ -45,19 +48,19 @@ public class SolerBeamChild : MonoBehaviour
         }
 
         if (m_IsUp) {
-            transform.position += new Vector3 (0, m_fNowShakeAmount * (Time.deltaTime / m_fShakeTime), 0);
+            transform.position += new Vector3 (0, m_fNowShakeAmount * (Time.deltaTime / m_fShakeTime_Sec), 0);
 
             if (m_fInitHeight + m_fNowShake <= transform.position.y) {
                 m_IsUp = false;
-                m_fNowShake = -Random.Range (0.0f, m_fShake);
+                m_fNowShake = -Random.Range (0.0f, m_fMaxShake);
                 m_fNowShakeAmount = transform.position.y - (m_fInitHeight + m_fNowShake);
             }
         } else {
-            transform.position -= new Vector3 (0, m_fNowShakeAmount * (Time.deltaTime / m_fShakeTime), 0);
+            transform.position -= new Vector3 (0, m_fNowShakeAmount * (Time.deltaTime / m_fShakeTime_Sec), 0);
 
             if (m_fInitHeight + m_fNowShake >= transform.position.y) {
                 m_IsUp = true;
-                m_fNowShake = Random.Range (0.0f, m_fShake);
+                m_fNowShake = Random.Range (0.0f, m_fMaxShake);
                 m_fNowShakeAmount = (m_fInitHeight + m_fNowShake) - transform.position.y;
             }
         }
