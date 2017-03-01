@@ -1,19 +1,19 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Bora\Scripts\Effect\CharaSkill\FeverSetEffect.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Bora\Scripts\Effect\CharaSkill\Wind\WhirlWind.cs">
     <Files>
-      <File FileName="Assets\Bora\Scripts\Effect\CharaSkill\Water\HealingWater.cs" Line="21" Column="5" />
-      <File FileName="Assets\Bora\Scripts\Effect\CharaSkill\Thunder\Thunder.cs" Line="69" Column="6" />
-      <File FileName="Assets\Bora\Scripts\Effect\CharaSkill\Thunder\BlackOut.cs" Line="7" Column="21" />
-      <File FileName="Assets\Bora\Scripts\Effect\CharaSkill\Thunder\ThunderParticle.cs" Line="39" Column="6" />
-      <File FileName="Assets\Bora\Scripts\Effect\CharaSkill\Sun\SunProtect.cs" Line="38" Column="6" />
-      <File FileName="Assets\Bora\Scripts\Effect\CharaSkill\FeverSetEffect.cs" Line="37" Column="11" />
+      <File FileName="Assets\Bora\Scripts\Effect\CharaSkill\Wind\WhirlWind.cs" Line="32" Column="20" />
+      <File FileName="Assets\Bora\Scripts\Effect\CharaSkill\Wind\WhirlWindManager.cs" Line="61" Column="20" />
       <File FileName="Assets\Bora\Scripts\Effect\CharaSkill\CharaSkillManager.cs" Line="95" Column="15" />
-      <File FileName="Assets\Bora\Scripts\Effect\CharaSkill\Wind\WhirlWindManager.cs" Line="29" Column="6" />
-      <File FileName="Assets\Bora\Scripts\Effect\CharaSkill\Wind\WhirlWind.cs" Line="27" Column="6" />
+      <File FileName="Assets\Bora\Scripts\Effect\CharaSkill\Water\HealingWater.cs" Line="1" Column="1" />
+      <File FileName="Assets\Bora\Scripts\Effect\CharaSkill\Thunder\Thunder.cs" Line="1" Column="1" />
+      <File FileName="Assets\Bora\Scripts\Effect\CharaSkill\Thunder\BlackOut.cs" Line="1" Column="1" />
+      <File FileName="Assets\Bora\Scripts\Effect\CharaSkill\Thunder\ThunderParticle.cs" Line="1" Column="1" />
+      <File FileName="Assets\Bora\Scripts\Effect\CharaSkill\Sun\SunProtect.cs" Line="1" Column="1" />
+      <File FileName="Assets\Bora\Scripts\Effect\CharaSkill\FeverSetEffect.cs" Line="26" Column="31" />
       <File FileName="Assets\Bora\Scripts\Sound\SoundManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Bora\Scripts\Scene\SceneChanger.cs" Line="14" Column="1" />
-      <File FileName="Assets\Bora\Scripts\Effect\CharaSkill\Soler\SolerBeam.cs" Line="24" Column="24" />
+      <File FileName="Assets\Bora\Scripts\Scene\SceneChanger.cs" Line="1" Column="1" />
+      <File FileName="Assets\Bora\Scripts\Effect\CharaSkill\Soler\SolerBeam.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

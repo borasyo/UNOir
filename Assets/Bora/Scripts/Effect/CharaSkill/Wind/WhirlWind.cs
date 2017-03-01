@@ -8,36 +8,39 @@ public class WhirlWind : EffectBase
     /// Author : 大洞祥太
     /// </summary>
 
-    bool bRun = false;
-    SpriteRenderer render = null;
-    Vector3 Distance = Vector3.zero;
+    SpriteRenderer m_SpriteRender = null;
+    Vector3 m_Distance = Vector3.zero;
 
-    public float fTime = 0.75f;
-    public Vector3 TargetPos = Vector3.zero;
+    [SerializeField] float m_fTime_Sec = 0.75f;
+    public float Time_Sec { get { return m_fTime_Sec; } set { m_fTime_Sec = value; } }
+    [SerializeField] Vector3 m_TargetPos = Vector3.zero;
 	
     // Use this for initialization
-    void Start ()
+    void Awake ()
     {
-        render = GetComponent<SpriteRenderer> ();
-        Distance = TargetPos - transform.position;
+        m_SpriteRender = GetComponent<SpriteRenderer> ();
+        m_Distance = m_TargetPos - transform.position;
+
+        this.enabled = false;
     }
 
     // Update is called once per frame
     void Update ()
     {
-        if (!bRun || bEnd)
+        if (bEnd) {
+            this.enabled = false;
             return;
-
-        render.color -= new Color (0, 0, 0, 1.0f * (Time.deltaTime / fTime));
-        transform.position += Distance * (Time.deltaTime / fTime);
-
-        if (render.color.a <= 0.0f) {
-            bEnd = true;
         }
+
+        m_SpriteRender.color -= new Color (0, 0, 0, 1.0f * (Time.deltaTime / m_fTime_Sec));
+        transform.position += m_Distance * (Time.deltaTime / m_fTime_Sec);
+
+        if (m_SpriteRender.color.a <= 0.0f)
+            bEnd = true;
     }
 
     public void Run ()
     {
-        bRun = true;
+        this.enabled = true;
     }
 }
