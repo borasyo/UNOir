@@ -1,36 +1,28 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BlackOut : MonoBehaviour {
+public class BlackOut : MonoBehaviour
+{
+    /// <summary>
+    /// 概要 : 背景を暗くする
+    /// Author : 大洞祥太
+    /// </summary>
 
-	/// <summary>
-	/// 概要 : 
-	/// Author : 大洞祥太
-	/// </summary>
+    SpriteRenderer m_SpriteRender = null;
+    float fAlpha = 0.0f;
 
-	SpriteRenderer render = null;
-	float fAlpha = 0.0f;
+    void Start ()
+    {
+        m_SpriteRender = GetComponent<SpriteRenderer> ();
+    }
 
-	void Start() {
-		render = GetComponent<SpriteRenderer> ();
-	}
+    public float Alpha {
+        get { return fAlpha; }
+        set { fAlpha = value; }
+    }
 
-	public float Alpha {
-		get { return fAlpha; }
-		set { fAlpha = value; }
-	}
-
-	void Update() {
-		render.color = new Color (0,0,0, fAlpha);
-	}
-		
-	/*public void Run(bool bFlg, float fAmount) {
-
-		if(bFlg) {
-			render.color += new Color (0,0,0,fAmount);
-		} else {
-			render.color -= new Color (0,0,0,fAmount);
-			Debug.Log ("a");
-		}
-	}*/
+    void Update ()
+    {
+        m_SpriteRender.color = new Color (0, 0, 0, fAlpha);
+    }
 }

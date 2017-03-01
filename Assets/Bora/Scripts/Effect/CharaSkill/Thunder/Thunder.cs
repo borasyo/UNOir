@@ -1,99 +1,102 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Thunder : EffectBase {
+public class Thunder : EffectBase
+{
+    /// <summary>
+    /// 概要 : キャラスキル磁場の進行管理
+    /// Author : 大洞祥太
+    /// </summary>
 
-	/// <summary>
-	/// 概要 : 
-	/// Author : 大洞祥太
-	/// </summary>
+    CharaSkillBase m_SkillBase = null;
+    ParticleSystem m_StartParticle = null;
+    ParticleSystem m_NextParticle = null;
+    BlackOut m_BlackOut = null;
 
-	CharaSkillBase skillBase = null;
-	public ParticleSystem particle = null;
-	public BlackOut blackOut = null; 
+    [SerializeField] float m_fFadeTime_Sec = 1.0f;
+    [SerializeField] float m_fMaxBlack = 0.5f;
 
-	public float fWait = 0.0f;
+    // Use this for initialization
+    void Awake ()
+    {
+        m_StartParticle = transform.FindChild ("ThunderEffect").GetComponent<ParticleSystem> ();
+        m_NextParticle = transform.FindChild ("ThunderParticle").GetComponent<ParticleSystem> ();
+        m_BlackOut = GetComponentInChildren<BlackOut> ();
 
-	float fNowDownTime = 0.0f;
-	public float fDownTime = 0.5f;
-	Vector3 Distance = Vector3.zero;
-	public Vector3 TargetPos = Vector3.zero;
+        if (!NullCheck ())
+            return;
+        
+        m_NextParticle.transform.parent = null;
+        m_BlackOut.transform.parent = null;
+        m_NextParticle.Stop ();
 
-	bool bUp = true;
-	public float fShakeTime = 0.1f;
-	public float fShake = 0.5f;
-	public float fAtten = 0.02f;
+        StartCoroutine (InitEffect());
+    }
 
-	SpriteRenderer render = null;
-	bool bFade = false;
-	public float fFadeTime = 0.25f;
+    bool NullCheck() {
 
-	public float fFadeInTime = 1.0f;
-	public float fMaxBlack = 0.35f; 
+        if (!m_StartParticle) {
+            Debug.LogError (m_StartParticle.ToString() + "がありません！");
+            return false;
+        }
 
-	// Use this for initialization
-	void Awake () {
-		render = GetComponentInChildren<SpriteRenderer>();
-		Distance = TargetPos - transform.position;
-		particle.transform.parent = null;
-		blackOut.transform.parent = null;
-		particle.Stop ();
+        if (!m_NextParticle) {
+            Debug.LogError (m_NextParticle.ToString() + "がありません！");
+            return false;
+        }
 
-		//fDownTime += Random.Range (-0.2f,0.2f);
-	}
+        if (!m_BlackOut) {
+            Debug.LogError (m_BlackOut.ToString() + "がありません！");
+            return false;
+        }
 
-	// Update is called once per frame
-	void Update () {
+        return true;
+    }
 
-		if (!bFade && blackOut.Alpha < fMaxBlack) {
-			blackOut.Alpha += fMaxBlack * (Time.deltaTime / fFadeInTime);
-			return;
-		}
-		
-		if (fNowDownTime < fDownTime) {
-			fNowDownTime += Time.deltaTime;
-			transform.position += Distance * (Time.deltaTime / fDownTime);
-		} else if (!bFade) {
+    // Update is called once per frame
+    void Update ()
+    {
+        m_BlackOut.Alpha -= m_fMaxBlack * (Time.deltaTime / m_fFadeTime_Sec);
 
-			if (fShake <= 0.0f) {
-				bFade = true;
-                skillBase.Run();
-				particle.Play ();
-				return;
-			}
+        if (m_BlackOut.Alpha > 0.0f)
+            return;
+        
+        Destroy (m_BlackOut.gameObject); 
+        Destroy (this.gameObject); 
+    }
 
-			if (bUp) {
-				transform.position += new Vector3 (0, fShake * (Time.deltaTime / fShakeTime), 0);
+    IEnumerator InitEffect() {
 
-				if (transform.position.y >= TargetPos.y + fShake) {
-					bUp = false;
-					fShake -= fAtten;
-				}
-			} else {
-				transform.position -= new Vector3 (0, fShake * (Time.deltaTime / fShakeTime), 0);
+        StartCoroutine(StartEffect ());
+        this.enabled = false;
+        yield return new WaitWhile (() => m_StartParticle.isPlaying);
+        this.enabled = true;
+        NextEffectRun ();
+    }
 
-				if (transform.position.y <= TargetPos.y - fShake) {
-					bUp = true;
-					fShake -= fAtten;
-				}
-			}
-		} else {
-			if (render.color.a <= 0.0f) {
-				fNowDownTime += Time.deltaTime;
+    IEnumerator StartEffect()
+    {
+        while(m_StartParticle.isPlaying && m_BlackOut.Alpha < m_fMaxBlack) {
 
-				if (fNowDownTime < fWait + fDownTime) {
-					bEnd = true;
-					Destroy (blackOut.gameObject);
-					Destroy (this.gameObject);
-				}
-			} else {
-				render.color -= new Color (0,0,0, 1.0f * (Time.deltaTime / fFadeTime));
-				blackOut.Alpha -= fMaxBlack * (Time.deltaTime / fFadeTime);
-			}
-		}
-	}
+            m_BlackOut.Alpha += m_fMaxBlack * (Time.deltaTime / m_fFadeTime_Sec);
 
-	public override void Set(CharaSkillBase skillData) {
-		skillBase = skillData;
-	}
+            yield return null;
+        }
+            
+        SoundManager.Instance.PlaySE (SoundManager.eSeValue.SE_THUNDER);
+    }
+
+    void NextEffectRun()
+    {
+        Destroy (m_StartParticle.gameObject);
+        m_StartParticle = null;
+        m_NextParticle.Play ();
+        m_SkillBase.Run ();
+        SoundManager.Instance.PlayBGM (SoundManager.eBgmValue.BGM_THUNDERNOW);
+    }
+
+    public override void Set (CharaSkillBase skillData)
+    {
+        m_SkillBase = skillData;
+    }
 }

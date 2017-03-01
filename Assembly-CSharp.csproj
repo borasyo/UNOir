@@ -99,7 +99,6 @@
      <Compile Include="Assets\Bora\Scripts\Effect\CharaSkill\Sun\SunProtect.cs" />
      <Compile Include="Assets\Bora\Scripts\Effect\CharaSkill\Thunder\BlackOut.cs" />
      <Compile Include="Assets\Bora\Scripts\Effect\CharaSkill\Thunder\Thunder.cs" />
-     <Compile Include="Assets\Bora\Scripts\Effect\CharaSkill\Thunder\Thunder1.cs" />
      <Compile Include="Assets\Bora\Scripts\Effect\CharaSkill\Thunder\ThunderParticle.cs" />
      <Compile Include="Assets\Bora\Scripts\Effect\CharaSkill\Water\HealingWater.cs" />
      <Compile Include="Assets\Bora\Scripts\Effect\CharaSkill\Wind\WhirlWind.cs" />

@@ -19,18 +19,27 @@ public class SunProtect : EffectBase
     [SerializeField] float m_fAtten_Sec = 0.25f;        //  減衰スピード
     [SerializeField] float m_fRivisionAlpha = 0.25f;    //  
 
-    void Start ()
+    IEnumerator Start ()
     {
         m_SpriteRender = GetComponent<SpriteRenderer> ();
-        ColorInit ();
-        m_SpriteRender.color = new Color (1, 1, 1, 1);
+        StartCoroutine(InitColor ());
+
+        // HACK : Startが完了してからUpdateさせたい
+        this.enabled = false;
+        yield return new WaitWhile(() => (m_SpriteRender.color.a < 1.0f));
+        this.enabled = true;
     }
 
-    IEnumerator ColorInit() {
+    IEnumerator InitColor() {
 
-        transform.eulerAngles += new Vector3 (0, 0, 360 * (Time.deltaTime / m_fRotTime_Sec));
-        m_SpriteRender.color += new Color (0, 0, 0, 1.0f * (Time.deltaTime / m_fStartTime_Sec));
-        yield return m_SpriteRender.color.a >= 1.0f;
+        while (m_SpriteRender.color.a < 1.0f) {
+            transform.eulerAngles += new Vector3 (0, 0, 360 * (Time.deltaTime / m_fRotTime_Sec));
+            m_SpriteRender.color += new Color (0, 0, 0, 1.0f * (Time.deltaTime / m_fStartTime_Sec));
+
+            yield return null;
+        }
+
+        m_SpriteRender.color = new Color (1, 1, 1, 1);
     }
 
     void Update ()
@@ -61,10 +70,12 @@ public class SunProtect : EffectBase
 
         if (SkillRise.GetStock <= 0) {
             m_SpriteRender.color -= new Color (0, 0, 0, m_fRivisionAlpha * (Time.deltaTime / m_fAtten_Sec)); 
-            if (m_SpriteRender.color.a <= 0.0f) {
-                m_IsUse = false;
-                Destroy (this.gameObject);
-            }
+
+            if (m_SpriteRender.color.a > 0.0f)
+                return;
+            
+            m_IsUse = false;
+            Destroy (this.gameObject);
         }
 
         // 勝ちなら強制終了
