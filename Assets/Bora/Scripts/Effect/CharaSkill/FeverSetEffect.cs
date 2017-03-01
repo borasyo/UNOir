@@ -1,44 +1,52 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FeverSetEffect : MonoBehaviour {
+public class FeverSetEffect : MonoBehaviour
+{
+    /// <summary>
+    /// 概要 : フィーバー時のキャラカードカードセットエフェクト
+    ///        を生成するファクトリー
+    /// Author : 大洞祥太
+    /// </summary>
 
-	/// <summary>
-	/// 概要 : フィーバー時のキャラカードカードセットエフェクト
-	/// Author : 大洞祥太
-	/// </summary>
+    #region Singleton
 
-	static FeverSetEffect instance;
+    private static FeverSetEffect instance;
 
-	public static FeverSetEffect Instance {
-		get {
-			if (instance == null) {
-				instance = (FeverSetEffect)FindObjectOfType(typeof(FeverSetEffect));
+    public static FeverSetEffect Instance {
+        get {
+            if (instance) 
+                return instance;
 
-				if (instance == null) {
-					Debug.LogError("FeverSetEffect Instance Error");
-				}
-			}
-			return instance;
-		}
-	}
+            instance = (FeverSetEffect)FindObjectOfType(typeof(FeverSetEffect));
 
-	[SerializeField]
-	GameObject feverSetObj = null; 
+            if (instance) 
+                return instance;
 
-	[SerializeField]
-	Color[] colorList = new Color[4];
+            GameObject obj = new GameObject();
+            obj.AddComponent<FeverSetEffect>();
+            Debug.Log(typeof(FeverSetEffect) + "が存在していないのに参照されたので生成");
 
-	void Awake() {
-		if (this != Instance) {
-			Destroy (this.gameObject);
-			return;
-		}
-	}
+            return instance;
+        }
+    }
 
-	public void CreateFeverSetEffect(UnoStruct.eColor color, Vector3 pos) {
+    #endregion
 
-		GameObject obj = (GameObject)Instantiate (feverSetObj, pos, Quaternion.identity);
-		obj.GetComponent<ParticleSystem> ().startColor = colorList[(int)color];
-	}
+    [SerializeField] GameObject m_FeverSetObj = null;
+    [SerializeField] Color[] m_ColorList = new Color[4];
+
+    void Awake ()
+    {
+        if (this != Instance) {
+            Destroy (this.gameObject);
+            return;
+        }
+    }
+
+    public void CreateFeverSetEffect (UnoStruct.eColor color, Vector3 pos)
+    {
+        GameObject obj = (GameObject)Instantiate (m_FeverSetObj, pos, Quaternion.identity);
+        obj.GetComponent<ParticleSystem> ().startColor = m_ColorList [(int)color];
+    }
 }

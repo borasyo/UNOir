@@ -8,30 +8,34 @@ public class SunProtect : EffectBase
     /// Author : 大洞祥太
     /// </summary>
 
-    static bool m_IsUse = false;    //  2つ以上エフェクトを生成させないため
+    static bool m_IsUse = false;
+    //  2つ以上エフェクトを生成させないため
 
     SkillRise m_SkillBase = null;
     SpriteRenderer m_SpriteRender = null;
 
     [SerializeField] float m_fStartTime_Sec = 1.0f;
 
-    [SerializeField] float m_fRotTime_Sec = 30.0f;      //  回転スピード
-    [SerializeField] float m_fAtten_Sec = 0.25f;        //  減衰スピード
-    [SerializeField] float m_fRivisionAlpha = 0.25f;    //  
+    [SerializeField] float m_fRotTime_Sec = 30.0f;
+    //  回転スピード
+    [SerializeField] float m_fAtten_Sec = 0.25f;
+    //  減衰スピード
+    [SerializeField] float m_fRivisionAlpha = 0.25f;
+    //
 
     IEnumerator Start ()
     {
         m_SpriteRender = GetComponent<SpriteRenderer> ();
-        StartCoroutine(InitColor ());
+        StartCoroutine (InitColor ());
 
         // HACK : Startが完了してからUpdateさせたい
         this.enabled = false;
-        yield return new WaitWhile(() => (m_SpriteRender.color.a < 1.0f));
+        yield return new WaitWhile (() => (m_SpriteRender.color.a < 1.0f));
         this.enabled = true;
     }
 
-    IEnumerator InitColor() {
-
+    IEnumerator InitColor ()
+    {
         while (m_SpriteRender.color.a < 1.0f) {
             transform.eulerAngles += new Vector3 (0, 0, 360 * (Time.deltaTime / m_fRotTime_Sec));
             m_SpriteRender.color += new Color (0, 0, 0, 1.0f * (Time.deltaTime / m_fStartTime_Sec));
@@ -66,7 +70,8 @@ public class SunProtect : EffectBase
     }
 
     // 終了判定
-    void DestroyCheck() {
+    void DestroyCheck ()
+    {
 
         if (SkillRise.GetStock <= 0) {
             m_SpriteRender.color -= new Color (0, 0, 0, m_fRivisionAlpha * (Time.deltaTime / m_fAtten_Sec)); 

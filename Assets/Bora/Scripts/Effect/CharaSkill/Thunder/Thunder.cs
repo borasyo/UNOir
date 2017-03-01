@@ -30,23 +30,23 @@ public class Thunder : EffectBase
         m_BlackOut.transform.parent = null;
         m_NextParticle.Stop ();
 
-        StartCoroutine (InitEffect());
+        StartCoroutine (InitEffect ());
     }
 
-    bool NullCheck() {
-
+    bool NullCheck ()
+    {
         if (!m_StartParticle) {
-            Debug.LogError (m_StartParticle.ToString() + "がありません！");
+            Debug.LogError (m_StartParticle.ToString () + "がありません！");
             return false;
         }
 
         if (!m_NextParticle) {
-            Debug.LogError (m_NextParticle.ToString() + "がありません！");
+            Debug.LogError (m_NextParticle.ToString () + "がありません！");
             return false;
         }
 
         if (!m_BlackOut) {
-            Debug.LogError (m_BlackOut.ToString() + "がありません！");
+            Debug.LogError (m_BlackOut.ToString () + "がありません！");
             return false;
         }
 
@@ -65,18 +65,18 @@ public class Thunder : EffectBase
         Destroy (this.gameObject); 
     }
 
-    IEnumerator InitEffect() {
-
-        StartCoroutine(StartEffect ());
+    IEnumerator InitEffect ()
+    {
+        StartCoroutine (StartEffect ());
         this.enabled = false;
         yield return new WaitWhile (() => m_StartParticle.isPlaying);
         this.enabled = true;
         NextEffectRun ();
     }
 
-    IEnumerator StartEffect()
+    IEnumerator StartEffect ()
     {
-        while(m_StartParticle.isPlaying && m_BlackOut.Alpha < m_fMaxBlack) {
+        while (m_StartParticle.isPlaying && m_BlackOut.Alpha < m_fMaxBlack) {
 
             m_BlackOut.Alpha += m_fMaxBlack * (Time.deltaTime / m_fFadeTime_Sec);
 
@@ -86,7 +86,7 @@ public class Thunder : EffectBase
         SoundManager.Instance.PlaySE (SoundManager.eSeValue.SE_THUNDER);
     }
 
-    void NextEffectRun()
+    void NextEffectRun ()
     {
         Destroy (m_StartParticle.gameObject);
         m_StartParticle = null;

@@ -15,13 +15,13 @@ public class SolerBeam : EffectBase
 
     bool m_IsUp = true;
 
-    [SerializeField] float m_fShakeTime_Sec = 0.1f;
     float m_fNowShake = 0.0f;
     float m_fNowShakeAmount = 0.0f;
+    [SerializeField] float m_fShakeTime_Sec = 0.1f;
     [SerializeField] float m_fMaxShake = 0.6f;
 
     [SerializeField] Vector3 m_TargetPos = Vector3.zero;
-    float m_fInitScale = 0.0f;
+    float m_fInitScale  = 0.0f;
     float m_fInitHeight = 0.0f;
 
     // Use this for initialization

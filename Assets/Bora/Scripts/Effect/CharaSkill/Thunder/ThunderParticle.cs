@@ -12,7 +12,8 @@ public class ThunderParticle : MonoBehaviour
     ParticleSystem m_Particle = null;
     bool m_IsRun = false;
 
-    static bool m_IsUse = false;    //  エフェクトをゲーム中で1つにするため
+    static bool m_IsUse = false;
+    //  エフェクトをゲーム中で1つにするため
 
     // Use this for initialization
     void Start ()
@@ -34,8 +35,8 @@ public class ThunderParticle : MonoBehaviour
         Destroy (this.gameObject);
     }
 
-    void RunCheck() {
-
+    void RunCheck ()
+    {
         if (m_IsRun || !m_Particle.isPlaying)
             return;
        
