@@ -16,12 +16,9 @@ public class SunProtect : EffectBase
 
     [SerializeField] float m_fStartTime_Sec = 1.0f;
 
-    [SerializeField] float m_fRotTime_Sec = 30.0f;
-    //  回転スピード
-    [SerializeField] float m_fAtten_Sec = 0.25f;
-    //  減衰スピード
+    [SerializeField] float m_fRotTime_Sec = 30.0f;  //  回転スピード
+    [SerializeField] float m_fAtten_Sec = 0.25f;    //  減衰スピード
     [SerializeField] float m_fRivisionAlpha = 0.25f;
-    //
 
     IEnumerator Start ()
     {
@@ -72,7 +69,6 @@ public class SunProtect : EffectBase
     // 終了判定
     void DestroyCheck ()
     {
-
         if (SkillRise.GetStock <= 0) {
             m_SpriteRender.color -= new Color (0, 0, 0, m_fRivisionAlpha * (Time.deltaTime / m_fAtten_Sec)); 
 

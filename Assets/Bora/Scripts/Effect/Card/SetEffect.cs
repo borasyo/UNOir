@@ -21,6 +21,7 @@ public class SetEffect : MonoBehaviour
         m_InitSize = new Vector3[4];
         m_InitScale = transform.localScale;
 
+        // TODO : LINQで短くできるかもしれない
         for (int i = 0; i < transform.childCount; i++) {
             m_Particle [i] = transform.GetChild (i).GetComponent<ParticleSystem> ();
             m_InitSize [i] = m_Particle [i].transform.localScale;
@@ -34,7 +35,6 @@ public class SetEffect : MonoBehaviour
 
     public void ChangeEffectAmount (int raw_Amount, UnoStruct.eColor color)
     {
-
         Color nowColor = new Color (1, 1, 1, 1);
 
         if (color != UnoStruct.eColor.COLOR_WILD) {
@@ -49,8 +49,9 @@ public class SetEffect : MonoBehaviour
 
         int nAmount = (raw_Amount - 1) / 4;
 
+        // InitSizeの参照が必要なので、ここはfor文にする
         for (int i = 0; i < m_Particle.Length; i++) {
-            m_Particle [i].transform.localScale = m_InitSize [i] * m_Scale [nAmount];
+            m_Particle [i].transform.localScale = m_InitSize[i] * m_Scale [nAmount];
             m_Particle [i].startColor = nowColor;
         }
     }

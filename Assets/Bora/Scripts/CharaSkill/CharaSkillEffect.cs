@@ -48,8 +48,8 @@ public class CharaSkillEffect : MonoBehaviour
 
         // カラーと番号の合う物を抽出(1つあればいいので、先頭のみ)
         PlayerCharactor playerChara = playerList.Where (player => 
-            myCardData.m_Color == player.GetTCard ().m_Color &&
-                                      myCardData.m_Number == player.GetTCard ().m_Number).FirstOrDefault ();
+            myCardData.m_Color  == player.GetTCard ().m_Color &&
+            myCardData.m_Number == player.GetTCard ().m_Number).FirstOrDefault ();
 
         return playerChara; // 存在すればTrueを返す
     }

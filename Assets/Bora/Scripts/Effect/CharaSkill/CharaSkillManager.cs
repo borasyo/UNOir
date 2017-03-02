@@ -4,17 +4,17 @@ using System.Collections.Generic;
 
 public class CharaSkillManager : EffectBase
 {
+    // TODO : リファクタリング中
+
     /// <summary>
     /// 概要 : カットインエフェクト
     /// Author : 大洞祥太
     /// </summary>
 
-    CharaSkillBase skillBase = null;
-    static Sprite[] cutinSprite = new Sprite[5];
+    CharaSkillBase m_SkillBase = null;
     public Color[] effectColor = new Color[5];
     SpriteRenderer render = null;
-    int nNumber = 0;
-    // 番号をもとにエフェクトを判断
+    int nNumber = 0;    // 番号をもとにエフェクトを判断
 
     Vector3 Distance = Vector3.zero;
     float fNowTime = 0.0f;
@@ -43,14 +43,8 @@ public class CharaSkillManager : EffectBase
     // Use this for initialization
     void Awake ()
     {
-        if (!cutinSprite [0]) {
-            cutinSprite = ResourceHolder.Instance.GetResource (ResourceHolder.eResourceId.ID_CUTIN);
-            //cutinSprite = Resources.LoadAll<Sprite> ("Textures/Effect/CharaSkill/CutIn");
-        }
-
-        if (bEnd) {
+        if (bEnd)
             return;
-        }
 
         render = GetComponent<SpriteRenderer> ();
         render.color = new Color (1, 1, 1, 0);
@@ -82,11 +76,7 @@ public class CharaSkillManager : EffectBase
             return;
 
         float fNowSpeed = Time.unscaledDeltaTime;
-        /*if (nMaxCharaSkill >= 3) {
-			fNowSpeed *= 1.2f; // 同時枚数が多いので早送り
-		}*/
 
-        //GameController.Instance.SetDelta (0.0f);
         if (bSe) {
             GameController.Instance.SetDelta (0.0f);
         } else {
@@ -180,7 +170,7 @@ public class CharaSkillManager : EffectBase
                 }
                 // ここで各種エフェクト生成
                 GameObject Obj = (GameObject)Instantiate (effectList [nNumber]);
-                Obj.GetComponent<EffectBase> ().Set (skillBase);
+                Obj.GetComponent<EffectBase> ().Set (m_SkillBase);
 
                 Destroy (this.gameObject);
                 Destroy (particle.gameObject);
@@ -200,12 +190,12 @@ public class CharaSkillManager : EffectBase
 
     public override void Set (CharaSkillBase skillData)
     {
-        skillBase = skillData;
+        m_SkillBase = skillData;
 
-        switch (skillBase.SkillColor) {
+        switch (m_SkillBase.SkillColor) {
 
         case UnoStruct.eColor.COLOR_RED:
-            if (skillBase.SkillType == CharaSkillBase.eSkillType.SKILL_RISE) {
+            if (m_SkillBase.SkillType == CharaSkillBase.eSkillType.SKILL_RISE) {
                 nNumber = 0;
             } else {
                 nNumber = 4;
@@ -223,6 +213,7 @@ public class CharaSkillManager : EffectBase
         }
 
         // Sprite取得
+        Sprite[] cutinSprite = ResourceHolder.Instance.GetResource (ResourceHolder.eResourceId.ID_CUTIN);
         render.sprite = cutinSprite [nNumber];
 
         particle.Stop ();

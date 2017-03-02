@@ -68,7 +68,6 @@ public class FpsManager : MonoBehaviour {
 		frameCount++;
 	}
 
-
 	void OnGUI() {
 		if (Application.platform == RuntimePlatform.Android) {
 			if (!bAndroid) {
