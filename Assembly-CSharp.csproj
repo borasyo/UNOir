@@ -175,7 +175,10 @@
      <Compile Include="Assets\Bora\Scripts\GameStart\Starter\Enemy\Enemy_BackFadeIn.cs" />
      <Compile Include="Assets\Bora\Scripts\GameStart\Starter\Enemy\Enemy_StageRogo.cs" />
      <Compile Include="Assets\Bora\Scripts\Generic\Test.cs" />
-     <Compile Include="Assets\Bora\Scripts\Generic\TriangleWaveOscillator.cs" />
+     <Compile Include="Assets\Bora\Scripts\Generic\TriangleWave\ICalculator.cs" />
+     <Compile Include="Assets\Bora\Scripts\Generic\TriangleWave\TriangleWave.cs" />
+     <Compile Include="Assets\Bora\Scripts\Generic\TriangleWave\TriangleWaveFactory.cs" />
+     <Compile Include="Assets\Bora\Scripts\Generic\TriangleWave\TriangleWaveOscillator.cs" />
      <Compile Include="Assets\Bora\Scripts\LeaderSkill\LeaderSkillAtack.cs" />
      <Compile Include="Assets\Bora\Scripts\LeaderSkill\LeaderSkillBase.cs" />
      <Compile Include="Assets\Bora\Scripts\LeaderSkill\LeaderSkillExpUp.cs" />

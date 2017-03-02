@@ -49,7 +49,7 @@ public class CharaSkillEffectData : MonoBehaviour
         float time = 0.2f;
         Color min = new Color (1, 1, 1, 1);
         Color max = new Color (1, 1, 1, 0);
-        triangleWave = RangedTriangleWave.Color (min, max, time);
+        triangleWave = TriangleWaveFactory.Color (min, max, time);
 
         m_NowColor = new Color (1, 1, 1, 1);
     }

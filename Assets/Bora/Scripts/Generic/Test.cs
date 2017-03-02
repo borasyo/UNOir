@@ -15,8 +15,8 @@ public class Test : MonoBehaviour {
 
 	// Use this for initialization
     void Start () {
-        triangleWaveVector3 = RangedTriangleWave.Vector3 (minVec3, maxVec3,  move_time);
-        triangleWaveColor   = RangedTriangleWave.Color   (minCol , maxCol , change_time);
+        triangleWaveVector3 = TriangleWaveFactory.Vector3 (minVec3, maxVec3,  move_time);
+        triangleWaveColor   = TriangleWaveFactory.Color   (minCol , maxCol , change_time);
 	}
 	
 	// Update is called once per frame
