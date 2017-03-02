@@ -59,7 +59,7 @@ public class CharaSkillEffect : MonoBehaviour
         if (IsOn) {
             m_SpriteRenderer.color = CharaSkillEffectData.Instance.m_NowColor;
         } else {
-            m_SpriteRenderer.color = new Color (1, 1, 1, 1.0f - CharaSkillEffectData.Instance.m_fAddAlphaAmount);
+            m_SpriteRenderer.color = new Color (1,1,1,0);
         }
     }
 

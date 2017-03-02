@@ -1,16 +1,18 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Bora\Scripts\Generic\TriangleWaveOscillator.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Bora\Scripts\CharaSkill\CharaSkillEffectData.cs">
     <Files>
-      <File FileName="Assets\Bora\Scripts\Generic\Test.cs" Line="29" Column="65" />
-      <File FileName="Assets\Bora\Scripts\Generic\TriangleWaveOscillator.cs" Line="9" Column="28" />
+      <File FileName="Assets\Bora\Scripts\CharaSkill\CharaSkillBase.cs" Line="21" Column="40" />
+      <File FileName="Assets\Bora\Scripts\Generic\Test.cs" Line="1" Column="1" />
+      <File FileName="Assets\Bora\Scripts\Generic\TriangleWaveOscillator.cs" Line="1" Column="1" />
       <File FileName="Assets\Bora\Scripts\Effect\EffectBase.cs" Line="1" Column="1" />
-      <File FileName="Assets\Bora\Scripts\Effect\CharaSkill\CharaSkillManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Bora\Scripts\Effect\CharaSkill\CharaSkillManager.cs" Line="55" Column="6" />
       <File FileName="Assets\Bora\Scripts\Effect\Card\SetEffect.cs" Line="1" Column="1" />
       <File FileName="Assets\Bora\Scripts\Effect\CharaSkill\Soler\SolerBeamChild.cs" Line="1" Column="1" />
-      <File FileName="Assets\Bora\Scripts\CharaSkill\CharaSkillBase.cs" Line="1" Column="1" />
       <File FileName="Assets\Bora\Scripts\Effect\EnemyAtack\BossNormalAtackManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Bora\Scripts\Effect\EffectGenericFunction.cs" Line="1" Column="1" />
+      <File FileName="Assets\Bora\Scripts\CharaSkill\CharaSkillEffect.cs" Line="19" Column="5" />
+      <File FileName="Assets\Bora\Scripts\CharaSkill\CharaSkillEffectData.cs" Line="55" Column="6" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

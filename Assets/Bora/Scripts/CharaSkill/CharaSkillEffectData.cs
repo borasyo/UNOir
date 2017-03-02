@@ -33,12 +33,10 @@ public class CharaSkillEffectData : MonoBehaviour
 
     static Sprite[] m_EffectSprite = new Sprite[5];
 
-    bool m_IsAdd = true;
+//    bool m_IsAdd = true;
 
-    public float m_fAddAlphaAmount { get; private set; }
-
-    const float m_fTime = 0.2f;
-
+    TriangleWave<Color> triangleWave = null;
+ 
     public Color m_NowColor { get; private set; }
 
     void Awake ()
@@ -48,7 +46,11 @@ public class CharaSkillEffectData : MonoBehaviour
             return;
         }
 
-        m_fAddAlphaAmount = 1.0f;
+        float time = 0.2f;
+        Color min = new Color (1, 1, 1, 1);
+        Color max = new Color (1, 1, 1, 0);
+        triangleWave = RangedTriangleWave.Color (min, max, time);
+
         m_NowColor = new Color (1, 1, 1, 1);
     }
 
@@ -59,19 +61,8 @@ public class CharaSkillEffectData : MonoBehaviour
 
     void Update ()
     {
-        // TODO : 汎用関数にできる
-        if (m_IsAdd) {
-            m_NowColor += new Color (0, 0, 0, m_fAddAlphaAmount) * (Time.deltaTime / m_fTime);
-
-            if (m_NowColor.a >= 1.0f)
-                m_IsAdd = false;
-
-        } else {
-            m_NowColor -= new Color (0, 0, 0, m_fAddAlphaAmount * (Time.deltaTime / m_fTime));
-
-            if (m_NowColor.a <= 1.0f - m_fAddAlphaAmount)
-                m_IsAdd = true;
-        }
+        triangleWave.Progress();
+        m_NowColor = triangleWave.CurrentValue;
     }
 
     public Sprite GetSprite (int raw_CharaType)
