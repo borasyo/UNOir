@@ -14,7 +14,7 @@ public class TriangleWave<T>
     private ICalculator<T> calculator;
 
     // operator に頼らず演算ができる
-    public T CurrentValue { get { return calculator.Add(Min, calculator.Mul(range, oscillator.Value)); } }
+    public T CurrentValue { get { return calculator.Add(Min, calculator.Mul(range, oscillator.m_fValue)); } }
 
     // 型の演算方法を指定して生成する
     public TriangleWave(T min, T max, float time_sec, ICalculator<T> calculator)
