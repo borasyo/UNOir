@@ -1,55 +1,60 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DrowAlpha : MonoBehaviour {
+public class DrowAlpha : MonoBehaviour
+{
+    /// <summary>
+    /// 概要 : 攻撃アップエフェクトのα値を一括管理
+    /// Author : 大洞祥太
+    /// </summary>
 
-	/// <summary>
-	/// 概要 : 攻撃アップエフェクトのα値を一括管理
-	/// Author : 大洞祥太
-	/// </summary>
+    #region Singleton
 
-	static DrowAlpha instance;
+    private static DrowAlpha instance;
 
-	public static DrowAlpha Instance {
-		get {
-			if (instance == null) {
-				instance = (DrowAlpha)FindObjectOfType(typeof(DrowAlpha));
+    public static DrowAlpha Instance {
+        get {
+            if (instance)
+                return instance;
 
-				if (instance == null) {
-					Debug.LogError("DrowAlpha Instance Error");
-				}
-			}
+            instance = (DrowAlpha)FindObjectOfType (typeof(DrowAlpha));
 
-			return instance;
-		}
-	}
+            if (instance)
+                return instance;
 
-	public float a = 0.0f;
-	bool bAdd = true; 
-	float fAddTime = 0.2f;
+            GameObject obj = new GameObject ();
+            obj.AddComponent<DrowAlpha> ();
+            Debug.Log (typeof(DrowAlpha) + "が存在していないのに参照されたので生成");
 
-	void Awake() {
-		if (this != Instance) {
-			Destroy(this.gameObject);
-			return;
-		}
-	}
+            return instance;
+        }
+    }
 
-	void Update() {
-		if (bAdd) {
-			a += 1.0f * (Time.deltaTime / fAddTime);
+    #endregion
 
-			if (a >= 1.0f) {
-				bAdd = false;
-				a = 1.0f;
-			}
-		} else {
-			a -= 1.0f * (Time.deltaTime / fAddTime);
+    public float Alpha { get; private set; }
 
-			if (a <= 0.0f) {
-				bAdd = true;
-				a = 0.0f;
-			}
-		}
-	}
+    TriangleWave<float> m_TriangleWaveFloat = null;
+
+    void Awake ()
+    {
+        if (this != Instance) {
+            Destroy (this.gameObject);
+            return;
+        }
+    }
+
+    void Start ()
+    {
+        float min = 0.0f;
+        float max = 1.0f;
+        float time = 0.2f;
+        m_TriangleWaveFloat = TriangleWaveFactory.Float (min, max, time);
+    }
+
+    void Update ()
+    {
+        m_TriangleWaveFloat.Progress ();
+        Alpha = m_TriangleWaveFloat.CurrentValue;
+    }
 }

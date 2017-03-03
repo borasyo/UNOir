@@ -1,61 +1,61 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FeverEffect : MonoBehaviour {
+public class FeverEffect : MonoBehaviour
+{
+    /// <summary>
+    /// 概要 : フィーバー時のエフェクト
+    /// Author : 大洞祥太
+    /// </summary>
 
-	/// <summary>
-	/// 概要 : フィーバー時のエフェクト
-	/// Author : 大洞祥太
-	/// </summary>
+    UnoData m_UnoData = null;
+    SpriteRenderer m_SpriteRender = null;
 
-	UnoData unoData = null;
-	SpriteRenderer render = null;
+    float m_fAddTime = 0.15f;
+    TriangleWave<Color> m_TriangleWaveColor = null;
 
-	float fAddTime = 0.15f;
-	bool bAdd = false; 
+    float m_fChangeTime = 0.15f;
+    Vector3 m_MaxScale = Vector3.zero;
+    TriangleWave<Vector3> m_TriangleVector3 = null;
 
-	float fChangeTime = 0.15f; 
-	Vector3 InitScale = Vector3.zero;
+    // Use this for initialization
+    void Start ()
+    {
+        m_SpriteRender = GetComponent<SpriteRenderer> ();
+        m_SpriteRender.sortingOrder = -1;
+        m_UnoData = GetComponentInParent<UnoData> ();
 
-	// Use this for initialization
-	void Start () {
-		bAdd = true;
-		render = GetComponent<SpriteRenderer> ();
-		unoData = GetComponentInParent<UnoData> ();
-		InitScale = new Vector3(1.2f,1.2f,1.2f);
-		render.sortingOrder = -1;
-	}
+        Color min = new Color (1, 1, 1, 0);
+        Color max = new Color (1, 1, 1, 1);
+        m_TriangleWaveColor = TriangleWaveFactory.Color (min, max, m_fAddTime);
 
-	// Update is called once per frame
-	void Update () {
-	
-		if (FeverEffectManager.Instance.GetFever()) {
+        m_MaxScale = new Vector3 (1.2f, 1.2f, 1.2f);
+        m_TriangleVector3 = TriangleWaveFactory.Vector3 (Vector3.zero, m_MaxScale, m_fChangeTime);
+    }
 
-			if (InitScale.x > transform.localScale.x) {
-				transform.localScale += InitScale * (Time.deltaTime / fChangeTime);
-			} else if (bAdd) {
-				render.color += new Color (0,0,0, 1.0f * (Time.deltaTime / fAddTime));
+    // Update is called once per frame
+    void Update ()
+    {
+        // Fever中の処理
+        if (FeverEffectManager.Instance.GetFever ()) {
 
-				if (render.color.a >= 1.0f) {
-					bAdd = false;
-					render.color = new Color (1, 1, 1, 1);
-				}
-			} else {
-				render.color -= new Color (0,0,0, 1.0f * (Time.deltaTime / fAddTime));
+            if (m_TriangleVector3.GetHalfLapCnt <= 0) {
+                m_TriangleVector3.Progress ();
+                transform.localScale = m_TriangleVector3.CurrentValue;
+            } else {
+                m_TriangleWaveColor.Progress ();
+                m_SpriteRender.color = m_TriangleWaveColor.CurrentValue;
+            }
+            m_SpriteRender.sortingOrder = m_UnoData.GetOrder () - 1;
+            return;
+        } 
 
-				if (render.color.a <= 0.0f) {
-					bAdd = true;
-					render.color = new Color (1, 1, 1, 0);
-				}
-			}
-			render.sortingOrder = unoData.GetOrder () - 1;
-		} else {
-
-			if (0.0f < transform.localScale.x) {
-				transform.localScale -= InitScale * (Time.deltaTime / fChangeTime);
-			} else {
-				transform.localScale = Vector3.zero;
-			}
-		}
-	}
+        // Fever後の処理
+        if (m_TriangleVector3.GetHalfLapCnt <= 1) {
+            m_TriangleVector3.Progress ();
+            transform.localScale = m_TriangleVector3.CurrentValue;
+        } else {
+            transform.localScale = Vector3.zero;
+        }
+    }
 }

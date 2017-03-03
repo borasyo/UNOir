@@ -17,11 +17,15 @@ public class HeelEffect : MonoBehaviour {
 	[SerializeField]
 	int nMaxEmit = 60;
 
-	[SerializeField]
 	ParticleSystem particle = null;
 
-	void Update() {
+    void Start()
+    {
+        particle = GetComponent<ParticleSystem> ();
+    }
 
+	void Update()
+    {
 		if (!bRun)
 			return;
 
@@ -34,7 +38,8 @@ public class HeelEffect : MonoBehaviour {
 		}
 	}
 
-	static public void Run() {
+	static public void Run() 
+    {
 		if (bRun)
 			return;
 

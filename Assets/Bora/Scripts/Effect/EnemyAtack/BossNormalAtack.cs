@@ -22,11 +22,16 @@ public class BossNormalAtack : EffectBase {
 	SpriteRenderer render = null;
 	public float fFadeTime = 0.5f;
 
+    TriangleWave<float> m_TriangleWaveFloat = null;
+    TriangleWave<Vector3> m_TriangleWaveVector3 = null;
+
 	// Use this for initialization
 	void Start () {
 		render = GetComponent<SpriteRenderer> ();
 		transform.eulerAngles = InitRot;
 		Distance = TargetPos - transform.position;
+
+ //       m_TriangleWaveFloat = TriangleWaveFactory.Float ();
 	}
 	
 	// Update is called once per frame

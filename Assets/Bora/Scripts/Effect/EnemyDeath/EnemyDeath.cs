@@ -1,48 +1,54 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyDeath : MonoBehaviour {
+public class EnemyDeath : MonoBehaviour
+{
+    /// <summary>
+    /// 概要 : 敵死亡処理
+    /// Author : 大洞祥太
+    /// </summary>
 
-	/// <summary>
-	/// 概要 : 敵死亡処理
-	/// Author : 大洞祥太
-	/// </summary>
+    [SerializeField]
+    Material m_Material;
+    public Shader m_Shader = null;
+    YieldInstruction m_Instruction = new WaitForEndOfFrame ();
+    public float fMaxCutOff = 1.0f;
+    public float fDuration = 1.0f;
+    float fNowCutOff = 0.0f;
+    bool bEnd = false;
 
-	[SerializeField]
-	Material m_Material;
-	public Shader m_Shader = null; 
-	YieldInstruction m_Instruction = new WaitForEndOfFrame();
-	public float fMaxCutOff = 1.0f; 
-	public float fDuration = 1.0f;
-	float fNowCutOff = 0.0f;
-	bool bEnd = false;
+    public Texture DissolveTex = null;
 
-	public Texture DissolveTex = null;
+    TriangleWave<float> m_TriangleWaveFloat = null;
 
-	void Awake() {
-		Material mat = new Material (m_Shader);
-		m_Material = GetComponent<SpriteRenderer> ().material = mat;
-		mat.SetTexture ("_DissolveTex", DissolveTex);
+    void Awake ()
+    {
+        Material mat = new Material (m_Shader);
+        m_Material = GetComponent<SpriteRenderer> ().material = mat;
+        mat.SetTexture ("_DissolveTex", DissolveTex);
+        m_Material.SetFloat ("_CutOff", 0.0f);
 
-		m_Material.SetFloat("_CutOff", fNowCutOff);
+        transform.DetachChildren ();
 
-		transform.DetachChildren ();
+        m_TriangleWaveFloat = TriangleWaveFactory.Float (0.0f, fMaxCutOff, fDuration);
 
-		SoundManager.Instance.PlaySE (SoundManager.eSeValue.SE_ENEMYDEATH);
-	}
+        SoundManager.Instance.PlaySE (SoundManager.eSeValue.SE_ENEMYDEATH);
+    }
 
-	void Update() {
+    void Update ()
+    {
+        m_TriangleWaveFloat.Progress ();
+        fNowCutOff = m_TriangleWaveFloat.CurrentValue;
+        m_Material.SetFloat ("_CutOff", fNowCutOff);
 
-		if (fNowCutOff < fMaxCutOff) {
-			fNowCutOff += fMaxCutOff * (Time.deltaTime / fDuration);
-			m_Material.SetFloat ("_CutOff", fNowCutOff);
-		} else {
-			bEnd = true;
-			Destroy (this.gameObject);
-		}
-	}
+        if (m_TriangleWaveFloat.GetHalfLapCnt <= 0)
+            return;
 
-	public bool End {
-		get { return bEnd; }
-	} 
+        bEnd = true;
+        Destroy (this.gameObject);
+    }
+
+    public bool End {
+        get { return bEnd; }
+    }
 }

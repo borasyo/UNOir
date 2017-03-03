@@ -2,44 +2,41 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class PowerUp : MonoBehaviour {
+public class PowerUp : MonoBehaviour
+{
+    /// <summary>
+    /// 概要 : 攻撃アップエフェクト
+    /// Author : 大洞祥太
+    /// </summary>
 
-	/// <summary>
-	/// 概要 : 攻撃アップエフェクト
-	/// Author : 大洞祥太
-	/// </summary>
+    UnoData m_UnoData = null;
 
-    //[SerializeField]
-    UnoData unoData = null;
-	//UnoStruct.eColor MyColor = UnoStruct.eColor.COLOR_MAX;
-
-    SpriteRenderer render = null;
-    Vector3 InitPos = Vector3.zero;
-
+    SpriteRenderer m_SpriteRender = null;
+    Vector3 m_InitPos = Vector3.zero;
 
     Sprite[] TempSprite = new Sprite[4];
 
-	// Use this for initialization
-    void Start() {
-        InitPos = transform.localPosition;
-        render = GetComponent<SpriteRenderer>();
-        unoData = GetComponentInParent<UnoData>();
-        TempSprite = ResourceHolder.Instance.GetResource(ResourceHolder.eResourceId.ID_POWERUP);
-	}
+    // Use this for initialization
+    void Start ()
+    {
+        m_InitPos = transform.localPosition;
+        m_SpriteRender = GetComponent<SpriteRenderer> ();
+        m_UnoData = GetComponentInParent<UnoData> ();
+        TempSprite = ResourceHolder.Instance.GetResource (ResourceHolder.eResourceId.ID_POWERUP);
+    }
 
-	// Update is called once per frame
-	void Update () {
-
-		bool bNowUse = PowerUpManager.Instance.GetUse (unoData.CardData.m_Color);
-        if (!bNowUse || !BattleManager.Instance.GetIsInBattle())
-        {
-            render.color = new Color(1, 1, 1, 0);
+    // Update is called once per frame
+    void Update ()
+    {
+        bool bNowUse = PowerUpManager.Instance.GetUse (m_UnoData.CardData.m_Color);
+        if (!bNowUse || !BattleManager.Instance.GetIsInBattle ()) {
+            m_SpriteRender.color = new Color (1, 1, 1, 0);
             return;
         }
 
-        render.sprite = TempSprite[(int)unoData.CardData.m_Color];
+        m_SpriteRender.sprite = TempSprite [(int)m_UnoData.CardData.m_Color];
 
-        render.color = PowerUpAlpha.Instance.NowColor;
-        transform.localPosition = InitPos - PowerUpAlpha.Instance.NowPos;
-	}
+        m_SpriteRender.color = PowerUpAlpha.Instance.NowColor;
+        transform.localPosition = m_InitPos - PowerUpAlpha.Instance.NowPos;
+    }
 }

@@ -2,47 +2,58 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class DrowEffectManager : MonoBehaviour {
+public class DrowEffectManager : MonoBehaviour
+{
+    /// <summary>
+    /// 概要 : 攻撃アップエフェクト管理
+    /// Author : 大洞祥太
+    /// </summary>
 
-	/// <summary>
-	/// 概要 : 攻撃アップエフェクト管理
-	/// Author : 大洞祥太
-	/// </summary>
+    #region Singleton
 
-	static DrowEffectManager instance;
+    private static DrowEffectManager instance;
 
-	public static DrowEffectManager Instance {
-		get {
-			if (instance == null) {
-				instance = (DrowEffectManager)FindObjectOfType(typeof(DrowEffectManager));
+    public static DrowEffectManager Instance {
+        get {
+            if (instance)
+                return instance;
 
-				if (instance == null) {
-					Debug.LogError("DrowEffectManager Instance Error");
-				}
-			}
-			return instance;
-		}
-	}
-		
-	Dictionary<UnoStruct.eColor, bool> DictColor = new Dictionary<UnoStruct.eColor, bool>();
+            instance = (DrowEffectManager)FindObjectOfType (typeof(DrowEffectManager));
 
-	void Awake() {
+            if (instance)
+                return instance;
 
-		if (this != Instance) {
-			Destroy(this.gameObject);
-			return;
-		}
+            GameObject obj = new GameObject ();
+            obj.AddComponent<DrowEffectManager> ();
+            Debug.Log (typeof(DrowEffectManager) + "が存在していないのに参照されたので生成");
 
-		for (int i = 0; i < (int)UnoStruct.eColor.COLOR_MAX; i++) {
-			DictColor.Add ((UnoStruct.eColor)i, false);
-		}
-	}
+            return instance;
+        }
+    }
 
-	public bool GetUse(UnoStruct.eColor color) {
-		return DictColor [color];
-	}
+    #endregion
 
-	public void Run(UnoStruct.eColor color,  bool bUse) {
-		DictColor [color] = bUse;
-	}
+    Dictionary<UnoStruct.eColor, bool> DictColor = new Dictionary<UnoStruct.eColor, bool> ();
+
+    void Awake ()
+    {
+        if (this != Instance) {
+            Destroy (this.gameObject);
+            return;
+        }
+
+        for (int i = 0; i < (int)UnoStruct.eColor.COLOR_MAX; i++) {
+            DictColor.Add ((UnoStruct.eColor)i, false);
+        }
+    }
+
+    public bool GetUse (UnoStruct.eColor color)
+    {
+        return DictColor [color];
+    }
+
+    public void Run (UnoStruct.eColor color, bool bUse)
+    {
+        DictColor [color] = bUse;
+    }
 }

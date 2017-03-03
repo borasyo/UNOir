@@ -1,40 +1,36 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LockOnEffect : MonoBehaviour {
+public class LockOnEffect : MonoBehaviour
+{
+    /// <summary>
+    /// 概要 : 敵ロックオン時のエフェクト
+    /// Author : 大洞祥太
+    /// </summary>
 
-	/// <summary>
-	/// 概要 : 敵ロックオン時のエフェクト
-	/// Author : 大洞祥太
-	/// </summary>
+    [SerializeField]
+    float m_fScaleTime = 0.5f;
 
-	public float fScaleTime = 0.5f; 
-	public float fRotTime = 1.0f;
+    [SerializeField]
+    float m_fRotTime = 1.0f;
 
-	bool bAdd = true;
-	Vector3 InitScale = Vector3.zero;
-	public Vector3 AddScale = new Vector3(0.3f,0.3f,0.0f);
+    [SerializeField]
+    Vector3 AddScale = new Vector3 (0.3f, 0.3f, 0.0f);
 
-	void Start() {
-		InitScale = transform.localScale;
-	}
+    TriangleWave<Vector3> m_TriangleWaveVector3 = null;
 
-	void Update () {
+    void Start ()
+    {
+        Vector3 min = transform.localScale;
+        Vector3 max = min + AddScale;
+        m_TriangleWaveVector3 = TriangleWaveFactory.Vector3 (min, max, m_fScaleTime);
+    }
 
-		transform.eulerAngles += new Vector3(0,0, 360 * (Time.deltaTime / fRotTime));
+    void Update ()
+    {
+        transform.eulerAngles += new Vector3 (0, 0, 360 * (Time.deltaTime / m_fRotTime));
 
-		if (bAdd) {
-			transform.localScale += AddScale * (Time.deltaTime / fScaleTime);
-
-			if (transform.localScale.x >= InitScale.x + AddScale.x) {
-				bAdd = false;
-			}
-		} else {
-			transform.localScale -= AddScale * (Time.deltaTime / fScaleTime);
-
-			if (transform.localScale.x <= InitScale.x) {
-				bAdd = true;
-			}
-		}
-	}
+        m_TriangleWaveVector3.Progress ();
+        transform.localScale = m_TriangleWaveVector3.CurrentValue;
+    }
 }

@@ -8,18 +8,17 @@ public class EnemyMove : MonoBehaviour {
 	/// Author : 大洞祥太
 	/// </summary>
 
-	[SerializeField]
-	float fTime = 2.0f;
+	[SerializeField] float m_fTime = 1.0f;
 
-	[SerializeField]
-	float fRange = 0.5f;
+	[SerializeField] float m_fRange = 0.1f;
 
 	[SerializeField]
 	Enemy enemy = null;
 
-	bool bAdd = true;
 	Vector3 InitPos = Vector3.zero;
 	Transform[] child = new Transform[2];
+
+    TriangleWave<Vector3> m_TriangleWaveVector3 = null;
 
 	void Start () {
 		InitPos = transform.position;
@@ -27,6 +26,10 @@ public class EnemyMove : MonoBehaviour {
 		for (int i = 0; i < child.Length; i++) {
 			child [i] = transform.GetChild (i);
 		}
+
+        Vector3 min = transform.position;
+        Vector3 max = transform.position + new Vector3 (0, m_fRange, 0);
+        m_TriangleWaveVector3 = TriangleWaveFactory.Vector3 (min, max, m_fTime);
 	}
 
 	void Update () {
@@ -39,19 +42,9 @@ public class EnemyMove : MonoBehaviour {
 			tempPos[i] = child [i].position;
 		}
 
-		if (bAdd) {
-			transform.position += new Vector3 (0, fRange * (Time.deltaTime / fTime), 0);
+        m_TriangleWaveVector3.Progress ();
+        transform.position = m_TriangleWaveVector3.CurrentValue;
 
-			if (transform.position.y >= InitPos.y + fRange) {
-				bAdd = false;
-			}
-		} else {
-			transform.position -= new Vector3 (0, fRange * (Time.deltaTime / fTime), 0);
-
-			if (transform.position.y <= InitPos.y) {
-				bAdd = true;
-			}
-		}
 		for (int i = 0; i < child.Length; i++) {
 			child [i].position = tempPos[i];
 		}

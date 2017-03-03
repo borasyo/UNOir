@@ -2,50 +2,48 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class DrowEffect : MonoBehaviour {
+public class DrowEffect : MonoBehaviour
+{
+    /// <summary>
+    /// 概要 : 攻撃アップエフェクト単体
+    /// Author : 大洞祥太
+    /// </summary>
 
-	/// <summary>
-	/// 概要 : 攻撃アップエフェクト単体
-	/// Author : 大洞祥太
-	/// </summary>
+    UnoData m_UnoData = null;
+    SpriteRenderer m_SpriteRender = null;
 
-	UnoData unoData = null;
-	SpriteRenderer render = null;
+    static List<Sprite> m_SpriteList = new List<Sprite> ();
 
-	//float fChangeTime = 0.5f; 
-	Vector3 InitScale = Vector3.zero;
+    void Awake ()
+    {
+        if (m_SpriteList.Count > 0)
+            return;
 
-	static List<Sprite> spriteList = new List<Sprite> ();
+        Sprite[] all = ResourceHolder.Instance.GetResource (ResourceHolder.eResourceId.ID_DROWEFFECT);
 
-	void Awake() {
-		if (spriteList.Count <= 0) {
+        foreach (Sprite sprite in all) {
+            m_SpriteList.Add (sprite);
+        }
+    }
 
-			Sprite[] all = ResourceHolder.Instance.GetResource (ResourceHolder.eResourceId.ID_DROWEFFECT);
-			//Sprite[] all = Resources.LoadAll<Sprite> ("Textures/Effect/SpecialCard/Drow/DrowEffect");
+    void Start ()
+    {
+        m_SpriteRender = GetComponent<SpriteRenderer> ();
+        m_SpriteRender.sortingOrder = -2;
+        m_UnoData = GetComponentInParent<UnoData> ();
+        transform.localScale = new Vector3 (1.1f, 1.1f, 1.0f);
+        transform.position = new Vector3 (transform.position.x, transform.position.y, 0.0f);
+    }
 
-			for (int i = 0; i < all.Length; i++) {
-				spriteList.Add(all [i]);
-			}
-		}
-	}
+    void Update ()
+    {
+        // sprite更新
+        m_SpriteRender.sprite = m_SpriteList [(int)m_UnoData.CardData.m_Color];
 
-	void Start () {
-		render = GetComponent<SpriteRenderer> ();
-		render.sortingOrder = -2;
-		unoData = GetComponentInParent<UnoData> ();
-		transform.localScale = InitScale = new Vector3(1.1f,1.1f,1.0f);
-        transform.position = new Vector3(transform.position.x, transform.position.y, 0.0f);
-	}
-
-	void Update () {
-		
-		// sprite更新
-		render.sprite = spriteList [(int)unoData.CardData.m_Color];
-
-		if (DrowEffectManager.Instance.GetUse (unoData.CardData.m_Color) ) {
-			render.color = new Color(1,1,1,DrowAlpha.Instance.a);
-		} else {
-			render.color = new Color(1,1,1,0);
-		}
-	}
+        if (DrowEffectManager.Instance.GetUse (m_UnoData.CardData.m_Color)) {
+            m_SpriteRender.color = new Color (1, 1, 1, DrowAlpha.Instance.Alpha);
+        } else {
+            m_SpriteRender.color = new Color (1, 1, 1, 0);
+        }
+    }
 }
