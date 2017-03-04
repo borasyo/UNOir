@@ -3,228 +3,237 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
-public class FieldCard : MonoBehaviour {
+public class FieldCard : MonoBehaviour
+{
+    /// <summary>
+    /// 概要 :  山場のカード情報を保存
+    /// 		カードを出すときの判定処理	
+    /// Author : 大洞祥太
+    /// </summary>
 
-	/// <summary>
-	/// 概要 :  山場のカード情報を保存
-	/// 		カードを出すときの判定処理	
-	/// Author : 大洞祥太
-	/// </summary>
+    #region Singleton
 
-	static FieldCard instance;
+    private static FieldCard instance;
 
-	public static FieldCard Instance {
-		get {
-			if (instance == null) {
-				instance = (FieldCard)FindObjectOfType(typeof(FieldCard));
+    public static FieldCard Instance {
+        get {
+            if (instance)
+                return instance;
 
-				if (instance == null) {
-					Debug.LogError("FieldCard Instance Error");
-				}
-			}
-			return instance;
-		}
-	}
+            instance = (FieldCard)FindObjectOfType (typeof(FieldCard));
 
-	// 変数宣言
-	public UnoStruct.tCard m_Card { get; private set; }
-	SpriteRenderer spriteRenderer = null;
-	public GameObject FeverObj = null;
-	FeverGauge feverGauge = null;
-	int nTempCnt = 0;
-	public bool bNotSet { get; private set; } 
+            if (instance)
+                return instance;
 
-	ParticleSystem EffectParticle = null;
-	public GameObject EffectPrefab = null; 
-	SetEffect setEffect = null;
+            GameObject obj = new GameObject ();
+            obj.AddComponent<FieldCard> ();
+            Debug.Log (typeof(FieldCard) + "が存在していないのに参照されたので生成");
 
-	// 同時出し保存用
-	List<UnoData> tempList = new List<UnoData>();
+            return instance;
+        }
+    }
 
-	// 
-	int nOldFeverCnt = 0;
-	public GameObject[] feverEffectObj = new GameObject[3];
+    #endregion
 
-	float fNowTempTime = 0.0f;
-	public float fTempTime = 2.0f;
+    // 変数宣言
+    public UnoStruct.tCard m_Card { get; private set; }
 
-	#if DEBUG
-	public string Color = "";
-	public string Number = "";
-	#endif
+    SpriteRenderer spriteRenderer = null;
+    public GameObject FeverObj = null;
+    FeverGauge feverGauge = null;
+    int nTempCnt = 0;
 
-	void Awake() {
-		if (this != Instance) {
-			Destroy(this.gameObject);
-			return;
-		}
-		bNotSet = false;
-	}
+    public bool bNotSet { get; private set; }
 
-	public void Init() {
-		spriteRenderer = GetComponent<SpriteRenderer> ();
-	}
+    ParticleSystem EffectParticle = null;
+    public GameObject EffectPrefab = null;
+    SetEffect setEffect = null;
 
-	// Use this for initialization
-	void Start () {
-		GameObject effect = (GameObject)Instantiate (EffectPrefab, transform.position, transform.rotation);
-		EffectParticle = effect.GetComponent<ParticleSystem> ();
-		EffectParticle.Stop ();
-		setEffect = EffectParticle.GetComponent<SetEffect> ();
+    // 同時出し保存用
+    List<UnoData> tempList = new List<UnoData> ();
 
-		feverGauge = FeverObj.GetComponent<FeverGauge> ();
-	}
+    //
+    int nOldFeverCnt = 0;
+    public GameObject[] feverEffectObj = new GameObject[3];
+
+    float fNowTempTime = 0.0f;
+    public float fTempTime = 2.0f;
+
+    #if DEBUG
+    public string Color = "";
+    public string Number = "";
+    #endif
+
+    void Awake ()
+    {
+        if (this != Instance) {
+            Destroy (this.gameObject);
+            return;
+        }
+        bNotSet = false;
+    }
+
+    public void Init ()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer> ();
+    }
+
+    // Use this for initialization
+    void Start ()
+    {
+        GameObject effect = (GameObject)Instantiate (EffectPrefab, transform.position, transform.rotation);
+        EffectParticle = effect.GetComponent<ParticleSystem> ();
+        EffectParticle.Stop ();
+        setEffect = EffectParticle.GetComponent<SetEffect> ();
+
+        feverGauge = FeverObj.GetComponent<FeverGauge> ();
+    }
 	
-	// Update is called once per frame
-	void Update () {
+    // Update is called once per frame
+    void Update ()
+    {
+        #if DEBUG
+        Color = m_Card.m_Color.ToString ();
+        Number = m_Card.m_Number.ToString ();
+        #endif
 
-		#if DEBUG
-		Color = m_Card.m_Color.ToString();
-		Number = m_Card.m_Number.ToString();
-		#endif
+        if (tempList.Count > 0) {
+            fNowTempTime = 0.0f;
+            if (!bNotSet) {
+                bNotSet = tempList [tempList.Count - 1].bCardMove;
+            }
+            //UnoData data = tempList[tempList.Count - 1];
+            ResetCheck ();
+        } else if (BattleManager.Instance.GetIsInBattle ()) {
+            fNowTempTime += Time.deltaTime;
+        } else {
+            fNowTempTime = 0.0f;
+        }
 
-		/*#if DEBUG
-		if (Input.GetKeyDown (KeyCode.E)) {
-			for (int i = 0; i < tempList.Count; i++) {
-				Debug.Log ("保存してる" + i + "番目," + tempList[i].CardData.m_Color.ToString() + "," + tempList[i].CardData.m_Number.ToString());
-			}
-		}
-		#endif*/
+        if (BattleManager.Instance.GetIsInBattle ()) {
+            if (       nOldFeverCnt <  feverGauge.feverPointMax - 1 && feverGauge.feverPoint == feverGauge.feverPointMax - 1) {
+                Instantiate (feverEffectObj [0]);
+                SoundManager.Instance.PlaySE (SoundManager.eSeValue.SE_UNO);
+            } else if (nOldFeverCnt == feverGauge.feverPointMax - 1 && feverGauge.feverPoint >= feverGauge.feverPointMax) {
+                Instantiate (feverEffectObj [1]);
+                SoundManager.Instance.PlaySE (SoundManager.eSeValue.SE_FEVER);
+            } else if (nOldFeverCnt <  feverGauge.feverPointMax - 1 && feverGauge.feverPoint >= feverGauge.feverPointMax) {
+                Instantiate (feverEffectObj [2]);
+                SoundManager.Instance.PlaySE (SoundManager.eSeValue.SE_UNOFEVER);
+            }
+            nOldFeverCnt = feverGauge.feverPoint;
+        }
+    }
 
-		if (tempList.Count > 0) {
-			fNowTempTime = 0.0f;
-			if (!bNotSet) {
-				bNotSet = tempList [tempList.Count - 1].bCardMove;
-			}
-			//UnoData data = tempList[tempList.Count - 1];
-			ResetCheck ();
-		} else if (BattleManager.Instance.GetIsInBattle ()) {
-			fNowTempTime += Time.deltaTime;
-		} else {
-			fNowTempTime = 0.0f;
-		}
+    void ResetCheck ()
+    {
+        if (tempList.Count != nTempCnt)
+            return;
+        
+        nTempCnt = 0;
+        for (int i = 0; i < tempList.Count; i++) {
+            tempList [i].Collider.enabled = true;
+        }
+        tempList.Clear ();
+        bNotSet = false;
+        TrajectoryCreator.Instance.Reset ();
+        //Debug.Log ("リセット");
+    }
 
-		if (BattleManager.Instance.GetIsInBattle ()) {
-			if (nOldFeverCnt < feverGauge.feverPointMax - 1 && feverGauge.feverPoint == feverGauge.feverPointMax - 1) {
-				Instantiate (feverEffectObj [0]);
-				SoundManager.Instance.PlaySE (SoundManager.eSeValue.SE_UNO);
-			} else if (nOldFeverCnt == feverGauge.feverPointMax - 1 && feverGauge.feverPoint >= feverGauge.feverPointMax) {
-				Instantiate (feverEffectObj [1]);
-                SoundManager.Instance.PlaySE(SoundManager.eSeValue.SE_FEVER);
-			} else if (nOldFeverCnt < feverGauge.feverPointMax - 1 && feverGauge.feverPoint >= feverGauge.feverPointMax) {
-				Instantiate (feverEffectObj [2]);
-                SoundManager.Instance.PlaySE(SoundManager.eSeValue.SE_UNOFEVER);
-			}
-			nOldFeverCnt = feverGauge.feverPoint;
-		}
-	}
+    public UnoData GetMostForwardCard (UnoData my)
+    {
+        if (tempList.Count > 0) {
+            return tempList [tempList.Count - 1];
+        } else {
+            return my;
+        }
+    }
 
-	void ResetCheck() {
+    public void AddTemp (UnoData data)
+    {
+        tempList.Add (data);
+    }
 
-		if (tempList.Count == nTempCnt) {
-			nTempCnt = 0;
-			for (int i = 0; i < tempList.Count; i++) {
-				tempList [i].Collider.enabled = true;
-			}
-			tempList.Clear ();
-			bNotSet = false;
-			TrajectoryCreator.Instance.Reset ();
-			//Debug.Log ("リセット");
-		}
-	}
+    public List<UnoData> TempList {
+        get { return tempList; }
+    }
 
-	public UnoData GetMostForwardCard(UnoData my) {
-		UnoData temp = my;
+    public bool Judge (UnoStruct.tCard card)
+    {
+        // Fever中なのでなんでも通す
+        if (feverGauge.isFeverMode)
+            return true;
 
-		if (tempList.Count > 0) {
-			temp = tempList [tempList.Count - 1];
-		}
-		return temp;
-	}
+        UnoStruct.tCard fieldCard;
+        if (tempList.Count > 0) {
+            fieldCard = tempList [tempList.Count - 1].CardData; // 一番上の同時出しを比較する
+        } else {
+            fieldCard = m_Card;
+        }
 
-	public void AddTemp(UnoData data) {
-		tempList.Add (data);
-	}
+        if (card.m_Color == UnoStruct.eColor.COLOR_WILD ||
+        fieldCard.m_Color == UnoStruct.eColor.COLOR_WILD ||
+        card.m_Color == fieldCard.m_Color ||
+        card.m_Number == fieldCard.m_Number) {
+            return true;
+        }
 
-	public List<UnoData> TempList {
-		get { return tempList; }
-	} 
+        return false;
+    }
 
-	public bool Judge(UnoStruct.tCard card) {
+    public bool Change (UnoData data, bool bEffect = true)
+    {
+        UnoData tempEnd = null;
+        int nTempNum = tempList.Count;
+        if (tempList.Count > 0) {
+            tempEnd = tempList [tempList.Count - 1];
+        } else if (bEffect) {
+            return false;
+        }
 
-		// Fever中なのでなんでも通す
-		if (feverGauge.isFeverMode)
-			return true;
+        // カウント
+        if (bEffect) {
+            nTempCnt++;
+            ResetCheck ();
+        }
 
-		UnoStruct.tCard fieldCard;
-		if (tempList.Count > 0) {
-			fieldCard = tempList[tempList.Count-1].CardData; // 一番上の同時出しを比較する
-		} else {
-			fieldCard = m_Card;
-		}
+        // １番上のカードか判定
+        if (data != tempEnd)
+            return false;
 
-		if (card.m_Color == UnoStruct.eColor.COLOR_WILD ||
-			fieldCard.m_Color == UnoStruct.eColor.COLOR_WILD ||
-			card.m_Color == fieldCard.m_Color ||
-			card.m_Number == fieldCard.m_Number) {
-			return true;
-		}
+        //	格納 
+        m_Card = data.CardData;
 
-		return false;
-	}
+        int nNumber = ((int)m_Card.m_Color * (int)UnoStruct.eNumber.NUMBER_MAX) + (int)m_Card.m_Number;
+        spriteRenderer.sprite = CardResource.Instance.GetCardResource (nNumber);
 
-	public bool Change(UnoData data, bool bEffect = true) {
+        if (bEffect) {
+            setEffect.ChangeEffectAmount (nTempNum, m_Card.m_Color);
+            EffectParticle.Play ();
 
-		UnoData tempEnd = null;
-		int nTempNum = tempList.Count;
-		if (tempList.Count > 0) {
-			tempEnd = tempList [tempList.Count - 1];
-		} else if(bEffect) {
-			return false;
-		}
+            if (data.CardData.m_Color == UnoStruct.eColor.COLOR_WILD) {
+                SoundManager.Instance.PlaySE (SoundManager.eSeValue.SE_WILD);
+            }
 
-		// カウント
-		if (bEffect) {
-			nTempCnt++;
-			ResetCheck ();
-		}
+            for (int i = 0; i < nTempNum; i++) {
+                feverGauge.IncrementPoint ();
+            }
 
-		// １番上のカードか判定
-		if (data != tempEnd)
-			return false;
+            // もしこれでフィーバーならtrueを返してキャラカード出現させる。
+            if (!feverGauge.isFeverMode && feverGauge.feverPoint >= feverGauge.feverPointMax) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-		//	格納 
-		m_Card = data.CardData;
+    public int TempCnt {
+        set { nTempCnt = value; }
+        get { return nTempCnt; }
+    }
 
-		int nNumber = ((int)m_Card.m_Color * (int)UnoStruct.eNumber.NUMBER_MAX) + (int)m_Card.m_Number;
-		spriteRenderer.sprite = CardResource.Instance.GetCardResource(nNumber);
-
-		if (bEffect) {
-			setEffect.ChangeEffectAmount (nTempNum, m_Card.m_Color);
-			EffectParticle.Play ();
-
-			if (data.CardData.m_Color == UnoStruct.eColor.COLOR_WILD) {
-				SoundManager.Instance.PlaySE (SoundManager.eSeValue.SE_WILD);
-			}
-
-			for (int i = 0; i < nTempNum; i++) {
-				feverGauge.IncrementPoint ();
-			}
-
-			// もしこれでフィーバーならtrueを返してキャラカード出現させる。
-			if (!feverGauge.isFeverMode && feverGauge.feverPoint >= feverGauge.feverPointMax) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	public int TempCnt {
-		set { nTempCnt = value; }
-		get { return nTempCnt; }
-	}
-
-	public bool GetTempFlg() {
-		return fNowTempTime >= fTempTime;
-	}
+    public bool GetTempFlg ()
+    {
+        return fNowTempTime >= fTempTime;
+    }
 }

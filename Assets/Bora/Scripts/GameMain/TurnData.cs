@@ -8,22 +8,32 @@ public class TurnData : MonoBehaviour {
 	/// 概要 : カードを出した時の数字や効果などの情報を保持
 	/// Author : 大洞祥太
 	/// </summary>
+    /// 
+    /// TODO : このスクリプトを分割する
+   
+    #region Singleton
 
-	static TurnData instance;
+    private static TurnData instance;
 
-	public static TurnData Instance {
-		get {
-			if (instance == null) {
-				instance = (TurnData)FindObjectOfType(typeof(TurnData));
+    public static TurnData Instance {
+        get {
+            if (instance) 
+                return instance;
 
-				if (instance == null) {
-					Debug.LogError("TurnData Instance Error");
-				}
-			}
+            instance = (TurnData)FindObjectOfType(typeof(TurnData));
 
-			return instance;
-		}
-	}
+            if (instance) 
+                return instance;
+
+            GameObject obj = new GameObject();
+            obj.AddComponent<TurnData>();
+            Debug.Log(typeof(TurnData) + "が存在していないのに参照されたので生成");
+
+            return instance;
+        }
+    }
+
+    #endregion
 
 	// 変数宣言
 	public struct tTurnDataBase {

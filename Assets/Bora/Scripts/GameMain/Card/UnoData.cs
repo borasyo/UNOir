@@ -75,11 +75,11 @@ public class UnoData : MonoBehaviour {
 
 	public bool OnTouch() {
 
-		if (bClick || cardShuffle.bShuffle)
+        if (bClick || cardShuffle.IsShuffle)
 			return false;
 
 		if (!FieldCard.Instance.Judge (m_Card)) { 
-			notAnswer.Play ();
+			notAnswer.Run ();
 			spriteRenderer.sortingOrder = nInitOrder; 
 			return false;
 		}
@@ -324,7 +324,7 @@ public class UnoData : MonoBehaviour {
 
     public void Shuffle()
     {
-        cardShuffle.Shuffle();
+        cardShuffle.Run();
     }
 
 	public UnoStruct.tCard CardData { 

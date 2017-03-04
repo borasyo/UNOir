@@ -8,57 +8,48 @@ public class CardShuffle : MonoBehaviour {
 	/// Author : 大洞祥太
 	/// </summary>
 
-    public bool bShuffle { get; private set; }
-    Vector3 CenterPos = new Vector3(0.0f, -2.2f, 0.0f);
-    UnoData unoData = null;
-    bool bSet = true;
+    TriangleWave<Vector3> m_TriangleWaveVector3 = null;
+    int m_nOldHalfLapCnt = 0;
 
-    float fNowTime = 0.0f;
-    float fTime = 0.1f;
+    UnoData m_UnoData = null;
 
     void Start()
     {
-        bShuffle = false;
-        unoData = GetComponent<UnoData>();
+        m_UnoData = GetComponent<UnoData> ();
+
+        Vector3 min = m_UnoData.GetInitPos;
+        Vector3 max = GameObject.Find ("CardBackGround").transform.position; // カード枠の中心
+        float time = 0.1f;
+        m_TriangleWaveVector3 = TriangleWaveFactory.Vector3 (min ,max, time);
+
+        this.enabled = false;
     }
 
     void Update()
     {
-        if (!bShuffle)
+        m_TriangleWaveVector3.Progress ();
+        transform.position = m_TriangleWaveVector3.CurrentValue;
+
+        if (!m_TriangleWaveVector3.IsReverseTiming)
             return;
 
-        fNowTime += Time.deltaTime;
-        if (bSet)
-        {
-            transform.position += (CenterPos - unoData.GetInitPos) * (Time.deltaTime / fTime);
-
-            if (fNowTime >= fTime)
-            {
-                transform.position = CenterPos;
-                bSet = false;
-                fNowTime = 0.0f;
-                unoData.Change();
-            }
-        }
-        else
-        {
-            transform.position -= (CenterPos - unoData.GetInitPos) * (Time.deltaTime / fTime);
-
-            if (fNowTime >= fTime)
-            {
-                transform.position = unoData.GetInitPos;
-                bSet = true;
-                fNowTime = 0.0f;
-
-                bShuffle = false;
-            }
+        // 増減反転時の処理を行う
+        if (m_TriangleWaveVector3.GetHalfLapCnt % 2 == 1) {
+            m_UnoData.Change();
+        } else {
+            transform.position = m_UnoData.GetInitPos;
+            this.enabled = false;
         }
     }
 
-    public void Shuffle()
+    public void Run()
     {
-        bShuffle = true;
-        bSet = true;
+        this.enabled = true;
     }
 
+    public bool IsShuffle 
+    { 
+        get { return this.enabled; } 
+        private set { this.enabled = value; } 
+    } 
 }

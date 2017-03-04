@@ -1,58 +1,50 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FeverCard : MonoBehaviour {
+public class FeverCard : MonoBehaviour
+{
+    /// <summary>
+    /// 概要 : フィーバー時のカード
+    /// Author : 大洞祥太
+    /// </summary>
 
-	/// <summary>
-	/// 概要 : フィーバー時のカード
-	/// Author : 大洞祥太
-	/// </summary>
+    SpriteRenderer m_SpriteRender = null;
+    UnoData m_UnoData = null;
 
-    float fTime = 0.15f;
-    float fMaxAlpha = 0.5f;
+    TriangleWave<Color> m_TriangleWaveColor = null;
 
-    bool bAdd = true;
-    SpriteRenderer render = null;
-    UnoData unoData = null;
-
-    void Start()
+    void Start ()
     {
-        render = GetComponent<SpriteRenderer>();
-        render.sortingOrder = 22;
-        unoData = GetComponentInParent<UnoData>();
-    }
-	
-	void Update () {
+        m_SpriteRender = GetComponent<SpriteRenderer> ();
+        m_SpriteRender.sortingOrder = 22;
+        m_UnoData = GetComponentInParent<UnoData> ();
 
-        if (!FeverEffectManager.Instance.GetFever())
-        {
-            render.color = new Color(1,1,1,0);
+        Color min = new Color (1.0f, 1.0f, 1.0f, 0.0f);
+        Color max = new Color (1.0f, 1.0f, 1.0f, 0.5f);
+        float time = 0.15f;
+
+        m_TriangleWaveColor = TriangleWaveFactory.Color (min, max, time);
+    }
+
+    void Update ()
+    {
+        if (!FeverEffectManager.Instance.GetFever () || m_UnoData.OnClick) {
+            
+            StartCoroutine (WaitChangeEnable ());
             return;
         }
 
-        // 持ったら消す
-        render.enabled = !unoData.OnClick;
+        m_TriangleWaveColor.Progress ();
+        m_SpriteRender.color = m_TriangleWaveColor.CurrentValue;
+    }
 
+    // スプライトのレンダラーを一時的にOffにする
+    IEnumerator WaitChangeEnable ()
+    {
+        m_SpriteRender.enabled = false;
 
-        if (bAdd)
-        {
-            render.color += new Color(0,0,0, fMaxAlpha * (Time.deltaTime / fTime));
+        yield return new WaitWhile (() => (!FeverEffectManager.Instance.GetFever () || m_UnoData.OnClick) == true);
 
-            if (render.color.a >= fMaxAlpha)
-            {
-                bAdd = false;
-            }
-
-        }
-        else
-        {
-            render.color -= new Color(0, 0, 0, fMaxAlpha * (Time.deltaTime / fTime));
-
-            if (render.color.a <= 0.0f)
-            {
-                bAdd = true;
-            }
-
-        }
-	}
+        m_SpriteRender.enabled = true;
+    }
 }

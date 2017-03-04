@@ -9,23 +9,29 @@ public class TrajectoryCreator : MonoBehaviour {
 	/// Author : 大洞祥太
 	/// </summary>
 
-	static TrajectoryCreator instance;
+    #region Singleton
 
-	public static TrajectoryCreator Instance
-	{
-		get
-		{
-			if (instance == null)
-			{
-				instance = (TrajectoryCreator)FindObjectOfType(typeof(TrajectoryCreator));
-				if (instance == null)
-				{
-					Debug.LogError("TrajectoryCreator Instance Error");
-				}
-			}
-			return instance;
-		}
-	}
+    private static TrajectoryCreator instance;
+
+    public static TrajectoryCreator Instance {
+        get {
+            if (instance) 
+                return instance;
+
+            instance = (TrajectoryCreator)FindObjectOfType(typeof(TrajectoryCreator));
+
+            if (instance) 
+                return instance;
+
+            GameObject obj = new GameObject();
+            obj.AddComponent<TrajectoryCreator>();
+            Debug.Log(typeof(TrajectoryCreator) + "が存在していないのに参照されたので生成");
+
+            return instance;
+        }
+    }
+
+    #endregion
 
 	[SerializeField]
 	GameObject trajectory = null;
@@ -42,9 +48,9 @@ public class TrajectoryCreator : MonoBehaviour {
 	}
 
 	public void Reset() {
-		for (int i = 0; i < trajectoryList.Count; i++) {
-			Destroy (trajectoryList[i].gameObject);
-		}
+        foreach (GameObject trajectory in trajectoryList) {
+            Destroy (trajectory);
+        }
 		trajectoryList.Clear ();
 	}
 

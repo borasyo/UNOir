@@ -2,65 +2,79 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class CardResource : MonoBehaviour {
+public class CardResource : MonoBehaviour
+{
+    /// <summary>
+    /// 概要 : カードのリソース情報を保持
+    /// Author : 大洞祥太
+    /// </summary>
 
-	/// <summary>
-	/// 概要 : カードのリソース情報を保持
-	/// Author : 大洞祥太
-	/// </summary>
+    #region Singleton
 
-	static CardResource instance;
+    private static CardResource instance;
 
-	public static CardResource Instance {
-		get {
-			if (instance == null) {
-				instance = (CardResource)FindObjectOfType(typeof(CardResource));
+    public static CardResource Instance {
+        get {
+            if (instance)
+                return instance;
 
-				if (instance == null) {
-					Debug.LogError("CardResource Instance Error");
-				}
-			}
+            instance = (CardResource)FindObjectOfType (typeof(CardResource));
 
-			return instance;
-		}
-	}
+            if (instance)
+                return instance;
+
+            GameObject obj = new GameObject ();
+            obj.AddComponent<CardResource> ();
+            Debug.Log (typeof(CardResource) + "が存在していないのに参照されたので生成");
+
+            return instance;
+        }
+    }
+
+    #endregion
+
+    Dictionary<string, Sprite> m_CardResource = new Dictionary<string, Sprite> ();
+    //	private List<PlayerCharactor> m_CharaList = new List<PlayerCharactor> ();
+
+    void Awake ()
+    {
+        if (this != Instance) {
+            Destroy (this.gameObject);
+            return;
+        }
+
+        Sprite[] spriteAll = ResourceHolder.Instance.GetResource (ResourceHolder.eResourceId.ID_CARD);
 		
-	Dictionary<string, Sprite> cardResource = new Dictionary<string, Sprite>();
-	private List<PlayerCharactor> CharaList = new List<PlayerCharactor> ();
+        foreach (Sprite sprite in spriteAll) {
+            m_CardResource.Add (sprite.name, sprite);
+        }
+    }
 
-	void Awake() {
-		if (this != Instance) {
-			Destroy (this.gameObject);
-			return;
-		}
-		Sprite[] spriteAll = ResourceHolder.Instance.GetResource (ResourceHolder.eResourceId.ID_CARD);
-		//Sprite[] spriteAll = Resources.LoadAll<Sprite> ("Textures/Card/Card");
-		for(int i = 0; i < spriteAll.Length; i++) {
-			cardResource.Add (spriteAll[i].name, spriteAll[i]);
-		}
-	}
+    public void SetCharaCard ()
+    {
+        List<PlayerCharactor> CharaList = GameMainUpperManager.instance.charactorAndFriend;
 
-	public void SetCharaCard() {
-		CharaList = GameMainUpperManager.instance.charactorAndFriend;
-		for(int i = 0; i < CharaList.Count; i++) {
-			UnoStruct.tCard card = CharaList [i].GetTCard(); 
-			int nNumber = ((int)CharaList[i].attribute * (int)UnoStruct.eNumber.NUMBER_MAX) + (int)CharaList[i].cardNum;
-			string key = "Card_" + nNumber.ToString();
-			cardResource[key] = CharaList [i].noFrameSprite;
-			//Debug.Log (cardResource[key].ToString() + "," + card.m_Color.ToString() + "," + card.m_Number.ToString());
-		}
-	}
+        foreach (PlayerCharactor chara in CharaList) {
 
-	public Sprite GetCardResource(int nNumber) {
-		
-		Sprite sprite = null;
-		string key = "Card_" + nNumber.ToString();
-		cardResource.TryGetValue (key, out sprite);
+            UnoStruct.tCard card = chara.GetTCard (); 
+            int nNumber = ((int)chara.attribute * (int)UnoStruct.eNumber.NUMBER_MAX) + (int)chara.cardNum;
+            string key = "Card_" + nNumber.ToString ();
+            m_CardResource [key] = chara.noFrameSprite;
+            //Debug.Log (cardResource[key].ToString() + "," + card.m_Color.ToString() + "," + card.m_Number.ToString());
+        }
+    }
 
-		return sprite;
-	}
+    public Sprite GetCardResource (int nNumber)
+    {
+        Sprite sprite = null;
+        string key = "Card_" + nNumber.ToString ();
+        m_CardResource.TryGetValue (key, out sprite);
 
-	public List<PlayerCharactor> GetPlayerList() {
-		return CharaList;
-	}
+        return sprite;
+    }
+
+    public List<PlayerCharactor> GetPlayerList ()
+    {
+        return GameMainUpperManager.instance.charactorAndFriend;
+    }
 }

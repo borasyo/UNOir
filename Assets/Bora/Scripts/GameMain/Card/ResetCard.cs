@@ -1,48 +1,54 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ResetCard : MonoBehaviour {
+public class ResetCard : MonoBehaviour
+{
+    /// <summary>
+    /// 概要 : 
+    /// Author : 大洞祥太
+    /// </summary>
 
-	/// <summary>
-	/// 概要 : 
-	/// Author : 大洞祥太
-	/// </summary>
+    [SerializeField] float m_fTime = 0.25f;
 
-	[SerializeField]
-	float fTime = 0.2f;
+    [SerializeField] float m_fMaxAlpha = 0.75f;
 
-	[SerializeField]
-	float fMaxAlpha = 0.5f;
+    SpriteRenderer m_SpriteRender = null;
+   
+    TriangleWave<Color> m_TriangleWaveColor = null;
 
-	[SerializeField]
-	SpriteRenderer render = null;
+    void Start ()
+    {
+        m_SpriteRender = GetComponent<SpriteRenderer> ();
 
-	bool bRun = false;
-	bool bAdd = true;
+        Color min = new Color (1,1,1,0); 
+        Color max = new Color (1,1,1,m_fMaxAlpha); 
+        m_TriangleWaveColor = TriangleWaveFactory.Color (min, max, m_fTime);
 
-	void Update() {
-		if (!bRun)
-			return;
+        SetEnable (false);
+    }
 
-		if (bAdd) {
-			render.color += new Color (0, 0, 0, fMaxAlpha * (Time.deltaTime / fTime));
+    void Update ()
+    {
+        m_TriangleWaveColor.Progress ();
+        m_SpriteRender.color = m_TriangleWaveColor.CurrentValue;
 
-			if (render.color.a >= fMaxAlpha) {
-				bAdd = false;
-				render.color = new Color (1,1,1,fMaxAlpha);
-			}
-		} else {
-			render.color -= new Color (0, 0, 0, fMaxAlpha * (Time.deltaTime / fTime));
+        if (!m_TriangleWaveColor.IsReverseTiming)
+            return;
 
-			if (render.color.a <= 0.0f) {
-				bAdd = true;
-				bRun = false;
-				render.color = new Color (1,1,1,0);
-			}
-		}
-	}
+        // 1周したので終了
+        if (m_TriangleWaveColor.IsAdd) {
+            SetEnable (false);
+        }
+    }
 
-	public void Run() {
-		bRun = true;
-	}
+    public void Run ()
+    {
+        SetEnable (true);
+    }
+
+    void SetEnable(bool IsEnable)
+    {
+        this.enabled = IsEnable;
+        m_SpriteRender.enabled = IsEnable;
+    }
 }

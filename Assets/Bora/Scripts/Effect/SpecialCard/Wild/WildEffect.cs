@@ -13,8 +13,9 @@ public class WildEffect : MonoBehaviour {
 	public bool bEnd { get; set; }
 	SpriteRenderer render = null;
 
-	[SerializeField]
-	float fTime = 0.5f;
+	[SerializeField] float fTime = 0.5f;
+
+
 
 	void Start() {
 		bEnd = true;
