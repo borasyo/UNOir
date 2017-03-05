@@ -12,7 +12,8 @@ public class LeaderSkillAtack : LeaderSkillBase {
 
 	// Use this for initialization
 	void Start () {
-		TurnData.Instance.leaderSkillAtack = this.GetComponent<LeaderSkillAtack> ();
+		//TurnData.Instance.leaderSkillAtack = this.GetComponent<LeaderSkillAtack> ();
+        Debug.Log("a");
 	}
 
 	public float fGetPercentage() {

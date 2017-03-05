@@ -163,7 +163,13 @@
      <Compile Include="Assets\Bora\Scripts\GameMain\Pause\Retire.cs" />
      <Compile Include="Assets\Bora\Scripts\GameMain\Pause\ReturnGame.cs" />
      <Compile Include="Assets\Bora\Scripts\GameMain\TouchManager.cs" />
-     <Compile Include="Assets\Bora\Scripts\GameMain\TurnData.cs" />
+     <Compile Include="Assets\Bora\Scripts\GameMain\TurnData\DrowData.cs" />
+     <Compile Include="Assets\Bora\Scripts\GameMain\TurnData\DrowDataManager.cs" />
+     <Compile Include="Assets\Bora\Scripts\GameMain\TurnData\TurnData.cs" />
+     <Compile Include="Assets\Bora\Scripts\GameMain\TurnData\TurnDataBase.cs" />
+     <Compile Include="Assets\Bora\Scripts\GameMain\TurnData\TurnDataCalculator.cs" />
+     <Compile Include="Assets\Bora\Scripts\GameMain\TurnData\TurnDataHolder.cs" />
+     <Compile Include="Assets\Bora\Scripts\GameMain\TurnData\TurnSound.cs" />
      <Compile Include="Assets\Bora\Scripts\GameStart\ReadyGo\Go.cs" />
      <Compile Include="Assets\Bora\Scripts\GameStart\ReadyGo\Ready.cs" />
      <Compile Include="Assets\Bora\Scripts\GameStart\Starter\Boss\Boss_Appear.cs" />
@@ -203,6 +209,7 @@
      <Compile Include="Assets\Bora\Scripts\Result\CardRot\CardRotation.cs" />
      <Compile Include="Assets\Bora\Scripts\Result\Continue\Continue.cs" />
      <Compile Include="Assets\Bora\Scripts\Result\Continue\ContinueAtackUp.cs" />
+     <Compile Include="Assets\Bora\Scripts\Result\Continue\ContinueAtackUpManager.cs" />
      <Compile Include="Assets\Bora\Scripts\Result\Continue\ContinueCardBase.cs" />
      <Compile Include="Assets\Bora\Scripts\Result\Continue\ContinueHeel.cs" />
      <Compile Include="Assets\Bora\Scripts\Result\Continue\ContinueMaxFever.cs" />
