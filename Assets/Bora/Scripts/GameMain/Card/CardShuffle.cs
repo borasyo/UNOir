@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UniRx;
+using UniRx.Triggers;
 
 public class CardShuffle : MonoBehaviour {
 
@@ -23,23 +25,26 @@ public class CardShuffle : MonoBehaviour {
         m_TriangleWaveVector3 = TriangleWaveFactory.Vector3 (min ,max, time);
 
         this.enabled = false;
-    }
 
-    void Update()
-    {
-        m_TriangleWaveVector3.Progress ();
-        transform.position = m_TriangleWaveVector3.CurrentValue;
-
-        if (!m_TriangleWaveVector3.IsReverseTiming)
-            return;
+        // 固定更新処理
+        this.UpdateAsObservable ()
+            .Where (_ => this.enabled)
+            .Subscribe (_ => {
+                m_TriangleWaveVector3.Progress ();
+                transform.position = m_TriangleWaveVector3.CurrentValue;
+            });
 
         // 増減反転時の処理を行う
-        if (m_TriangleWaveVector3.GetHalfLapCnt % 2 == 1) {
-            m_UnoData.Change();
-        } else {
-            transform.position = m_UnoData.GetInitPos;
-            this.enabled = false;
-        }
+        m_TriangleWaveVector3.ObserveEveryValueChanged (x => x.IsReverseTiming)
+            .Where (b => b)
+            .Subscribe (_ => {
+                if (!m_TriangleWaveVector3.IsAdd) {
+                    m_UnoData.Change();
+                } else {
+                    transform.position = m_UnoData.GetInitPos;
+                    this.enabled = false;
+                }
+            });
     }
 
     public void Run()

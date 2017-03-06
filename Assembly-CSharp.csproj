@@ -3,9 +3,8 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>10.0.20506</ProductVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
     <ProjectGuid>{C8AC7687-DC0D-EE1A-2EDB-F236C5AA30F9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -34,266 +33,268 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.XML" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEngine">
-      <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Editor\Data\Managed\UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
-      <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+      <HintPath>C:\Program Files\Unity\Editor\Data\Managed\UnityEditor.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\AssetStore\Elementals\Demo\Scripts\GE_Elementals_Demo.cs" />
-     <Compile Include="Assets\AssetStore\GE Common Assets\GE Orbit Camera\Scripts\GE_OrbitCamera.cs" />
-     <Compile Include="Assets\AssetStore\GE Common Assets\GE Orbit Camera\Scripts\GE_OrbitCameraUI.cs" />
-     <Compile Include="Assets\AssetStore\GE Common Assets\GE Toggle Full Screen\Scripts\GE_ToggleFullScreenUI.cs" />
-     <Compile Include="Assets\AssetStore\GE Common Assets\Scripts\GE_UIResponder.cs" />
-     <Compile Include="Assets\AssetStore\GUI Animator\GUI Animator FREE\Demo (CSharp)\Scripts\GA_FREE_Demo00.cs" />
-     <Compile Include="Assets\AssetStore\GUI Animator\GUI Animator FREE\Demo (CSharp)\Scripts\GA_FREE_Demo01.cs" />
-     <Compile Include="Assets\AssetStore\GUI Animator\GUI Animator FREE\Demo (CSharp)\Scripts\GA_FREE_Demo02.cs" />
-     <Compile Include="Assets\AssetStore\GUI Animator\GUI Animator FREE\Demo (CSharp)\Scripts\GA_FREE_Demo03.cs" />
-     <Compile Include="Assets\AssetStore\GUI Animator\GUI Animator FREE\Demo (CSharp)\Scripts\GA_FREE_Demo04.cs" />
-     <Compile Include="Assets\AssetStore\GUI Animator\GUI Animator FREE\Demo (CSharp)\Scripts\GA_FREE_Demo05.cs" />
-     <Compile Include="Assets\AssetStore\GUI Animator\GUI Animator FREE\Demo (CSharp)\Scripts\GA_FREE_Demo06.cs" />
-     <Compile Include="Assets\AssetStore\GUI Animator\GUI Animator FREE\Demo (CSharp)\Scripts\GA_FREE_Demo07.cs" />
-     <Compile Include="Assets\AssetStore\GUI Animator\GUI Animator FREE\Demo (CSharp)\Scripts\GA_FREE_Demo08.cs" />
-     <Compile Include="Assets\AssetStore\GUI Animator\GUI Animator FREE\Demo (CSharp)\Scripts\GA_FREE_DemoPlaySound.cs" />
-     <Compile Include="Assets\AssetStore\GUI Animator\GUI Animator FREE\Demo (CSharp)\Scripts\GA_FREE_OpenOtherScene.cs" />
-     <Compile Include="Assets\AssetStore\GUI Animator\GUI Animator FREE\Demo Basic (CSharp)\Scripts\GUIAnimatorFREEDemo.cs" />
-     <Compile Include="Assets\AssetStore\Sky FX Pack\Scripts\LightBeamsControlScript.cs" />
-     <Compile Include="Assets\AssetStore\Sky FX Pack\Scripts\LookAtBehaviour.cs" />
-     <Compile Include="Assets\AssetStore\Sky FX Pack\Scripts\LookAtCameraBehaviour.cs" />
-     <Compile Include="Assets\AssetStore\Sky FX Pack\Scripts\RayBehavior.cs" />
-     <Compile Include="Assets\AssetStore\Sky FX Pack\Scripts\RotateBehaviour.cs" />
-     <Compile Include="Assets\AssetStore\Sky FX Pack\Scripts\ScrollBehaviour.cs" />
-     <Compile Include="Assets\Bora\Scripts\Auto\AutoDeatroyNotIsPlaying.cs" />
-     <Compile Include="Assets\Bora\Scripts\Auto\AutoDestroy.cs" />
-     <Compile Include="Assets\Bora\Scripts\Auto\AutoDestroyNonChild.cs" />
-     <Compile Include="Assets\Bora\Scripts\Auto\EndParticleDestroyer.cs" />
-     <Compile Include="Assets\Bora\Scripts\Auto\ResourceHolder.cs" />
-     <Compile Include="Assets\Bora\Scripts\CharaSkill\CharaSkillBase.cs" />
-     <Compile Include="Assets\Bora\Scripts\CharaSkill\CharaSkillEffect.cs" />
-     <Compile Include="Assets\Bora\Scripts\CharaSkill\CharaSkillEffectData.cs" />
-     <Compile Include="Assets\Bora\Scripts\CharaSkill\SkillAtack.cs" />
-     <Compile Include="Assets\Bora\Scripts\CharaSkill\SkillDelay.cs" />
-     <Compile Include="Assets\Bora\Scripts\CharaSkill\SkillHell.cs" />
-     <Compile Include="Assets\Bora\Scripts\CharaSkill\SkillList.cs" />
-     <Compile Include="Assets\Bora\Scripts\CharaSkill\SkillRise.cs" />
-     <Compile Include="Assets\Bora\Scripts\Debug\DebugCommand.cs" />
-     <Compile Include="Assets\Bora\Scripts\Debug\DrowEffect_Debug.cs" />
-     <Compile Include="Assets\Bora\Scripts\Debug\EffectCreator_Debug.cs" />
-     <Compile Include="Assets\Bora\Scripts\Debug\FeverText_Debug.cs" />
-     <Compile Include="Assets\Bora\Scripts\Debug\FpsManager.cs" />
-     <Compile Include="Assets\Bora\Scripts\Debug\ReadyGo_Debug.cs" />
-     <Compile Include="Assets\Bora\Scripts\Debug\ScreenSetting.cs" />
-     <Compile Include="Assets\Bora\Scripts\Debug\Skill_Debug.cs" />
-     <Compile Include="Assets\Bora\Scripts\Debug\Turn_Debug.cs" />
-     <Compile Include="Assets\Bora\Scripts\Effect\BezierCurve.cs" />
-     <Compile Include="Assets\Bora\Scripts\Effect\Card\SetEffect.cs" />
-     <Compile Include="Assets\Bora\Scripts\Effect\CharaSkill\CharaSkillManager.cs" />
-     <Compile Include="Assets\Bora\Scripts\Effect\CharaSkill\FeverSetEffect.cs" />
-     <Compile Include="Assets\Bora\Scripts\Effect\CharaSkill\Soler\SolerBeam.cs" />
-     <Compile Include="Assets\Bora\Scripts\Effect\CharaSkill\Soler\SolerBeamChild.cs" />
-     <Compile Include="Assets\Bora\Scripts\Effect\CharaSkill\Sun\SunProtect.cs" />
-     <Compile Include="Assets\Bora\Scripts\Effect\CharaSkill\Thunder\BlackOut.cs" />
-     <Compile Include="Assets\Bora\Scripts\Effect\CharaSkill\Thunder\Thunder.cs" />
-     <Compile Include="Assets\Bora\Scripts\Effect\CharaSkill\Thunder\ThunderParticle.cs" />
-     <Compile Include="Assets\Bora\Scripts\Effect\CharaSkill\Water\HealingWater.cs" />
-     <Compile Include="Assets\Bora\Scripts\Effect\CharaSkill\Wind\WhirlWind.cs" />
-     <Compile Include="Assets\Bora\Scripts\Effect\CharaSkill\Wind\WhirlWindManager.cs" />
-     <Compile Include="Assets\Bora\Scripts\Effect\EffectBase.cs" />
-     <Compile Include="Assets\Bora\Scripts\Effect\EffectGenericFunction.cs" />
-     <Compile Include="Assets\Bora\Scripts\Effect\EnemyAtack\BossNormalAtack.cs" />
-     <Compile Include="Assets\Bora\Scripts\Effect\EnemyAtack\BossNormalAtackManager.cs" />
-     <Compile Include="Assets\Bora\Scripts\Effect\EnemyAtack\BossSpecialAtack.cs" />
-     <Compile Include="Assets\Bora\Scripts\Effect\EnemyAtack\BossSpecialAtackManager.cs" />
-     <Compile Include="Assets\Bora\Scripts\Effect\EnemyAtack\DamageRed.cs" />
-     <Compile Include="Assets\Bora\Scripts\Effect\EnemyAtack\EnemyAtack.cs" />
-     <Compile Include="Assets\Bora\Scripts\Effect\EnemyAtack\WeakEnemyAtack.cs" />
-     <Compile Include="Assets\Bora\Scripts\Effect\EnemyAtack\WeakEnemyAtackManager.cs" />
-     <Compile Include="Assets\Bora\Scripts\Effect\EnemyAtack\WeakEnemyStart.cs" />
-     <Compile Include="Assets\Bora\Scripts\Effect\EnemyDeath\EnemyDeath.cs" />
-     <Compile Include="Assets\Bora\Scripts\Effect\EnemyDeath\SandSpeed.cs" />
-     <Compile Include="Assets\Bora\Scripts\Effect\Heel\HeelEffect.cs" />
-     <Compile Include="Assets\Bora\Scripts\Effect\LockOn\LockOnEffect.cs" />
-     <Compile Include="Assets\Bora\Scripts\Effect\PlayerAtack\NormalEffect.cs" />
-     <Compile Include="Assets\Bora\Scripts\Effect\PlayerAtack\StrongEffect.cs" />
-     <Compile Include="Assets\Bora\Scripts\Effect\PlayerAtack\StrongEffectManager.cs" />
-     <Compile Include="Assets\Bora\Scripts\Effect\SpecialCard\Drow\DrowAlpha.cs" />
-     <Compile Include="Assets\Bora\Scripts\Effect\SpecialCard\Drow\DrowEffect.cs" />
-     <Compile Include="Assets\Bora\Scripts\Effect\SpecialCard\Drow\DrowEffectManager.cs" />
-     <Compile Include="Assets\Bora\Scripts\Effect\SpecialCard\Fever\FeverEffect.cs" />
-     <Compile Include="Assets\Bora\Scripts\Effect\SpecialCard\Fever\FeverEffectFrame.cs" />
-     <Compile Include="Assets\Bora\Scripts\Effect\SpecialCard\Fever\FeverEffectManager.cs" />
-     <Compile Include="Assets\Bora\Scripts\Effect\SpecialCard\PowerUp\PowerUp.cs" />
-     <Compile Include="Assets\Bora\Scripts\Effect\SpecialCard\PowerUp\PowerUpAlpha.cs" />
-     <Compile Include="Assets\Bora\Scripts\Effect\SpecialCard\PowerUp\PowerUpManager.cs" />
-     <Compile Include="Assets\Bora\Scripts\Effect\SpecialCard\Reverse\PurunManju.cs" />
-     <Compile Include="Assets\Bora\Scripts\Effect\SpecialCard\Reverse\ReverseEffect.cs" />
-     <Compile Include="Assets\Bora\Scripts\Effect\SpecialCard\Reverse\ReverseEffectManager.cs" />
-     <Compile Include="Assets\Bora\Scripts\Effect\SpecialCard\Wild\WildEffect.cs" />
-     <Compile Include="Assets\Bora\Scripts\Effect\SpecialCard\Wild\WildEffectManager.cs" />
-     <Compile Include="Assets\Bora\Scripts\Effect\Touch\TouchEffect.cs" />
-     <Compile Include="Assets\Bora\Scripts\Effect\Touch\TouchEffectCreator.cs" />
-     <Compile Include="Assets\Bora\Scripts\Enemy\AtackNearness.cs" />
-     <Compile Include="Assets\Bora\Scripts\Enemy\EnemyDeathSound.cs" />
-     <Compile Include="Assets\Bora\Scripts\Enemy\EnemyMove.cs" />
-     <Compile Include="Assets\Bora\Scripts\Enemy\EnemyPos.cs" />
-     <Compile Include="Assets\Bora\Scripts\Fever\FeverRogo.cs" />
-     <Compile Include="Assets\Bora\Scripts\Fever\UnoRogo.cs" />
-     <Compile Include="Assets\Bora\Scripts\GameMain\Card\CardResource.cs" />
-     <Compile Include="Assets\Bora\Scripts\GameMain\Card\CardShuffle.cs" />
-     <Compile Include="Assets\Bora\Scripts\GameMain\Card\FeverCard.cs" />
-     <Compile Include="Assets\Bora\Scripts\GameMain\Card\FieldCard.cs" />
-     <Compile Include="Assets\Bora\Scripts\GameMain\Card\NotAnswer.cs" />
-     <Compile Include="Assets\Bora\Scripts\GameMain\Card\ResetCard.cs" />
-     <Compile Include="Assets\Bora\Scripts\GameMain\Card\TrajectoryCreator.cs" />
-     <Compile Include="Assets\Bora\Scripts\GameMain\Card\UnoCreateManager.cs" />
-     <Compile Include="Assets\Bora\Scripts\GameMain\Card\UnoData.cs" />
-     <Compile Include="Assets\Bora\Scripts\GameMain\Card\UnoProbability.cs" />
-     <Compile Include="Assets\Bora\Scripts\GameMain\Card\UnoStruct.cs" />
-     <Compile Include="Assets\Bora\Scripts\GameMain\DyingPlayer.cs" />
-     <Compile Include="Assets\Bora\Scripts\GameMain\GameController.cs" />
-     <Compile Include="Assets\Bora\Scripts\GameMain\HpNumberEffect.cs" />
-     <Compile Include="Assets\Bora\Scripts\GameMain\NotTouch.cs" />
-     <Compile Include="Assets\Bora\Scripts\GameMain\Pause\GamePause.cs" />
-     <Compile Include="Assets\Bora\Scripts\GameMain\Pause\PauseButton.cs" />
-     <Compile Include="Assets\Bora\Scripts\GameMain\Pause\Retire.cs" />
-     <Compile Include="Assets\Bora\Scripts\GameMain\Pause\ReturnGame.cs" />
-     <Compile Include="Assets\Bora\Scripts\GameMain\TouchManager.cs" />
-     <Compile Include="Assets\Bora\Scripts\GameMain\TurnData\DrowData.cs" />
-     <Compile Include="Assets\Bora\Scripts\GameMain\TurnData\DrowDataManager.cs" />
-     <Compile Include="Assets\Bora\Scripts\GameMain\TurnData\TurnData.cs" />
-     <Compile Include="Assets\Bora\Scripts\GameMain\TurnData\TurnDataBase.cs" />
-     <Compile Include="Assets\Bora\Scripts\GameMain\TurnData\TurnDataCalculator.cs" />
-     <Compile Include="Assets\Bora\Scripts\GameMain\TurnData\TurnDataHolder.cs" />
-     <Compile Include="Assets\Bora\Scripts\GameMain\TurnData\TurnSound.cs" />
-     <Compile Include="Assets\Bora\Scripts\GameStart\ReadyGo\Go.cs" />
-     <Compile Include="Assets\Bora\Scripts\GameStart\ReadyGo\Ready.cs" />
-     <Compile Include="Assets\Bora\Scripts\GameStart\Starter\Boss\Boss_Appear.cs" />
-     <Compile Include="Assets\Bora\Scripts\GameStart\Starter\Boss\Boss_Fade.cs" />
-     <Compile Include="Assets\Bora\Scripts\GameStart\Starter\Boss\Boss_TextMove.cs" />
-     <Compile Include="Assets\Bora\Scripts\GameStart\Starter\Dissolve\Dissolver.cs" />
-     <Compile Include="Assets\Bora\Scripts\GameStart\Starter\Dissolve\EnemyManager.cs" />
-     <Compile Include="Assets\Bora\Scripts\GameStart\Starter\Enemy\Enemy_AllFadeOut.cs" />
-     <Compile Include="Assets\Bora\Scripts\GameStart\Starter\Enemy\Enemy_BackFadeIn.cs" />
-     <Compile Include="Assets\Bora\Scripts\GameStart\Starter\Enemy\Enemy_StageRogo.cs" />
-     <Compile Include="Assets\Bora\Scripts\Generic\Test.cs" />
-     <Compile Include="Assets\Bora\Scripts\Generic\TriangleWave\ICalculator.cs" />
-     <Compile Include="Assets\Bora\Scripts\Generic\TriangleWave\TriangleWave.cs" />
-     <Compile Include="Assets\Bora\Scripts\Generic\TriangleWave\TriangleWaveFactory.cs" />
-     <Compile Include="Assets\Bora\Scripts\Generic\TriangleWave\TriangleWaveOscillator.cs" />
-     <Compile Include="Assets\Bora\Scripts\LeaderSkill\LeaderSkillAtack.cs" />
-     <Compile Include="Assets\Bora\Scripts\LeaderSkill\LeaderSkillBase.cs" />
-     <Compile Include="Assets\Bora\Scripts\LeaderSkill\LeaderSkillExpUp.cs" />
-     <Compile Include="Assets\Bora\Scripts\LeaderSkill\LeaderSkillHeel.cs" />
-     <Compile Include="Assets\Bora\Scripts\LeaderSkill\LeaderSkillRise.cs" />
-     <Compile Include="Assets\Bora\Scripts\Menu\Main\CharaDrower.cs" />
-     <Compile Include="Assets\Bora\Scripts\Menu\Main\CharactorDrowerCreator.cs" />
-     <Compile Include="Assets\Bora\Scripts\Menu\Main\CircleButton.cs" />
-     <Compile Include="Assets\Bora\Scripts\Menu\Main\GoQuest.cs" />
-     <Compile Include="Assets\Bora\Scripts\Menu\PartySelect\BackRot.cs" />
-     <Compile Include="Assets\Bora\Scripts\Menu\PartySelect\CharaIconFade.cs" />
-     <Compile Include="Assets\Bora\Scripts\Menu\PartySelect\CharaIconMove.cs" />
-     <Compile Include="Assets\Bora\Scripts\Menu\PartySelect\GoMain.cs" />
-     <Compile Include="Assets\Bora\Scripts\Menu\PartySelect\Go_Back.cs" />
-     <Compile Include="Assets\Bora\Scripts\Menu\PartySelect\ReturnQuest.cs" />
-     <Compile Include="Assets\Bora\Scripts\Menu\PartySelect\StatusFrame.cs" />
-     <Compile Include="Assets\Bora\Scripts\Menu\Quest\GoParty.cs" />
-     <Compile Include="Assets\Bora\Scripts\Menu\Quest\QuestBack.cs" />
-     <Compile Include="Assets\Bora\Scripts\Menu\Quest\ReturnMenu.cs" />
-     <Compile Include="Assets\Bora\Scripts\Menu\Title\CloudRot.cs" />
-     <Compile Include="Assets\Bora\Scripts\Menu\Title\PressStart.cs" />
-     <Compile Include="Assets\Bora\Scripts\Result\CardRot\CardRotation.cs" />
-     <Compile Include="Assets\Bora\Scripts\Result\Continue\Continue.cs" />
-     <Compile Include="Assets\Bora\Scripts\Result\Continue\ContinueAtackUp.cs" />
-     <Compile Include="Assets\Bora\Scripts\Result\Continue\ContinueAtackUpManager.cs" />
-     <Compile Include="Assets\Bora\Scripts\Result\Continue\ContinueCardBase.cs" />
-     <Compile Include="Assets\Bora\Scripts\Result\Continue\ContinueHeel.cs" />
-     <Compile Include="Assets\Bora\Scripts\Result\Continue\ContinueMaxFever.cs" />
-     <Compile Include="Assets\Bora\Scripts\Result\Continue\ContinueMessage.cs" />
-     <Compile Include="Assets\Bora\Scripts\Result\Continue\ContinueSkillCreator.cs" />
-     <Compile Include="Assets\Bora\Scripts\Result\DeathRed.cs" />
-     <Compile Include="Assets\Bora\Scripts\Result\GameOver.cs" />
-     <Compile Include="Assets\Bora\Scripts\Result\NoAnswer.cs" />
-     <Compile Include="Assets\Bora\Scripts\Result\Result.cs" />
-     <Compile Include="Assets\Bora\Scripts\Result\ResultBase.cs" />
-     <Compile Include="Assets\Bora\Scripts\Result\ResultManager.cs" />
-     <Compile Include="Assets\Bora\Scripts\Result\Win\Flower.cs" />
-     <Compile Include="Assets\Bora\Scripts\Result\Win\FlowerCreator.cs" />
-     <Compile Include="Assets\Bora\Scripts\Result\Win\Sun.cs" />
-     <Compile Include="Assets\Bora\Scripts\Scene\FadeManager.cs" />
-     <Compile Include="Assets\Bora\Scripts\Scene\SceneChanger.cs" />
-     <Compile Include="Assets\Bora\Scripts\Sound\SoundManager.cs" />
-     <Compile Include="Assets\Scripts\BattleDataBase.cs" />
-     <Compile Include="Assets\Scripts\Debug\BattleSequence_Debug.cs" />
-     <Compile Include="Assets\Scripts\Debug\CharactorDataList_Debug.cs" />
-     <Compile Include="Assets\Scripts\Debug\CharactorData_Debug.cs" />
-     <Compile Include="Assets\Scripts\Debug\CharactorSelect_Debug.cs" />
-     <Compile Include="Assets\Scripts\Debug\Charactor_Debug.cs" />
-     <Compile Include="Assets\Scripts\Debug\Charactors_Debug.cs" />
-     <Compile Include="Assets\Scripts\Debug\Enemy_Debug.cs" />
-     <Compile Include="Assets\Scripts\Debug\RemovedCard_Debug.cs" />
-     <Compile Include="Assets\Scripts\GameMain\BattleManager.cs" />
-     <Compile Include="Assets\Scripts\GameMain\Caution.cs" />
-     <Compile Include="Assets\Scripts\GameMain\Charactor.cs" />
-     <Compile Include="Assets\Scripts\GameMain\Damage.cs" />
-     <Compile Include="Assets\Scripts\GameMain\DamageConfig.cs" />
-     <Compile Include="Assets\Scripts\GameMain\DamageNumber.cs" />
-     <Compile Include="Assets\Scripts\GameMain\Enemy.cs" />
-     <Compile Include="Assets\Scripts\GameMain\FeverGauge.cs" />
-     <Compile Include="Assets\Scripts\GameMain\FlashConfig.cs" />
-     <Compile Include="Assets\Scripts\GameMain\GameMainUpperManager.cs" />
-     <Compile Include="Assets\Scripts\GameMain\HPNumber.cs" />
-     <Compile Include="Assets\Scripts\GameMain\HpGauge.cs" />
-     <Compile Include="Assets\Scripts\GameMain\Player.cs" />
-     <Compile Include="Assets\Scripts\GameMain\PlayerCharactor.cs" />
-     <Compile Include="Assets\Scripts\GameMain\PlayerHPGauge.cs" />
-     <Compile Include="Assets\Scripts\GameMain\TimeGauge.cs" />
-     <Compile Include="Assets\Scripts\System\Encryption.cs" />
-     <Compile Include="Assets\Scripts\System\JsonManager.cs" />
-     <Compile Include="Assets\Scripts\System\Serialization.cs" />
-     <Compile Include="Assets\Scripts\UI\ButtonEx.cs" />
-     <None Include="Assets\AssetStore\Demigiant\DOTween\DOTween43.xml" />
-     <None Include="Assets\AssetStore\Demigiant\DOTween\DOTween50.xml" />
-     <None Include="Assets\Shaders\Dissolve.shader" />
-     <None Include="Assets\AssetStore\Elementals\Readme.txt" />
-     <None Include="Assets\Plugins\UniRx\ReadMe.txt" />
-     <None Include="Assets\AssetStore\GUI Animator\GUI Animator FREE\Readme.txt" />
-     <None Include="Assets\AssetStore\Demigiant\DOTween\DOTween46.xml" />
-     <None Include="Assets\AssetStore\GE Common Assets\Readme.txt" />
-     <None Include="Assets\AssetStore\GUI Animator\GUI Animator FREE\!How to.txt" />
-     <None Include="Assets\Shaders\CullOn.shader" />
- <Reference Include="UnityEngine.UI">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Networking">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
- </Reference>
- <Reference Include="DOTween">
- <HintPath>C:/Users/syota/Desktop/GitHub/UNOir/Assets/AssetStore/Demigiant/DOTween/DOTween.dll</HintPath>
- </Reference>
- <Reference Include="DOTween43">
- <HintPath>C:/Users/syota/Desktop/GitHub/UNOir/Assets/AssetStore/Demigiant/DOTween/DOTween43.dll</HintPath>
- </Reference>
- <Reference Include="DOTween46">
- <HintPath>C:/Users/syota/Desktop/GitHub/UNOir/Assets/AssetStore/Demigiant/DOTween/DOTween46.dll</HintPath>
- </Reference>
- <Reference Include="DOTween50">
- <HintPath>C:/Users/syota/Desktop/GitHub/UNOir/Assets/AssetStore/Demigiant/DOTween/DOTween50.dll</HintPath>
- </Reference>
- <Reference Include="GETween">
- <HintPath>C:/Users/syota/Desktop/GitHub/UNOir/Assets/AssetStore/GUI Animator/Common/Plugins/GETween.dll</HintPath>
- </Reference>
- <Reference Include="GUIAnimatorFREE">
- <HintPath>C:/Users/syota/Desktop/GitHub/UNOir/Assets/AssetStore/GUI Animator/GUI Animator FREE/Plugins/GUIAnimatorFREE.dll</HintPath>
- </Reference>
+    <Compile Include="Assets\AssetStore\Elementals\Demo\Scripts\GE_Elementals_Demo.cs" />
+    <Compile Include="Assets\AssetStore\GE Common Assets\GE Orbit Camera\Scripts\GE_OrbitCamera.cs" />
+    <Compile Include="Assets\AssetStore\GE Common Assets\GE Orbit Camera\Scripts\GE_OrbitCameraUI.cs" />
+    <Compile Include="Assets\AssetStore\GE Common Assets\GE Toggle Full Screen\Scripts\GE_ToggleFullScreenUI.cs" />
+    <Compile Include="Assets\AssetStore\GE Common Assets\Scripts\GE_UIResponder.cs" />
+    <Compile Include="Assets\AssetStore\Sky FX Pack\Scripts\LightBeamsControlScript.cs" />
+    <Compile Include="Assets\AssetStore\Sky FX Pack\Scripts\LookAtBehaviour.cs" />
+    <Compile Include="Assets\AssetStore\Sky FX Pack\Scripts\LookAtCameraBehaviour.cs" />
+    <Compile Include="Assets\AssetStore\Sky FX Pack\Scripts\RayBehavior.cs" />
+    <Compile Include="Assets\AssetStore\Sky FX Pack\Scripts\RotateBehaviour.cs" />
+    <Compile Include="Assets\AssetStore\Sky FX Pack\Scripts\ScrollBehaviour.cs" />
+    <Compile Include="Assets\Bora\Scripts\Auto\AutoDeatroyNotIsPlaying.cs" />
+    <Compile Include="Assets\Bora\Scripts\Auto\AutoDestroy.cs" />
+    <Compile Include="Assets\Bora\Scripts\Auto\AutoDestroyNonChild.cs" />
+    <Compile Include="Assets\Bora\Scripts\Auto\EndParticleDestroyer.cs" />
+    <Compile Include="Assets\Bora\Scripts\Auto\ResourceHolder.cs" />
+    <Compile Include="Assets\Bora\Scripts\CharaSkill\CharaSkillBase.cs" />
+    <Compile Include="Assets\Bora\Scripts\CharaSkill\CharaSkillEffect.cs" />
+    <Compile Include="Assets\Bora\Scripts\CharaSkill\CharaSkillEffectData.cs" />
+    <Compile Include="Assets\Bora\Scripts\CharaSkill\SkillAtack.cs" />
+    <Compile Include="Assets\Bora\Scripts\CharaSkill\SkillDelay.cs" />
+    <Compile Include="Assets\Bora\Scripts\CharaSkill\SkillHell.cs" />
+    <Compile Include="Assets\Bora\Scripts\CharaSkill\SkillList.cs" />
+    <Compile Include="Assets\Bora\Scripts\CharaSkill\SkillRise.cs" />
+    <Compile Include="Assets\Bora\Scripts\Debug\DebugCommand.cs" />
+    <Compile Include="Assets\Bora\Scripts\Debug\DrowEffect_Debug.cs" />
+    <Compile Include="Assets\Bora\Scripts\Debug\EffectCreator_Debug.cs" />
+    <Compile Include="Assets\Bora\Scripts\Debug\FeverText_Debug.cs" />
+    <Compile Include="Assets\Bora\Scripts\Debug\FpsManager.cs" />
+    <Compile Include="Assets\Bora\Scripts\Debug\ReadyGo_Debug.cs" />
+    <Compile Include="Assets\Bora\Scripts\Debug\ScreenSetting.cs" />
+    <Compile Include="Assets\Bora\Scripts\Debug\Skill_Debug.cs" />
+    <Compile Include="Assets\Bora\Scripts\Debug\Turn_Debug.cs" />
+    <Compile Include="Assets\Bora\Scripts\Effect\BezierCurve.cs" />
+    <Compile Include="Assets\Bora\Scripts\Effect\Card\SetEffect.cs" />
+    <Compile Include="Assets\Bora\Scripts\Effect\CharaSkill\CharaSkillManager.cs" />
+    <Compile Include="Assets\Bora\Scripts\Effect\CharaSkill\FeverSetEffect.cs" />
+    <Compile Include="Assets\Bora\Scripts\Effect\CharaSkill\Soler\SolerBeam.cs" />
+    <Compile Include="Assets\Bora\Scripts\Effect\CharaSkill\Soler\SolerBeamChild.cs" />
+    <Compile Include="Assets\Bora\Scripts\Effect\CharaSkill\Sun\SunProtect.cs" />
+    <Compile Include="Assets\Bora\Scripts\Effect\CharaSkill\Thunder\BlackOut.cs" />
+    <Compile Include="Assets\Bora\Scripts\Effect\CharaSkill\Thunder\Thunder.cs" />
+    <Compile Include="Assets\Bora\Scripts\Effect\CharaSkill\Thunder\ThunderParticle.cs" />
+    <Compile Include="Assets\Bora\Scripts\Effect\CharaSkill\Water\HealingWater.cs" />
+    <Compile Include="Assets\Bora\Scripts\Effect\CharaSkill\Wind\WhirlWind.cs" />
+    <Compile Include="Assets\Bora\Scripts\Effect\CharaSkill\Wind\WhirlWindManager.cs" />
+    <Compile Include="Assets\Bora\Scripts\Effect\EffectBase.cs" />
+    <Compile Include="Assets\Bora\Scripts\Effect\EffectGenericFunction.cs" />
+    <Compile Include="Assets\Bora\Scripts\Effect\EnemyAtack\BossNormalAtack.cs" />
+    <Compile Include="Assets\Bora\Scripts\Effect\EnemyAtack\BossNormalAtackManager.cs" />
+    <Compile Include="Assets\Bora\Scripts\Effect\EnemyAtack\BossSpecialAtack.cs" />
+    <Compile Include="Assets\Bora\Scripts\Effect\EnemyAtack\BossSpecialAtackManager.cs" />
+    <Compile Include="Assets\Bora\Scripts\Effect\EnemyAtack\DamageRed.cs" />
+    <Compile Include="Assets\Bora\Scripts\Effect\EnemyAtack\EnemyAtack.cs" />
+    <Compile Include="Assets\Bora\Scripts\Effect\EnemyAtack\WeakEnemyAtack.cs" />
+    <Compile Include="Assets\Bora\Scripts\Effect\EnemyAtack\WeakEnemyAtackManager.cs" />
+    <Compile Include="Assets\Bora\Scripts\Effect\EnemyAtack\WeakEnemyStart.cs" />
+    <Compile Include="Assets\Bora\Scripts\Effect\EnemyDeath\EnemyDeath.cs" />
+    <Compile Include="Assets\Bora\Scripts\Effect\EnemyDeath\SandSpeed.cs" />
+    <Compile Include="Assets\Bora\Scripts\Effect\Heel\HeelEffect.cs" />
+    <Compile Include="Assets\Bora\Scripts\Effect\LockOn\LockOnEffect.cs" />
+    <Compile Include="Assets\Bora\Scripts\Effect\PlayerAtack\NormalEffect.cs" />
+    <Compile Include="Assets\Bora\Scripts\Effect\PlayerAtack\StrongEffect.cs" />
+    <Compile Include="Assets\Bora\Scripts\Effect\PlayerAtack\StrongEffectManager.cs" />
+    <Compile Include="Assets\Bora\Scripts\Effect\SpecialCard\Drow\DrowAlpha.cs" />
+    <Compile Include="Assets\Bora\Scripts\Effect\SpecialCard\Drow\DrowEffect.cs" />
+    <Compile Include="Assets\Bora\Scripts\Effect\SpecialCard\Drow\DrowEffectManager.cs" />
+    <Compile Include="Assets\Bora\Scripts\Effect\SpecialCard\Fever\FeverEffect.cs" />
+    <Compile Include="Assets\Bora\Scripts\Effect\SpecialCard\Fever\FeverEffectFrame.cs" />
+    <Compile Include="Assets\Bora\Scripts\Effect\SpecialCard\Fever\FeverEffectManager.cs" />
+    <Compile Include="Assets\Bora\Scripts\Effect\SpecialCard\PowerUp\PowerUp.cs" />
+    <Compile Include="Assets\Bora\Scripts\Effect\SpecialCard\PowerUp\PowerUpAlpha.cs" />
+    <Compile Include="Assets\Bora\Scripts\Effect\SpecialCard\PowerUp\PowerUpManager.cs" />
+    <Compile Include="Assets\Bora\Scripts\Effect\SpecialCard\Reverse\PurunManju.cs" />
+    <Compile Include="Assets\Bora\Scripts\Effect\SpecialCard\Reverse\ReverseEffect.cs" />
+    <Compile Include="Assets\Bora\Scripts\Effect\SpecialCard\Reverse\ReverseEffectManager.cs" />
+    <Compile Include="Assets\Bora\Scripts\Effect\SpecialCard\Wild\WildEffect.cs" />
+    <Compile Include="Assets\Bora\Scripts\Effect\SpecialCard\Wild\WildEffectManager.cs" />
+    <Compile Include="Assets\Bora\Scripts\Effect\Touch\TouchEffect.cs" />
+    <Compile Include="Assets\Bora\Scripts\Effect\Touch\TouchEffectCreator.cs" />
+    <Compile Include="Assets\Bora\Scripts\Enemy\AtackNearness.cs" />
+    <Compile Include="Assets\Bora\Scripts\Enemy\EnemyDeathSound.cs" />
+    <Compile Include="Assets\Bora\Scripts\Enemy\EnemyMove.cs" />
+    <Compile Include="Assets\Bora\Scripts\Enemy\EnemyPos.cs" />
+    <Compile Include="Assets\Bora\Scripts\Fever\FeverRogo.cs" />
+    <Compile Include="Assets\Bora\Scripts\Fever\UnoRogo.cs" />
+    <Compile Include="Assets\Bora\Scripts\GameMain\Card\CardResource.cs" />
+    <Compile Include="Assets\Bora\Scripts\GameMain\Card\CardShuffle.cs" />
+    <Compile Include="Assets\Bora\Scripts\GameMain\Card\FeverCard.cs" />
+    <Compile Include="Assets\Bora\Scripts\GameMain\Card\FieldCard.cs" />
+    <Compile Include="Assets\Bora\Scripts\GameMain\Card\NotAnswer.cs" />
+    <Compile Include="Assets\Bora\Scripts\GameMain\Card\ResetCard.cs" />
+    <Compile Include="Assets\Bora\Scripts\GameMain\Card\TrajectoryCreator.cs" />
+    <Compile Include="Assets\Bora\Scripts\GameMain\Card\UnoCreateManager.cs" />
+    <Compile Include="Assets\Bora\Scripts\GameMain\Card\UnoData.cs" />
+    <Compile Include="Assets\Bora\Scripts\GameMain\Card\UnoProbability.cs" />
+    <Compile Include="Assets\Bora\Scripts\GameMain\Card\UnoStruct.cs" />
+    <Compile Include="Assets\Bora\Scripts\GameMain\DyingPlayer.cs" />
+    <Compile Include="Assets\Bora\Scripts\GameMain\GameController.cs" />
+    <Compile Include="Assets\Bora\Scripts\GameMain\HpNumberEffect.cs" />
+    <Compile Include="Assets\Bora\Scripts\GameMain\NotTouch.cs" />
+    <Compile Include="Assets\Bora\Scripts\GameMain\Pause\GamePause.cs" />
+    <Compile Include="Assets\Bora\Scripts\GameMain\Pause\PauseButton.cs" />
+    <Compile Include="Assets\Bora\Scripts\GameMain\Pause\Retire.cs" />
+    <Compile Include="Assets\Bora\Scripts\GameMain\Pause\ReturnGame.cs" />
+    <Compile Include="Assets\Bora\Scripts\GameMain\TouchManager.cs" />
+    <Compile Include="Assets\Bora\Scripts\GameMain\TurnData\DrowData.cs" />
+    <Compile Include="Assets\Bora\Scripts\GameMain\TurnData\DrowDataManager.cs" />
+    <Compile Include="Assets\Bora\Scripts\GameMain\TurnData\TurnData.cs" />
+    <Compile Include="Assets\Bora\Scripts\GameMain\TurnData\TurnDataBase.cs" />
+    <Compile Include="Assets\Bora\Scripts\GameMain\TurnData\TurnDataCalculator.cs" />
+    <Compile Include="Assets\Bora\Scripts\GameMain\TurnData\TurnDataHolder.cs" />
+    <Compile Include="Assets\Bora\Scripts\GameMain\TurnData\TurnSound.cs" />
+    <Compile Include="Assets\Bora\Scripts\GameStart\ReadyGo\Go.cs" />
+    <Compile Include="Assets\Bora\Scripts\GameStart\ReadyGo\Ready.cs" />
+    <Compile Include="Assets\Bora\Scripts\GameStart\Starter\Boss\Boss_Appear.cs" />
+    <Compile Include="Assets\Bora\Scripts\GameStart\Starter\Boss\Boss_Fade.cs" />
+    <Compile Include="Assets\Bora\Scripts\GameStart\Starter\Boss\Boss_TextMove.cs" />
+    <Compile Include="Assets\Bora\Scripts\GameStart\Starter\Dissolve\Dissolver.cs" />
+    <Compile Include="Assets\Bora\Scripts\GameStart\Starter\Dissolve\EnemyManager.cs" />
+    <Compile Include="Assets\Bora\Scripts\GameStart\Starter\Enemy\Enemy_AllFadeOut.cs" />
+    <Compile Include="Assets\Bora\Scripts\GameStart\Starter\Enemy\Enemy_BackFadeIn.cs" />
+    <Compile Include="Assets\Bora\Scripts\GameStart\Starter\Enemy\Enemy_StageRogo.cs" />
+    <Compile Include="Assets\Bora\Scripts\Generic\Test.cs" />
+    <Compile Include="Assets\Bora\Scripts\Generic\TriangleWave\ICalculator.cs" />
+    <Compile Include="Assets\Bora\Scripts\Generic\TriangleWave\TriangleWave.cs" />
+    <Compile Include="Assets\Bora\Scripts\Generic\TriangleWave\TriangleWaveFactory.cs" />
+    <Compile Include="Assets\Bora\Scripts\Generic\TriangleWave\TriangleWaveOscillator.cs" />
+    <Compile Include="Assets\Bora\Scripts\LeaderSkill\LeaderSkillAtack.cs" />
+    <Compile Include="Assets\Bora\Scripts\LeaderSkill\LeaderSkillBase.cs" />
+    <Compile Include="Assets\Bora\Scripts\LeaderSkill\LeaderSkillExpUp.cs" />
+    <Compile Include="Assets\Bora\Scripts\LeaderSkill\LeaderSkillHeel.cs" />
+    <Compile Include="Assets\Bora\Scripts\LeaderSkill\LeaderSkillRise.cs" />
+    <Compile Include="Assets\Bora\Scripts\Menu\Main\CharaDrower.cs" />
+    <Compile Include="Assets\Bora\Scripts\Menu\Main\CharactorDrowerCreator.cs" />
+    <Compile Include="Assets\Bora\Scripts\Menu\Main\CircleButton.cs" />
+    <Compile Include="Assets\Bora\Scripts\Menu\Main\GoQuest.cs" />
+    <Compile Include="Assets\Bora\Scripts\Menu\PartySelect\BackRot.cs" />
+    <Compile Include="Assets\Bora\Scripts\Menu\PartySelect\CharaIconFade.cs" />
+    <Compile Include="Assets\Bora\Scripts\Menu\PartySelect\CharaIconMove.cs" />
+    <Compile Include="Assets\Bora\Scripts\Menu\PartySelect\GoMain.cs" />
+    <Compile Include="Assets\Bora\Scripts\Menu\PartySelect\Go_Back.cs" />
+    <Compile Include="Assets\Bora\Scripts\Menu\PartySelect\ReturnQuest.cs" />
+    <Compile Include="Assets\Bora\Scripts\Menu\PartySelect\StatusFrame.cs" />
+    <Compile Include="Assets\Bora\Scripts\Menu\Quest\GoParty.cs" />
+    <Compile Include="Assets\Bora\Scripts\Menu\Quest\QuestBack.cs" />
+    <Compile Include="Assets\Bora\Scripts\Menu\Quest\ReturnMenu.cs" />
+    <Compile Include="Assets\Bora\Scripts\Menu\Title\CloudRot.cs" />
+    <Compile Include="Assets\Bora\Scripts\Menu\Title\PressStart.cs" />
+    <Compile Include="Assets\Bora\Scripts\Result\CardRot\CardRotation.cs" />
+    <Compile Include="Assets\Bora\Scripts\Result\Continue\Continue.cs" />
+    <Compile Include="Assets\Bora\Scripts\Result\Continue\ContinueAtackUp.cs" />
+    <Compile Include="Assets\Bora\Scripts\Result\Continue\ContinueAtackUpManager.cs" />
+    <Compile Include="Assets\Bora\Scripts\Result\Continue\ContinueCardBase.cs" />
+    <Compile Include="Assets\Bora\Scripts\Result\Continue\ContinueHeel.cs" />
+    <Compile Include="Assets\Bora\Scripts\Result\Continue\ContinueMaxFever.cs" />
+    <Compile Include="Assets\Bora\Scripts\Result\Continue\ContinueMessage.cs" />
+    <Compile Include="Assets\Bora\Scripts\Result\Continue\ContinueSkillCreator.cs" />
+    <Compile Include="Assets\Bora\Scripts\Result\DeathRed.cs" />
+    <Compile Include="Assets\Bora\Scripts\Result\GameOver.cs" />
+    <Compile Include="Assets\Bora\Scripts\Result\NoAnswer.cs" />
+    <Compile Include="Assets\Bora\Scripts\Result\Result.cs" />
+    <Compile Include="Assets\Bora\Scripts\Result\ResultBase.cs" />
+    <Compile Include="Assets\Bora\Scripts\Result\ResultManager.cs" />
+    <Compile Include="Assets\Bora\Scripts\Result\Win\Flower.cs" />
+    <Compile Include="Assets\Bora\Scripts\Result\Win\FlowerCreator.cs" />
+    <Compile Include="Assets\Bora\Scripts\Result\Win\Sun.cs" />
+    <Compile Include="Assets\Bora\Scripts\Scene\FadeManager.cs" />
+    <Compile Include="Assets\Bora\Scripts\Scene\SceneChanger.cs" />
+    <Compile Include="Assets\Bora\Scripts\Sound\SoundManager.cs" />
+    <Compile Include="Assets\Scripts\BattleDataBase.cs" />
+    <Compile Include="Assets\Scripts\Debug\BattleSequence_Debug.cs" />
+    <Compile Include="Assets\Scripts\Debug\CharactorDataList_Debug.cs" />
+    <Compile Include="Assets\Scripts\Debug\CharactorData_Debug.cs" />
+    <Compile Include="Assets\Scripts\Debug\CharactorSelect_Debug.cs" />
+    <Compile Include="Assets\Scripts\Debug\Charactor_Debug.cs" />
+    <Compile Include="Assets\Scripts\Debug\Charactors_Debug.cs" />
+    <Compile Include="Assets\Scripts\Debug\Enemy_Debug.cs" />
+    <Compile Include="Assets\Scripts\Debug\RemovedCard_Debug.cs" />
+    <Compile Include="Assets\Scripts\GameMain\BattleManager.cs" />
+    <Compile Include="Assets\Scripts\GameMain\Caution.cs" />
+    <Compile Include="Assets\Scripts\GameMain\Charactor.cs" />
+    <Compile Include="Assets\Scripts\GameMain\Damage.cs" />
+    <Compile Include="Assets\Scripts\GameMain\DamageConfig.cs" />
+    <Compile Include="Assets\Scripts\GameMain\DamageNumber.cs" />
+    <Compile Include="Assets\Scripts\GameMain\Enemy.cs" />
+    <Compile Include="Assets\Scripts\GameMain\FeverGauge.cs" />
+    <Compile Include="Assets\Scripts\GameMain\FlashConfig.cs" />
+    <Compile Include="Assets\Scripts\GameMain\GameMainUpperManager.cs" />
+    <Compile Include="Assets\Scripts\GameMain\HPNumber.cs" />
+    <Compile Include="Assets\Scripts\GameMain\HpGauge.cs" />
+    <Compile Include="Assets\Scripts\GameMain\Player.cs" />
+    <Compile Include="Assets\Scripts\GameMain\PlayerCharactor.cs" />
+    <Compile Include="Assets\Scripts\GameMain\PlayerHPGauge.cs" />
+    <Compile Include="Assets\Scripts\GameMain\TimeGauge.cs" />
+    <Compile Include="Assets\Scripts\System\Encryption.cs" />
+    <Compile Include="Assets\Scripts\System\JsonManager.cs" />
+    <Compile Include="Assets\Scripts\System\Serialization.cs" />
+    <Compile Include="Assets\Scripts\UI\ButtonEx.cs" />
+    <None Include="Assets\AssetStore\Demigiant\DOTween\DOTween43.xml" />
+    <None Include="Assets\AssetStore\Demigiant\DOTween\DOTween50.xml" />
+    <None Include="Assets\Shaders\Dissolve.shader" />
+    <None Include="Assets\AssetStore\Elementals\Readme.txt" />
+    <None Include="Assets\Plugins\UniRx\ReadMe.txt" />
+    <None Include="Assets\AssetStore\GUI Animator\GUI Animator FREE\Readme.txt" />
+    <None Include="Assets\AssetStore\Demigiant\DOTween\DOTween46.xml" />
+    <None Include="Assets\AssetStore\GE Common Assets\Readme.txt" />
+    <None Include="Assets\AssetStore\GUI Animator\GUI Animator FREE\!How to.txt" />
+    <None Include="Assets\Shaders\CullOn.shader" />
+    <Reference Include="UnityEngine.UI">
+      <HintPath>C:\Program Files\Unity\Editor\Data\UnityExtensions\Unity\GUISystem\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>C:\Program Files\Unity\Editor\Data\UnityExtensions\Unity\Networking\UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween">
+      <HintPath>C:\Users\syota\Desktop\GitHub\UNOir\Assets\AssetStore\Demigiant\DOTween\DOTween.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween43">
+      <HintPath>C:\Users\syota\Desktop\GitHub\UNOir\Assets\AssetStore\Demigiant\DOTween\DOTween43.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween46">
+      <HintPath>C:\Users\syota\Desktop\GitHub\UNOir\Assets\AssetStore\Demigiant\DOTween\DOTween46.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween50">
+      <HintPath>C:\Users\syota\Desktop\GitHub\UNOir\Assets\AssetStore\Demigiant\DOTween\DOTween50.dll</HintPath>
+    </Reference>
+    <Reference Include="GETween">
+      <HintPath>C:\Users\syota\Desktop\GitHub\UNOir\Assets\AssetStore\GUI Animator\Common\Plugins\GETween.dll</HintPath>
+    </Reference>
+    <Reference Include="GUIAnimatorFREE">
+      <HintPath>C:\Users\syota\Desktop\GitHub\UNOir\Assets\AssetStore\GUI Animator\GUI Animator FREE\Plugins\GUIAnimatorFREE.dll</HintPath>
+    </Reference>
+    <Compile Include="Assets\AssetStore\GUI Animator\GUI Animator FREE\Demo %28CSharp%29\Scripts\GA_FREE_Demo00.cs" />
+    <Compile Include="Assets\AssetStore\GUI Animator\GUI Animator FREE\Demo %28CSharp%29\Scripts\GA_FREE_Demo01.cs" />
+    <Compile Include="Assets\AssetStore\GUI Animator\GUI Animator FREE\Demo %28CSharp%29\Scripts\GA_FREE_Demo02.cs" />
+    <Compile Include="Assets\AssetStore\GUI Animator\GUI Animator FREE\Demo %28CSharp%29\Scripts\GA_FREE_Demo03.cs" />
+    <Compile Include="Assets\AssetStore\GUI Animator\GUI Animator FREE\Demo %28CSharp%29\Scripts\GA_FREE_Demo04.cs" />
+    <Compile Include="Assets\AssetStore\GUI Animator\GUI Animator FREE\Demo %28CSharp%29\Scripts\GA_FREE_Demo05.cs" />
+    <Compile Include="Assets\AssetStore\GUI Animator\GUI Animator FREE\Demo %28CSharp%29\Scripts\GA_FREE_Demo06.cs" />
+    <Compile Include="Assets\AssetStore\GUI Animator\GUI Animator FREE\Demo %28CSharp%29\Scripts\GA_FREE_Demo07.cs" />
+    <Compile Include="Assets\AssetStore\GUI Animator\GUI Animator FREE\Demo %28CSharp%29\Scripts\GA_FREE_Demo08.cs" />
+    <Compile Include="Assets\AssetStore\GUI Animator\GUI Animator FREE\Demo %28CSharp%29\Scripts\GA_FREE_DemoPlaySound.cs" />
+    <Compile Include="Assets\AssetStore\GUI Animator\GUI Animator FREE\Demo %28CSharp%29\Scripts\GA_FREE_OpenOtherScene.cs" />
+    <Compile Include="Assets\AssetStore\GUI Animator\GUI Animator FREE\Demo Basic %28CSharp%29\Scripts\GUIAnimatorFREEDemo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{049D25A2-7961-4B31-AFF9-4B5A5A08A8BE}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+      <Project>{049D25A2-7961-4B31-AFF9-4B5A5A08A8BE}</Project>
+      <Name>Assembly-CSharp-firstpass</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -303,5 +304,7 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  
+  <ItemGroup>
+    <Folder Include="Assets\Bora\Scripts\GameMain\Card\" />
+  </ItemGroup>
 </Project>

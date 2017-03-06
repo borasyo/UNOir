@@ -66,7 +66,8 @@ namespace UniRx.Examples
                         Debug.Log(ex.RawErrorMessage);
                         if (ex.HasResponse)
                         {
-                            Debug.Log(ex.StatusCode);
+                
+                                Debug.Log(ex.StatusCode);
                         }
                         foreach (var item in ex.ResponseHeaders)
                         {
