@@ -3,9 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
+using UniRx;
+using UniRx.Triggers;
+
 public class CharaSkillEffect : MonoBehaviour
 {
-
     /// <summary>
     /// 概要 : 
     /// キャラカードが盤面にあって、出せる時に
@@ -23,11 +25,10 @@ public class CharaSkillEffect : MonoBehaviour
         m_UnoData = GetComponentInParent<UnoData> ();
 
         UpdateEnable ();
-    }
 
-    void Update ()
-    {
-        SetColor (FieldCard.Instance.Judge (m_UnoData.CardData) && !m_UnoData.OnClick && !GameController.Instance.bStop);
+        this.UpdateAsObservable()
+            .Where(_ => this.enabled)
+            .Subscribe(_ => SetColor (FieldCard.Instance.Judge (m_UnoData.CardData) && !m_UnoData.OnClick && !GameController.Instance.bStop));
     }
 
     // このカードは今キャラカードなのかをパーティ情報からチェック

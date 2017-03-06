@@ -1,6 +1,8 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2008
 
+Project("{8CDEA25F-042D-3D93-1B3E-A8F9561BE3A0}") = "UNOir", "Assembly-CSharp-firstpass.csproj", "{049D25A2-7961-4B31-AFF9-4B5A5A08A8BE}"
+EndProject
 Project("{8CDEA25F-042D-3D93-1B3E-A8F9561BE3A0}") = "UNOir", "Assembly-CSharp.csproj", "{C8AC7687-DC0D-EE1A-2EDB-F236C5AA30F9}"
 EndProject
 Project("{8CDEA25F-042D-3D93-1B3E-A8F9561BE3A0}") = "UNOir", "Assembly-CSharp-Editor.csproj", "{FD04F993-16B9-C3BD-98BC-3C5EF078F8DF}"
@@ -13,6 +15,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{049D25A2-7961-4B31-AFF9-4B5A5A08A8BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{049D25A2-7961-4B31-AFF9-4B5A5A08A8BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{049D25A2-7961-4B31-AFF9-4B5A5A08A8BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{049D25A2-7961-4B31-AFF9-4B5A5A08A8BE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C8AC7687-DC0D-EE1A-2EDB-F236C5AA30F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C8AC7687-DC0D-EE1A-2EDB-F236C5AA30F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C8AC7687-DC0D-EE1A-2EDB-F236C5AA30F9}.Release|Any CPU.ActiveCfg = Release|Any CPU

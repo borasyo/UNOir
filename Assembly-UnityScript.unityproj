@@ -60,6 +60,7 @@
      <None Include="Assets\AssetStore\Demigiant\DOTween\DOTween50.xml" />
      <None Include="Assets\Shaders\Dissolve.shader" />
      <None Include="Assets\AssetStore\Elementals\Readme.txt" />
+     <None Include="Assets\Plugins\UniRx\ReadMe.txt" />
      <None Include="Assets\AssetStore\GUI Animator\GUI Animator FREE\Readme.txt" />
      <None Include="Assets\AssetStore\Demigiant\DOTween\DOTween46.xml" />
      <None Include="Assets\AssetStore\GE Common Assets\Readme.txt" />
@@ -89,6 +90,10 @@
  <Reference Include="GUIAnimatorFREE">
  <HintPath>C:/Users/syota/Desktop/GitHub/UNOir/Assets/AssetStore/GUI Animator/GUI Animator FREE/Plugins/GUIAnimatorFREE.dll</HintPath>
  </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{049D25A2-7961-4B31-AFF9-4B5A5A08A8BE}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
