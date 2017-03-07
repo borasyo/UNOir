@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+using UniRx;
+using UniRx.Triggers;
+
 // 指定された型で、指定された範囲の三角波生成器
 public class TriangleWave<T>
 {
@@ -34,11 +37,6 @@ public class TriangleWave<T>
         range = calculator.Sub (max, min);
     }
 
-    // TODO : 今のところ必要ない
-    /*public void SetPeriod (float halfPeriod_sec) {
-        oscillator.Set (harfPeriod_sec);
-    }*/
-
     #endregion
 
     #region GetFunction
@@ -47,7 +45,12 @@ public class TriangleWave<T>
     public int GetHalfLapCnt { get { return oscillator.GetHalfLapCnt; } }   //  何半復したかを返す(偶数の場合は加算、逆は減算)
 
     // 現在、値が増加中かを返す
-    public bool IsAdd { get { return (GetHalfLapCnt % 2 == 0); } }
+    private bool IsAdd { get { return (GetHalfLapCnt % 2 == 0); } }
+
+    // Reverseタイミングで実行されるObservableを生成
+    public IObservable<bool> OnReverse { get { return this.ObserveEveryValueChanged (x => x.IsAdd); } }
+    public IObservable<bool> OnReverseNowAdd { get { return this.ObserveEveryValueChanged (x => x.IsAdd).Where (IsAdd => IsAdd); } }
+    public IObservable<bool> OnReverseNowSub { get { return this.ObserveEveryValueChanged (x => x.IsAdd).Where (IsAdd => !IsAdd); } }
 
     #endregion
 

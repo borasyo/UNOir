@@ -2,17 +2,18 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Bora\Scripts\Generic\TriangleWave\TriangleWave.cs">
     <Files>
-      <File FileName="Assets\Bora\Scripts\GameMain\Card\ResetCard.cs" Line="40" Column="37" />
-      <File FileName="Assets\Bora\Scripts\GameMain\Card\CardShuffle.cs" Line="30" Column="27" />
-      <File FileName="Assets\Bora\Scripts\GameMain\TouchManager.cs" Line="30" Column="45" />
+      <File FileName="Assets\Bora\Scripts\Generic\TriangleWave\TriangleWave.cs" Line="58" Column="28" />
+      <File FileName="Assets\Bora\Scripts\GameMain\Card\ResetCard.cs" Line="38" Column="44" />
+      <File FileName="Assets\Bora\Scripts\GameMain\Card\CardShuffle.cs" Line="45" Column="46" />
+      <File FileName="Assets\Bora\Scripts\GameMain\TouchManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Bora\Scripts\GameMain\Card\NotAnswer.cs" Line="1" Column="1" />
-      <File FileName="Assets\Bora\Scripts\Generic\TriangleWave\TriangleWave.cs" Line="23" Column="29" />
       <File FileName="Assets\Bora\Scripts\GameMain\Card\FieldCard.cs" Line="1" Column="1" />
       <File FileName="Assets\Bora\Scripts\CharaSkill\CharaSkillEffectData.cs" Line="1" Column="1" />
       <File FileName="Assets\Bora\Scripts\CharaSkill\CharaSkillEffect.cs" Line="1" Column="1" />
       <File FileName="Assets\Bora\Scripts\Scene\SceneChanger.cs" Line="1" Column="1" />
       <File FileName="Assets\Bora\Scripts\GameStart\ReadyGo\Go.cs" Line="1" Column="1" />
       <File FileName="Assets\Bora\Scripts\GameStart\ReadyGo\Ready.cs" Line="1" Column="1" />
+      <File FileName="Assets\Bora\Scripts\GameMain\TurnData\DrowData.cs" Line="9" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

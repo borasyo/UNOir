@@ -30,20 +30,20 @@ public class CardShuffle : MonoBehaviour {
         this.UpdateAsObservable ()
             .Where (_ => this.enabled)
             .Subscribe (_ => {
-                m_TriangleWaveVector3.Progress ();
-                transform.position = m_TriangleWaveVector3.CurrentValue;
-            });
+            m_TriangleWaveVector3.Progress ();
+            transform.position = m_TriangleWaveVector3.CurrentValue;
+        });
 
-        // 増減反転時の処理を行う
-        m_TriangleWaveVector3.ObserveEveryValueChanged (x => x.IsAdd)
-            .Subscribe (IsAdd => {
-                if (!IsAdd) {
-                    m_UnoData.Change();
-                } else {
-                    transform.position = m_UnoData.GetInitPos;
-                    this.enabled = false;
-                }
-            });
+        // 増加に反転した時の処理を行う
+        m_TriangleWaveVector3.OnReverseNowAdd
+            .Subscribe (_ => {
+                transform.position = m_UnoData.GetInitPos;
+                this.enabled = false;
+        });
+
+        // 減算に反転した時の処理を行う
+        m_TriangleWaveVector3.OnReverseNowSub
+            .Subscribe (_ => { m_UnoData.Change(); });
     }
 
     public void Run()

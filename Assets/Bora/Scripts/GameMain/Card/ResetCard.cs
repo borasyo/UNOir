@@ -35,9 +35,8 @@ public class ResetCard : MonoBehaviour
             });
 
         // 1周したら終了させる
-        m_TriangleWaveColor.ObserveEveryValueChanged (x => x.IsAdd)
-            .Where (IsAdd => IsAdd)
-            .Subscribe (_ => SetEnable (false));
+        m_TriangleWaveColor.OnReverseNowAdd.Subscribe (_ => SetEnable (false));
+
 
         SetEnable (false);
     }
