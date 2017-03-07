@@ -35,10 +35,9 @@ public class CardShuffle : MonoBehaviour {
             });
 
         // 増減反転時の処理を行う
-        m_TriangleWaveVector3.ObserveEveryValueChanged (x => x.IsReverseTiming)
-            .Where (b => b)
-            .Subscribe (_ => {
-                if (!m_TriangleWaveVector3.IsAdd) {
+        m_TriangleWaveVector3.ObserveEveryValueChanged (x => x.IsAdd)
+            .Subscribe (IsAdd => {
+                if (!IsAdd) {
                     m_UnoData.Change();
                 } else {
                     transform.position = m_UnoData.GetInitPos;

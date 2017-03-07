@@ -2,144 +2,159 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class TouchManager : MonoBehaviour {
+using UniRx;
+using UniRx.Triggers;
 
-	/// <summary>
-	/// 概要 : タッチ処理を管理
-	/// Author : 大洞祥太
-	/// </summary>
+public class TouchManager : MonoBehaviour
+{
+    /// <summary>
+    /// 概要 : タッチ処理を管理
+    /// Author : 大洞祥太
+    /// </summary>
 
-	static TouchManager instance;
+    #region Singleton
 
-	public static TouchManager Instance {
-		get {
-			if (instance == null) {
-				instance = (TouchManager)FindObjectOfType(typeof(TouchManager));
+    private static TouchManager instance;
 
-				if (instance == null) {
-					Debug.LogError("TouchManager Instance Error");
-				}
-			}
-			return instance;
-		}
-	}
+    public static TouchManager Instance {
+        get {
+            if (instance)
+                return instance;
 
-	bool bTouch = false;
-	public int nTouchId { get; private set; }
+            instance = (TouchManager)FindObjectOfType (typeof(TouchManager));
 
-	[SerializeField]
-	FeverGauge fever = null;
-	public FeverGauge feverGauge { get { return fever; } private set { fever = value; } }
+            if (instance)
+                return instance;
 
-	void Awake() {
-		if (this != Instance) {
-			Destroy (this.gameObject);
-			return;
-		}
-		nTouchId = 0;
-	}
+            GameObject obj = new GameObject ();
+            obj.AddComponent<TouchManager> ();
+            Debug.Log (typeof(TouchManager) + "が存在していないのに参照されたので生成");
 
-	// Update is called once per frame
-	void Update () {
+            return instance;
+        }
+    }
 
-		// タッチオフ
-		bTouch = false;
+    #endregion
 
-		Vector2 pos = Vector2.zero;
-		if (Application.platform == RuntimePlatform.Android) {
+    bool bTouch = false;
 
-			if (Input.touchCount > 0) {
-				if (Input.GetTouch (0).phase == TouchPhase.Began) {
-					pos = Input.GetTouch (0).position;
-					bTouch = true;
-					nTouchId = Input.GetTouch (0).fingerId;
-					//FieldCard.Instance.TempList.Clear ();
-				} else if (Input.GetTouch (0).phase == TouchPhase.Ended) {
-					List<UnoData> list = UnoCreateManager.Instance.GetCardList();
-					for(int i = 0; i < list.Count; i++) {
-						list [i].CollisionChange (true);
-					}
-				}
-			}
+    public int nTouchId { get; private set; }
 
-		} else {
+    [SerializeField]
+    FeverGauge fever = null;
+
+    public FeverGauge feverGauge { get { return fever; } private set { fever = value; } }
+
+    void Awake ()
+    {
+        if (this != Instance) {
+            Destroy (this.gameObject);
+            return;
+        }
+        nTouchId = 0;
+    }
+
+    // Update is called once per frame
+    void Update ()
+    {
+        // タッチオフ
+        bTouch = false;
+
+        Vector2 pos = Vector2.zero;
+        if (Application.platform == RuntimePlatform.Android) {
+
+            if (Input.touchCount > 0) {
+                if (Input.GetTouch (0).phase == TouchPhase.Began) {
+                    pos = Input.GetTouch (0).position;
+                    bTouch = true;
+                    nTouchId = Input.GetTouch (0).fingerId;
+                } else if (Input.GetTouch (0).phase == TouchPhase.Ended) {
+                    List<UnoData> list = UnoCreateManager.Instance.GetCardList ();
+                    for (int i = 0; i < list.Count; i++) {
+                        list [i].CollisionChange (true);
+                    }
+                }
+            }
+
+        } else {
 			
-			if (Input.GetMouseButtonDown (0)) {
-				pos = Input.mousePosition;
-				bTouch = true;
-			} else if (Input.GetMouseButtonUp(0)) {
-				List<UnoData> list = UnoCreateManager.Instance.GetCardList();
-				for(int i = 0; i < list.Count; i++) {
-					list [i].CollisionChange (true);
-				}
-			}
-		}
+            if (Input.GetMouseButtonDown (0)) {
+                pos = Input.mousePosition;
+                bTouch = true;
+            } else if (Input.GetMouseButtonUp (0)) {
+                List<UnoData> list = UnoCreateManager.Instance.GetCardList ();
+                for (int i = 0; i < list.Count; i++) {
+                    list [i].CollisionChange (true);
+                }
+            }
+        }
 
-		// カットインなどの場合はこれ以上はいかない
-		if (GameController.Instance.bStop)
-			return;
+        // カットインなどの場合はこれ以上はいかない
+        if (GameController.Instance.bStop)
+            return;
 		
-		if(!BattleManager.Instance.GetIsInBattle())
-			return;
+        if (!BattleManager.Instance.GetIsInBattle ())
+            return;
 
-		if (!bTouch)
-			return;
+        if (!bTouch)
+            return;
 
-		Vector2 Point = Camera.main.ScreenToWorldPoint (pos);
-		Collider2D collider2D = Physics2D.OverlapPoint (Point);
+        Vector2 Point = Camera.main.ScreenToWorldPoint (pos);
+        Collider2D collider2D = Physics2D.OverlapPoint (Point);
 
-		if (!collider2D)
-			return;
+        if (!collider2D)
+            return;
 
-		if (collider2D.tag == "Enemy") {
-			Enemy enemy = collider2D.gameObject.GetComponent<Enemy> ();
-			GameMainUpperManager.instance.player.ChangeTargetEnemy (enemy);
+        if (collider2D.tag == "Enemy") {
+            Enemy enemy = collider2D.gameObject.GetComponent<Enemy> ();
+            GameMainUpperManager.instance.player.ChangeTargetEnemy (enemy);
 
-		} else {
-			UnoData data = collider2D.gameObject.GetComponent<UnoData> ();
+        } else {
+            UnoData data = collider2D.gameObject.GetComponent<UnoData> ();
 
-			if (FieldCard.Instance.bNotSet)
-				return;
+            if (FieldCard.Instance.bNotSet)
+                return;
 
-			if (data.bCharaSkillEffect)
-				return;
+            if (data.bCharaSkillEffect)
+                return;
 
-			if (data.bCardMove)
-				return;
+            if (data.bCardMove)
+                return;
 
-			data.OnTouch ();
-			List<UnoData> list = UnoCreateManager.Instance.GetCardList ();
-			for (int i = 0; i < list.Count; i++) {
-				list [i].CollisionChange (false);
-			}
-		}
-	}
+            data.OnTouch ();
+            List<UnoData> list = UnoCreateManager.Instance.GetCardList ();
+            for (int i = 0; i < list.Count; i++) {
+                list [i].CollisionChange (false);
+            }
+        }
+    }
 
-	public bool Touch {
-		get { return bTouch; }
-	}
+    public bool Touch {
+        get { return bTouch; }
+    }
 
-	public bool TouchCheck() {
+    public bool TouchCheck ()
+    {
+        if (GameController.Instance.bStop)
+            return false;
 
-		if (GameController.Instance.bStop)
-			return false;
+        bool bNowTouch = false;
 
-		bool bNowTouch = false;
+        if (Application.platform == RuntimePlatform.Android) {
+            if (Input.touchCount > 0 && Input.GetTouch (0).phase == TouchPhase.Began) {
+                bNowTouch = true;
+            }
+        } else {
+            if (Input.GetMouseButtonDown (0)) {
+                bNowTouch = true;
+            }
+        }
 
-		if (Application.platform == RuntimePlatform.Android) {
-			if (Input.touchCount > 0 && Input.GetTouch (0).phase == TouchPhase.Began) {
-				bNowTouch = true;
-			}
-		} else {
-			if (Input.GetMouseButtonDown (0)) {
-				bNowTouch = true;
-			}
-		}
+        return bNowTouch;
+    }
 
-		return bNowTouch;
-	}
-
-	public bool OnlyTouch(Touch touch) {
-		return touch.fingerId == nTouchId;
-	}
+    public bool OnlyTouch (Touch touch)
+    {
+        return touch.fingerId == nTouchId;
+    }
 }

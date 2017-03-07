@@ -13,8 +13,6 @@ public class TriangleWave<T>
     private T range;
     private ICalculator<T> calculator;
 
-    private int oldHalfLapCnt = 0;
-
     // operator に頼らず演算ができる
     public T CurrentValue { get { return calculator.Add (Min, calculator.Mul (range, oscillator.m_fValue)); } }
 
@@ -48,9 +46,6 @@ public class TriangleWave<T>
     public int GetLapCnt { get { return oscillator.GetLapCnt; } }           //  何往復したかを返す
     public int GetHalfLapCnt { get { return oscillator.GetHalfLapCnt; } }   //  何半復したかを返す(偶数の場合は加算、逆は減算)
 
-    // 増減が反転したタイミングでTrueを返す
-    public bool IsReverseTiming { get { return oldHalfLapCnt != GetHalfLapCnt; } }
-
     // 現在、値が増加中かを返す
     public bool IsAdd { get { return (GetHalfLapCnt % 2 == 0); } }
 
@@ -59,7 +54,6 @@ public class TriangleWave<T>
     // 事前に時間を指定しておき、自律的に発振するように変更
     public void Progress ()
     {
-        oldHalfLapCnt = GetHalfLapCnt;
         oscillator.Progress ();
     }
 }

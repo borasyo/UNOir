@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UniRx;
+using UniRx.Triggers;
 
 public class ResetCard : MonoBehaviour
 {
@@ -24,21 +26,20 @@ public class ResetCard : MonoBehaviour
         Color max = new Color (1,1,1,m_fMaxAlpha); 
         m_TriangleWaveColor = TriangleWaveFactory.Color (min, max, m_fTime);
 
+        // 固定更新処理
+        this.UpdateAsObservable ()
+            .Where (_ => this.enabled)
+            .Subscribe (_ => {
+                m_TriangleWaveColor.Progress ();
+                m_SpriteRender.color = m_TriangleWaveColor.CurrentValue;
+            });
+
+        // 1周したら終了させる
+        m_TriangleWaveColor.ObserveEveryValueChanged (x => x.IsAdd)
+            .Where (IsAdd => IsAdd)
+            .Subscribe (_ => SetEnable (false));
+
         SetEnable (false);
-    }
-
-    void Update ()
-    {
-        m_TriangleWaveColor.Progress ();
-        m_SpriteRender.color = m_TriangleWaveColor.CurrentValue;
-
-        if (!m_TriangleWaveColor.IsReverseTiming)
-            return;
-
-        // 1周したので終了
-        if (m_TriangleWaveColor.IsAdd) {
-            SetEnable (false);
-        }
     }
 
     public void Run ()
