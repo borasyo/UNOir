@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-
 using UniRx;
 using UniRx.Triggers;
 
@@ -49,8 +48,8 @@ public class TriangleWave<T>
 
     // Reverseタイミングで実行されるObservableを生成
     public IObservable<bool> OnReverse { get { return this.ObserveEveryValueChanged (x => x.IsAdd); } }
-    public IObservable<bool> OnReverseNowAdd { get { return this.ObserveEveryValueChanged (x => x.IsAdd).Where (IsAdd => IsAdd); } }
-    public IObservable<bool> OnReverseNowSub { get { return this.ObserveEveryValueChanged (x => x.IsAdd).Where (IsAdd => !IsAdd); } }
+    public IObservable<bool> OnReverseNowAdd { get { return OnReverse.Where (IsAdd => IsAdd); } }
+    public IObservable<bool> OnReverseNowSub { get { return OnReverse.Where (IsAdd => !IsAdd); } }
 
     #endregion
 

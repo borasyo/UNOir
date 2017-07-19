@@ -1,11 +1,11 @@
+﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2008
-
-Project("{8CDEA25F-042D-3D93-1B3E-A8F9561BE3A0}") = "UNOir", "Assembly-CSharp-firstpass.csproj", "{049D25A2-7961-4B31-AFF9-4B5A5A08A8BE}"
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UNOir", "Assembly-CSharp-firstpass.csproj", "{049D25A2-7961-4B31-AFF9-4B5A5A08A8BE}"
 EndProject
-Project("{8CDEA25F-042D-3D93-1B3E-A8F9561BE3A0}") = "UNOir", "Assembly-CSharp.csproj", "{C8AC7687-DC0D-EE1A-2EDB-F236C5AA30F9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UNOir", "Assembly-CSharp.csproj", "{C8AC7687-DC0D-EE1A-2EDB-F236C5AA30F9}"
 EndProject
-Project("{8CDEA25F-042D-3D93-1B3E-A8F9561BE3A0}") = "UNOir", "Assembly-CSharp-Editor.csproj", "{FD04F993-16B9-C3BD-98BC-3C5EF078F8DF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UNOir", "Assembly-CSharp-Editor.csproj", "{FD04F993-16B9-C3BD-98BC-3C5EF078F8DF}"
 EndProject
 Project("{8CDEA25F-042D-3D93-1B3E-A8F9561BE3A0}") = "UNOir", "Assembly-UnityScript.unityproj", "{0911CD2A-2A99-CBDF-8852-66359CAEE62D}"
 EndProject

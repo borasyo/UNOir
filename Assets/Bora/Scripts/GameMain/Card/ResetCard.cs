@@ -32,7 +32,7 @@ public class ResetCard : MonoBehaviour
             .Subscribe (_ => {
                 m_TriangleWaveColor.Progress ();
                 m_SpriteRender.color = m_TriangleWaveColor.CurrentValue;
-            });
+        });
 
         // 1周したら終了させる
         m_TriangleWaveColor.OnReverseNowAdd.Subscribe (_ => SetEnable (false));
