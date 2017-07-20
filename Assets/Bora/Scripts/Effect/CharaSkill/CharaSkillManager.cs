@@ -47,7 +47,9 @@ public class CharaSkillManager : EffectBase
             return;
 
         render = GetComponent<SpriteRenderer> ();
-        render.color = new Color (1, 1, 1, 0);
+        if(render)
+            render.color = new Color (1, 1, 1, 0);
+        
         Vector3 TargetPos = transform.position;
         TargetPos.x *= -1; // 反転
         Distance = TargetPos - transform.position;

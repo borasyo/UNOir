@@ -12,6 +12,7 @@ public class EnemyDeath : MonoBehaviour
     Material m_Material;
     public Shader m_Shader = null;
     YieldInstruction m_Instruction = new WaitForEndOfFrame ();
+    public float fMinCutOff = 0.0f;
     public float fMaxCutOff = 1.0f;
     public float fDuration = 1.0f;
     float fNowCutOff = 0.0f;
@@ -26,11 +27,11 @@ public class EnemyDeath : MonoBehaviour
         Material mat = new Material (m_Shader);
         m_Material = GetComponent<SpriteRenderer> ().material = mat;
         mat.SetTexture ("_DissolveTex", DissolveTex);
-        m_Material.SetFloat ("_CutOff", 0.0f);
+        m_Material.SetFloat ("_CutOff", fMinCutOff);
 
         transform.DetachChildren ();
 
-        m_TriangleWaveFloat = TriangleWaveFactory.Float (0.0f, fMaxCutOff, fDuration);
+        m_TriangleWaveFloat = TriangleWaveFactory.Float (fMinCutOff, fMaxCutOff, fDuration);
 
         SoundManager.Instance.PlaySE (SoundManager.eSeValue.SE_ENEMYDEATH);
     }

@@ -3,6 +3,9 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+using UniRx;
+using UniRx.Triggers;
+
 public class PressStart : MonoBehaviour {
 
 	/// <summary>
@@ -19,7 +22,31 @@ public class PressStart : MonoBehaviour {
 		image = GetComponent<Image> ();
 
 		SoundManager.Instance.PlayBGM (SoundManager.eBgmValue.BGM_TITLE);
+        StartCoroutine (Init());
 	}
+
+    IEnumerator Init()
+    {
+        yield return null;
+
+        if (Application.platform == RuntimePlatform.Android) {
+            this.UpdateAsObservable ()
+                .Subscribe (_ => {
+                if (Input.touchCount > 0 && Input.GetTouch (0).phase == TouchPhase.Began && !FadeManager.Instance.GetFadeing ()) {
+                    SceneChanger.Instance.ChangeMainMenu ();
+                    SoundManager.Instance.PlaySE (SoundManager.eSeValue.SE_TOUCHSTART);
+                }
+            });
+        } else {
+            this.UpdateAsObservable ()
+                .Subscribe (_ => {
+                    if (Input.GetMouseButtonDown (0) && !FadeManager.Instance.GetFadeing()) {
+                        SceneChanger.Instance.ChangeMainMenu ();
+                        SoundManager.Instance.PlaySE (SoundManager.eSeValue.SE_TOUCHSTART);
+                    }
+                });
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -38,16 +65,6 @@ public class PressStart : MonoBehaviour {
 			}
 		}
 
-		if (Application.platform == RuntimePlatform.Android) {
-			if (Input.touchCount > 0 && Input.GetTouch (0).phase == TouchPhase.Began && !FadeManager.Instance.GetFadeing()) {
-				SceneChanger.Instance.ChangeMainMenu ();
-				SoundManager.Instance.PlaySE (SoundManager.eSeValue.SE_TOUCHSTART);
-			}
-		} else {
-			if (Input.GetMouseButtonDown (0) && !FadeManager.Instance.GetFadeing()) {
-				SceneChanger.Instance.ChangeMainMenu ();
-				SoundManager.Instance.PlaySE (SoundManager.eSeValue.SE_TOUCHSTART);
-			}
-		}
+		
 	}
 }
