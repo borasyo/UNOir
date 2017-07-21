@@ -257,7 +257,7 @@ public class BattleManager : MonoBehaviour {
     private IEnumerator ContinueThisBattle()
     {
         //死んでいたらゲージなどをリセットして同じステージをコンティニュー
-        TurnData.Instance.FastReset();
+        TurnData.Instance.AllReset();
         upperManager.player.ResetStatus();
         upperManager.feverGauge.Init();
         //foreach (Enemy elem in upperManager.enemyList)
@@ -306,7 +306,7 @@ public class BattleManager : MonoBehaviour {
         //バトル終了時にTurnDataをリセットする
         if(isInBattle)
         {
-            TurnData.Instance.FastReset();
+            TurnData.Instance.AllReset();
         }
     }
 

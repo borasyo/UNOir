@@ -12,7 +12,7 @@ public class ContinueAtackUp : MonoBehaviour
 
     void Start ()
     {
-        TurnData.Instance.m_ContinueAtackUpManager.Add (GetComponent<ContinueAtackUp> ());
+        TurnData.Instance.AddContinueAtack (GetComponent<ContinueAtackUp> ());
     }
 
     public float AtackAmount {

@@ -72,6 +72,8 @@
      <Compile Include="Assets\Bora\Scripts\Auto\AutoDeatroyNotIsPlaying.cs" />
      <Compile Include="Assets\Bora\Scripts\Auto\AutoDestroy.cs" />
      <Compile Include="Assets\Bora\Scripts\Auto\AutoDestroyNonChild.cs" />
+     <Compile Include="Assets\Bora\Scripts\Auto\AutoInitStop.cs" />
+     <Compile Include="Assets\Bora\Scripts\Auto\AutoParticleDestroyer.cs" />
      <Compile Include="Assets\Bora\Scripts\Auto\EndParticleDestroyer.cs" />
      <Compile Include="Assets\Bora\Scripts\Auto\ResourceHolder.cs" />
      <Compile Include="Assets\Bora\Scripts\CharaSkill\CharaSkillBase.cs" />
@@ -100,6 +102,7 @@
      <Compile Include="Assets\Bora\Scripts\Effect\CharaSkill\Sun\SunProtect.cs" />
      <Compile Include="Assets\Bora\Scripts\Effect\CharaSkill\Thunder\BlackOut.cs" />
      <Compile Include="Assets\Bora\Scripts\Effect\CharaSkill\Thunder\Thunder.cs" />
+     <Compile Include="Assets\Bora\Scripts\Effect\CharaSkill\Thunder\Thunder1.cs" />
      <Compile Include="Assets\Bora\Scripts\Effect\CharaSkill\Thunder\ThunderParticle.cs" />
      <Compile Include="Assets\Bora\Scripts\Effect\CharaSkill\Water\HealingWater.cs" />
      <Compile Include="Assets\Bora\Scripts\Effect\CharaSkill\Wind\WhirlWind.cs" />
@@ -164,9 +167,9 @@
      <Compile Include="Assets\Bora\Scripts\GameMain\Pause\Retire.cs" />
      <Compile Include="Assets\Bora\Scripts\GameMain\Pause\ReturnGame.cs" />
      <Compile Include="Assets\Bora\Scripts\GameMain\TouchManager.cs" />
+     <Compile Include="Assets\Bora\Scripts\GameMain\TurnData.cs" />
      <Compile Include="Assets\Bora\Scripts\GameMain\TurnData\DrowData.cs" />
      <Compile Include="Assets\Bora\Scripts\GameMain\TurnData\DrowDataManager.cs" />
-     <Compile Include="Assets\Bora\Scripts\GameMain\TurnData\TurnData.cs" />
      <Compile Include="Assets\Bora\Scripts\GameMain\TurnData\TurnDataBase.cs" />
      <Compile Include="Assets\Bora\Scripts\GameMain\TurnData\TurnDataCalculator.cs" />
      <Compile Include="Assets\Bora\Scripts\GameMain\TurnData\TurnDataHolder.cs" />

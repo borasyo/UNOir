@@ -7,6 +7,6 @@ public class Turn_Debug : MonoBehaviour {
 	
 	// Update is called once per frame
 	void LateUpdate () {
-        TurnDataHolder data = TurnData.Instance.GetTurnData ();
+        TurnData.tTurnData data = TurnData.Instance.GetTurnData ();
 	}
 }

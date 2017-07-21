@@ -88,7 +88,7 @@ public class Player : MonoBehaviour
         float fNumber;              //カードの数字×ドロー2、ドロー4の倍率
         int nNum;                   //各色に対応する場に置いたカードの枚数
 
-        TurnDataHolder turnData = TurnData.Instance.GetTurnData();
+        TurnData.tTurnData turnData = TurnData.Instance.GetTurnData();
 
         //スキップ処理
 		if(turnData.nSkipNum > 0)
